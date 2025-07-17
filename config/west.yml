@@ -1,4 +1,7 @@
 manifest:
+  defaults:
+    revision: v0.3
+
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -6,15 +9,20 @@ manifest:
       # See:
       # - https://zmk.dev/docs/features/modules
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
+    - name: urob
+      url-base: https://github.com/urob
     - name: gpeye
       url-base: https://github.com/GPeye
   projects:
     - name: mario-peripheral-animation
       remote: gpeye
-      revision: main 
+      revision: main
+    - name: zmk-tri-state
+      remote: urob
+    - name: zmk-auto-layer
+      remote: urob
     - name: zmk
       remote: zmkfirmware
-      revision: main
       import: app/west.yml
   self:
     path: boards

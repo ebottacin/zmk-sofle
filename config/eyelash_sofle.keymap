@@ -178,6 +178,7 @@
         agrave_morph: agrave_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "AGRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&agrave_lower>, <&agrave_upper>;
@@ -185,6 +186,7 @@
         egrave_morph: egrave_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "EGRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&egrave_lower>, <&egrave_upper>;
@@ -192,6 +194,7 @@
         eacute_morph: eacute_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "EACUTE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&eacute_lower>, <&eacute_upper>;
@@ -199,6 +202,7 @@
         igrave_morph: igrave_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "IGRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&igrave_lower>, <&igrave_upper>;
@@ -206,6 +210,7 @@
         ograve_morph: ograve_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "OGRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&ograve_lower>, <&ograve_upper>;
@@ -213,6 +218,7 @@
         ugrave_morph: ugrave_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "UGRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&ugrave_lower>, <&ugrave_upper>;
@@ -220,6 +226,7 @@
         grave_morph: grave_morph {
             compatible    = "zmk,behavior-mod-morph";
             label         = "GRAVE_MORPH";
+            #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&kp GRAVE>, <&kp TILDE>;
@@ -229,6 +236,7 @@
         mt_a_agrave: mt_a_agrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_A_AGRAVE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp A>, <&agrave_morph>;
@@ -236,6 +244,7 @@
         mt_e_egrave: mt_e_egrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EGRAVE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
@@ -243,6 +252,7 @@
         mt_e_eacute: mt_e_eacute {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EACUTE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
@@ -250,6 +260,7 @@
         mt_i_igrave: mt_i_igrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_I_IGRAVE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp I>, <&igrave_morph>;
@@ -257,6 +268,7 @@
         mt_o_ograve: mt_o_ograve {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_O_OGRAVE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp O>, <&ograve_morph>;
@@ -264,6 +276,7 @@
         mt_u_ugrave: mt_u_ugrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_U_UGRAVE";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp U>, <&ugrave_morph>;
@@ -273,6 +286,7 @@
         hr_mod_z: hr_mod_z {
             compatible       = "zmk,behavior-hold-tap";
             label            = "Z/CTRL";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp Z  &kp LCTRL>;
@@ -282,6 +296,7 @@
         hr_mod_s: hr_mod_s {
             compatible       = "zmk,behavior-hold-tap";
             label            = "S/WIN";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp S  &kp LGUI>;
@@ -291,6 +306,7 @@
         hr_mod_d: hr_mod_d {
             compatible       = "zmk,behavior-hold-tap";
             label            = "D/LALT";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp D  &kp LALT>;
@@ -300,6 +316,7 @@
         hr_mod_f: hr_mod_f {
             compatible       = "zmk,behavior-hold-tap";
             label            = "F/SHIFT";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp F  &kp LSHIFT>;
@@ -309,6 +326,7 @@
         hr_mod_j: hr_mod_j {
             compatible       = "zmk,behavior-hold-tap";
             label            = "J/SHIFT";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp J  &kp RSHIFT>;
@@ -318,6 +336,7 @@
         hr_mod_k: hr_mod_k {
             compatible       = "zmk,behavior-hold-tap";
             label            = "K/ALT";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp K  &kp RALT>;
@@ -327,6 +346,7 @@
         hr_mod_l: hr_mod_l {
             compatible       = "zmk,behavior-hold-tap";
             label            = "L/WIN";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp L  &kp RGUI>;
@@ -336,6 +356,7 @@
         hr_mod_semicolon: hr_mod_semicolon {
             compatible       = "zmk,behavior-hold-tap";
             label            = ";/CTRL";
+            #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
             bindings         = <&kp SEMI  &kp RCTRL>;

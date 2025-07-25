@@ -180,7 +180,6 @@
             label         = "AGRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&agrave_lower>, <&agrave_upper>;
         };
         egrave_morph: egrave_morph {
@@ -188,7 +187,6 @@
             label         = "EGRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&egrave_lower>, <&egrave_upper>;
         };
         eacute_morph: eacute_morph {
@@ -196,7 +194,6 @@
             label         = "EACUTE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&eacute_lower>, <&eacute_upper>;
         };
         igrave_morph: igrave_morph {
@@ -204,7 +201,6 @@
             label         = "IGRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&igrave_lower>, <&igrave_upper>;
         };
         ograve_morph: ograve_morph {
@@ -212,7 +208,6 @@
             label         = "OGRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&ograve_lower>, <&ograve_upper>;
         };
         ugrave_morph: ugrave_morph {
@@ -220,7 +215,6 @@
             label         = "UGRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&ugrave_lower>, <&ugrave_upper>;
         };
         grave_morph: grave_morph {
@@ -228,7 +222,6 @@
             label         = "GRAVE_MORPH";
             #binding-cells = <0>;
             mods          = <(MOD_LSFT | MOD_RSFT)>;
-            masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&kp GRAVE>, <&kp TILDE>;
         };
 

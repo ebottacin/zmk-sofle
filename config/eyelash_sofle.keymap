@@ -168,7 +168,7 @@
         /* Combina MO(1) + MO(2) → MO(3) */
         layer_3_combo {
             timeout-ms    = <50>;           /* finestra di “simultaneità” */
-            key-positions = <4 5  4 9>;     /* &mo1 + &mo2 */
+            key-positions = <56  60>;     /* &mo1 + &mo2 */
             bindings      = <&tog 3>;        /* toggle layer 3 */
         };
     };
@@ -242,138 +242,6 @@
             flavor           = "tap-preferred";
             bindings         = <&kp>, <&kp>;
         };
-
-        /*mod-tap: tap lettera normale, hold lettera accentata */
-        /*
-        mt_a_agrave: mt_a_agrave {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_A_AGRAVE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp A>, &agrave_morph>;
-        };
-        mt_e_egrave: mt_e_egrave {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_E_EGRAVE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp E &egrave_morph>;
-        };
-        mt_e_eacute: mt_e_eacute {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_E_EACUTE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp E>, <&egrave_morph>;
-        };
-        mt_i_igrave: mt_i_igrave {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_I_IGRAVE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp I>, <&igrave_morph>;
-        };
-        mt_o_ograve: mt_o_ograve {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_O_OGRAVE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp O>, <&ograve_morph>;
-        };
-        mt_u_ugrave: mt_u_ugrave {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "MT_U_UGRAVE";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "hold-preferred";
-            bindings         = <&kp U>, <&ugrave_morph>;
-        };
-
-        // z → tap “z” | hold LCTRL
-        hr_mod_z: hr_mod_z {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "Z/CTRL";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp Z>,  <&kp LCTRL>;
-        };
-
-        // S → tap “s” | hold LWIN
-        hr_mod_s: hr_mod_s {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "S/WIN";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp S>,  <&kp LGUI>;
-        };
-
-        // D → tap “d” | hold LALT *
-        hr_mod_d: hr_mod_d {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "D/LALT";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp D>,  <&kp LALT>;
-        };
-
-        // F → tap “f” | hold LSHIFT 
-        hr_mod_f: hr_mod_f {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "F/SHIFT";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp F>,  <&kp LSHIFT>;
-        };
-
-        // J → tap “j” | hold RSHIFT
-        hr_mod_j: hr_mod_j {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "J/SHIFT";
-            #binding-cells = <2>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp J>,  <&kp RSHIFT>;
-        };
-
-        // K → tap “k” | hold RGUI
-        hr_mod_k: hr_mod_k {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "K/ALT";
-            #binding-cells = <0>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp K>,  <&kp RALT>;
-        };
-
-        // L → tap “l” | hold RALT
-        hr_mod_l: hr_mod_l {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = "L/WIN";
-            #binding-cells = <2>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp L  &kp RGUI>;
-        };
-
-        // ; → tap “;” | hold RCTRL
-        hr_mod_semicolon: hr_mod_semicolon {
-            compatible       = "zmk,behavior-hold-tap";
-            label            = ";/CTRL";
-            #binding-cells = <2>;
-            tapping-term-ms  = <200>;
-            flavor           = "tap-preferred";
-            bindings         = <&kp SEMI  &kp RCTRL>;
-        };
-        */
     };
 
     scroll_encoder: scroll_encoder {
@@ -389,8 +257,8 @@
         layer_0 {
             bindings = <
 &kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5     &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
-&kp TAB     &kp Q                   &kp W         &mth E &eacute_morph   &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &mth U &ugrave_morph  &mth I &igrave_morph   &mth O &ograve_morph      &kp P                &kp BSLH
-&kp CAPS    &mth A &agrave_morph    &mtt S LGUI   &mtt D LALT            &mtt F LSHIFT &kp G      &kp LEFT_ARROW   &kp H      &mtt J RSHIFT         &mtt K RALT            &mtt L RGUI               &mtt SEMI LCTRL      &kp APOS
+&kp TAB     &kp Q                   &kp W         &mth &eacute_morph E   &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &mth &ugrave_morph U  &mth &igrave_morph I   &mth &ograve_morph O      &kp P                &kp BSLH
+&kp CAPS    &mth &agrave_morph A    &mtt LGUI S   &mtt LALT D            &mtt LSHIFT F &kp G      &kp LEFT_ARROW   &kp H      &mtt RSHIFT J         &mtt RALT K            &mtt RGUI L               &mtt LCTRL SEMI      &kp APOS
 &kp LSHFT   &mtt Z LCTRL            &kp X         &kp C                  &kp V         &kp B      &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
 &kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &kp RIGHT_SHIFT           &kp DELETE
             >;
@@ -402,7 +270,7 @@
         layer_1 {
             bindings = <
 &trans      &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &grave_morph     &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
+&trans      &trans           &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
 &trans      &trans           &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
 &trans      &trans           &trans          &trans           &trans           &trans             &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
 &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans

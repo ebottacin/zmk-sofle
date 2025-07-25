@@ -30,93 +30,8 @@
 
 / {
 
-    macros {
+    macros { 
         /* à = AltGr + 0 2 2 4 */
-        ZMK_MACRO(agrave_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N4>
-                    , <&macro_release &kp LALT>;
-                );
-        /* À = AltGr + 0 1 9 2 */  
-        ZMK_MACRO(agrave_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N2>
-                    , <&macro_release &kp LALT>;
-                );          
-        /* é = AltGr + 0 2 3 3 */
-         ZMK_MACRO(eacute_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N3>
-                    , <&macro_release &kp LALT>;
-                );
-        /* É = AltGr + 0 2 0 1 */
-        ZMK_MACRO(eacute_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N1>
-                    , <&macro_release &kp LALT>;
-                );      
-        /* è = AltGr + 0 2 3 2 */
-        ZMK_MACRO(egrave_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N2>
-                    , <&macro_release &kp LALT>;
-                );
-        /* È = AltGr + 0 2 0 0 */
-        ZMK_MACRO(egrave_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N0>
-                    , <&macro_release &kp LALT>;
-                ); 
-        /* ì = AltGr + 0 2 3 6 */
-        ZMK_MACRO(igrave_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N6>
-                    , <&macro_release &kp LALT>;
-                );
-        /* Ì = AltGr + 0 2 0 4 */
-        ZMK_MACRO(igrave_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N4>
-                    , <&macro_release &kp LALT>;
-                ); 
-        /* ò = AltGr + 0 2 4 2 */
-        ZMK_MACRO(ograve_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N2>
-                    , <&macro_release &kp LALT>;
-                );
-        /* Ò = AltGr + 0 2 1 0 */
-        ZMK_MACRO(ograve_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N0>
-                    , <&macro_release &kp LALT>;
-                );
-        /* ù = AltGr + 0 2 4 9 */
-        ZMK_MACRO(ugrave_lower,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N9>
-                    , <&macro_release &kp LALT>;
-                );
-        /* Ù = AltGr + 0 2 1 7 */
-        ZMK_MACRO(ugrave_upper,
-                  bindings
-                    = <&macro_press &kp LALT>
-                    , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N7>
-                    , <&macro_release &kp LALT>;
-                );
-
-        /*
         agrave_lower: agrave_lower {
             compatible = "zmk,behavior-macro";
             label = "à";
@@ -126,107 +41,115 @@
                 , <&macro_release &kp LALT>;
         };
         
-        
+        /* À = AltGr + 0 1 9 2 */  
         agrave_upper: agrave_upper {
             compatible = "zmk,behavior-macro";
             label = "À";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_9 &kp KP_NUMBER_2>
+                , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N2>
                 , <&macro_release &kp LALT>;
         };
-       
-        e_acute: eacute {
+        
+        /* é = AltGr + 0 2 3 3 */
+        eacute_lower: eacute_lower {
             compatible = "zmk,behavior-macro";
             label = "é";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_2 &kp KP_NUMBER_3>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N3>
                 , <&macro_release &kp LALT>;
         };
- 
-        E_acute: Eacute {
+
+        /* É = AltGr + 0 2 0 1 */
+        eacute_upper: eacute_upper {
             compatible = "zmk,behavior-macro";
             label = "É";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_0 &kp KP_NUMBER_1>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N1>
                 , <&macro_release &kp LALT>;
         };
 
-        e_grave: egrave {
+        /* è = AltGr + 0 2 3 2 */
+        egrave_lower: egrave_lower {
             compatible = "zmk,behavior-macro";
             label = "è";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_NUMBER_2>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N2>
                 , <&macro_release &kp LALT>;
         };
-
-        E_grave: Egrave {
+       
+        /* È = AltGr + 0 2 0 0 */
+        egrave_upper: egrave_upper {
             compatible = "zmk,behavior-macro";
             label = "È";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_0 &kp KP_NUMBER_0>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N0>
                 , <&macro_release &kp LALT>;
         };
 
-        i_grave: igrave {
+        /* ì = AltGr + 0 2 3 6 */
+        igrave_lower: igrave_lower {
             compatible = "zmk,behavior-macro";
             label = "ì";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_NUMBER_6>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N6>
                 , <&macro_release &kp LALT>;
         };
 
-       
-        I_grave: Igrave {
+        /* Ì = AltGr + 0 2 0 4 */    
+        igrave_upper: igrave_upper {
             compatible = "zmk,behavior-macro";
             label = "Ì";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_1 &kp KP_NUMBER_0 &kp KP_NUMBER_4>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N4>
                 , <&macro_release &kp LALT>;
         };
 
-        o_grave: ograve {
+        /* ò = AltGr + 0 2 4 2 */
+        ograve_lower: ograve_lower {
             compatible = "zmk,behavior-macro";
             label = "ò";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_2>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N2>
                 , <&macro_release &kp LALT>;
         };
         
-        O_grave: Ograve {
+        /* Ò = AltGr + 0 2 1 0 */
+        ograve_upper: ograve_upper {
             compatible = "zmk,behavior-macro";
             label = "Ò";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_1 &kp KP_NUMBER_0>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N0>
                 , <&macro_release &kp LALT>;
         };
 
-        u_grave: ugrave {
+        /* ù = AltGr + 0 2 4 9 */
+        ugrave_lower: ugrave {
             compatible = "zmk,behavior-macro";
             label = "ù";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_4 &kp KP_NUMBER_9>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N9>
                 , <&macro_release &kp LALT>;
         };
 
-        U_grave: Ugrave {
+        /* Ù = AltGr + 0 2 1 7 */
+        ugrave_upper: ugrave_upper {
             compatible = "zmk,behavior-macro";
             label = "Ù";
             bindings
                 = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_NUMBER_0 &kp KP_NUMBER_2 &kp KP_NUMBER_1 &kp KP_NUMBER_7>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N7>
                 , <&macro_release &kp LALT>;
         };
-        */
     };
 
     combos {

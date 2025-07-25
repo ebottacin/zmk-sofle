@@ -232,7 +232,7 @@
             #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
-            bindings         = <&kp A>, <&agrave_morph>;
+            bindings         = <&kp A &agrave_morph>;
         };
         mt_e_egrave: mt_e_egrave {
             compatible       = "zmk,behavior-hold-tap";
@@ -240,7 +240,7 @@
             #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
-            bindings         = <&kp E>, <&egrave_morph>;
+            bindings         = <&kp E &egrave_morph>;
         };
         mt_e_eacute: mt_e_eacute {
             compatible       = "zmk,behavior-hold-tap";

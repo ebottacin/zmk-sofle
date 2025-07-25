@@ -168,7 +168,7 @@
         /* Combina MO(1) + MO(2) → MO(3) */
         layer_3_combo {
             timeout-ms    = <50>;           /* finestra di “simultaneità” */
-            key-positions = <0  1>;     /* &mo1 + &mo2 */
+            key-positions = <57  61>;     /* &mo1 + &mo2 */
             bindings      = <&tog 4>;        /* toggle layer 4 */
         };
     };

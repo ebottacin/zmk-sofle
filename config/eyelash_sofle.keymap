@@ -159,7 +159,7 @@
             key-positions = <4 5  4 9>;     /* &mo1 + &mo2 */
             bindings      = <&tog 3>;        /* toggle layer 3 */
         };
-    }
+    };
 
     behaviors {
          /* Sceglie tra lettere accentate maiuscole e minuscole in base allo Shift */

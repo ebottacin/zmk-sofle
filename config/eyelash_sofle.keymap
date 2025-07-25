@@ -164,6 +164,7 @@
     };
 
     combos {
+        compatible = "zmk,combos";
         /* Combina MO(1) + MO(2) → MO(3) */
         layer_3_combo {
             timeout-ms    = <50>;           /* finestra di “simultaneità” */
@@ -294,14 +295,14 @@
 
         layer_3 {
             bindings = <
-&none        &none          &none     &egrave_upper  &none      &none    &none  &ugrave_upper    &igrave_upper   &ograve_upper  &none  &none  &none
-&none        &agrave_upper  &none     &egrave_lower  &none      &none    &none  &ugrave_lower    &igrave_lower   &ograve_lower  &none  &none  &none
-&none        &agrave_lower  &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
-&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
-&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &trans 
+&none        &none          &none     &egrave_upper  &none      &none    &none  &none  &ugrave_upper    &igrave_upper   &ograve_upper  &none  &none
+&none        &agrave_upper  &none     &egrave_lower  &none      &none    &none  &none  &ugrave_lower    &igrave_lower   &ograve_lower  &none  &none
+&none        &agrave_lower  &none     &none          &none      &none    &none  &none  &none            &none           &none          &none  &none
+&none        &none          &none     &none          &none      &none    &none  &none  &none            &none           &none          &none  &none
+&none        &none          &none     &none          &none      &none    &none  &none  &none            &none           &none          &trans 
             >;
 
-            display-name = "INTL";
+            display-name = "I18n";
         };
 
 

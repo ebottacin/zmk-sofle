@@ -237,7 +237,7 @@
         mt_e_egrave: mt_e_egrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EGRAVE";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
@@ -245,7 +245,7 @@
         mt_e_eacute: mt_e_eacute {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EACUTE";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
@@ -253,7 +253,7 @@
         mt_i_igrave: mt_i_igrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_I_IGRAVE";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp I>, <&igrave_morph>;
@@ -261,7 +261,7 @@
         mt_o_ograve: mt_o_ograve {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_O_OGRAVE";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp O>, <&ograve_morph>;
@@ -269,7 +269,7 @@
         mt_u_ugrave: mt_u_ugrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_U_UGRAVE";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp U>, <&ugrave_morph>;
@@ -279,40 +279,40 @@
         hr_mod_z: hr_mod_z {
             compatible       = "zmk,behavior-hold-tap";
             label            = "Z/CTRL";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp Z  &kp LCTRL>;
+            bindings         = <&kp Z>,  <&kp LCTRL>;
         };
 
         /* S → tap “s” | hold LWIN */
         hr_mod_s: hr_mod_s {
             compatible       = "zmk,behavior-hold-tap";
             label            = "S/WIN";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp S  &kp LGUI>;
+            bindings         = <&kp S>,  <&kp LGUI>;
         };
 
         /* D → tap “d” | hold LALT */
         hr_mod_d: hr_mod_d {
             compatible       = "zmk,behavior-hold-tap";
             label            = "D/LALT";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp D  &kp LALT>;
+            bindings         = <&kp D>,  <&kp LALT>;
         };
 
         /* F → tap “f” | hold LSHIFT */
         hr_mod_f: hr_mod_f {
             compatible       = "zmk,behavior-hold-tap";
             label            = "F/SHIFT";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp F  &kp LSHIFT>;
+            bindings         = <&kp F>,  <&kp LSHIFT>;
         };
 
         /* J → tap “j” | hold RSHIFT */
@@ -322,17 +322,17 @@
             #binding-cells = <2>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp J  &kp RSHIFT>;
+            bindings         = <&kp J>,  <&kp RSHIFT>;
         };
 
         /* K → tap “k” | hold RGUI */
         hr_mod_k: hr_mod_k {
             compatible       = "zmk,behavior-hold-tap";
             label            = "K/ALT";
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp K  &kp RALT>;
+            bindings         = <&kp K>,  <&kp RALT>;
         };
 
         /* L → tap “l” | hold RALT */

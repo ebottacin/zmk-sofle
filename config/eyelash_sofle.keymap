@@ -225,14 +225,33 @@
             bindings      = <&kp GRAVE>, <&kp TILDE>;
         };
 
+         mth: mth {
+            compatible       = "zmk,behavior-hold-tap";
+            label            = "MT";
+            #binding-cells = <2>;
+            tapping-term-ms  = <200>;
+            flavor           = "hold-preferred";
+            bindings         = <&kp>, <&kp>;
+        };
+        
+        mtt: mtt {
+            compatible       = "zmk,behavior-hold-tap";
+            label            = "MT";
+            #binding-cells = <2>;
+            tapping-term-ms  = <200>;
+            flavor           = "tap-preferred";
+            bindings         = <&kp>, <&kp>;
+        };
+
         /*mod-tap: tap lettera normale, hold lettera accentata */
+        /*
         mt_a_agrave: mt_a_agrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_A_AGRAVE";
             #binding-cells = <0>;
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
-            bindings         = <&kp A &agrave_morph>;
+            bindings         = <&kp A>, &agrave_morph>;
         };
         mt_e_egrave: mt_e_egrave {
             compatible       = "zmk,behavior-hold-tap";
@@ -275,7 +294,7 @@
             bindings         = <&kp U>, <&ugrave_morph>;
         };
 
-        /* z → tap “z” | hold LCTRL */
+        // z → tap “z” | hold LCTRL
         hr_mod_z: hr_mod_z {
             compatible       = "zmk,behavior-hold-tap";
             label            = "Z/CTRL";
@@ -285,7 +304,7 @@
             bindings         = <&kp Z>,  <&kp LCTRL>;
         };
 
-        /* S → tap “s” | hold LWIN */
+        // S → tap “s” | hold LWIN
         hr_mod_s: hr_mod_s {
             compatible       = "zmk,behavior-hold-tap";
             label            = "S/WIN";
@@ -295,7 +314,7 @@
             bindings         = <&kp S>,  <&kp LGUI>;
         };
 
-        /* D → tap “d” | hold LALT */
+        // D → tap “d” | hold LALT *
         hr_mod_d: hr_mod_d {
             compatible       = "zmk,behavior-hold-tap";
             label            = "D/LALT";
@@ -305,7 +324,7 @@
             bindings         = <&kp D>,  <&kp LALT>;
         };
 
-        /* F → tap “f” | hold LSHIFT */
+        // F → tap “f” | hold LSHIFT 
         hr_mod_f: hr_mod_f {
             compatible       = "zmk,behavior-hold-tap";
             label            = "F/SHIFT";
@@ -315,7 +334,7 @@
             bindings         = <&kp F>,  <&kp LSHIFT>;
         };
 
-        /* J → tap “j” | hold RSHIFT */
+        // J → tap “j” | hold RSHIFT
         hr_mod_j: hr_mod_j {
             compatible       = "zmk,behavior-hold-tap";
             label            = "J/SHIFT";
@@ -325,7 +344,7 @@
             bindings         = <&kp J>,  <&kp RSHIFT>;
         };
 
-        /* K → tap “k” | hold RGUI */
+        // K → tap “k” | hold RGUI
         hr_mod_k: hr_mod_k {
             compatible       = "zmk,behavior-hold-tap";
             label            = "K/ALT";
@@ -335,7 +354,7 @@
             bindings         = <&kp K>,  <&kp RALT>;
         };
 
-        /* L → tap “l” | hold RALT */
+        // L → tap “l” | hold RALT
         hr_mod_l: hr_mod_l {
             compatible       = "zmk,behavior-hold-tap";
             label            = "L/WIN";
@@ -345,7 +364,7 @@
             bindings         = <&kp L  &kp RGUI>;
         };
 
-        /* ; → tap “;” | hold RCTRL */
+        // ; → tap “;” | hold RCTRL
         hr_mod_semicolon: hr_mod_semicolon {
             compatible       = "zmk,behavior-hold-tap";
             label            = ";/CTRL";
@@ -354,6 +373,7 @@
             flavor           = "tap-preferred";
             bindings         = <&kp SEMI  &kp RCTRL>;
         };
+        */
     };
 
     scroll_encoder: scroll_encoder {
@@ -368,11 +388,11 @@
 
         layer_0 {
             bindings = <
-&kp ESC     &kp N1            &kp N2        &kp N3        &kp N4        &kp N5       &kp UP_ARROW     &kp N6     &kp N7        &kp N8           &kp N9           &kp N0               &kp BACKSPACE
-&kp TAB     &kp Q             &kp W         &mt_e_eacute  &kp R         &kp T        &kp DOWN_ARROW   &kp Y      &mt_u_ugrave  &mt_i_igrave     &mt_o_ograve     &kp P                &kp BSLH
-&kp CAPS    &mt_a_agrave      &hr_mod_s     &hr_mod_d     &hr_mod_f     &kp G        &kp LEFT_ARROW   &kp H      &hr_mod_j     &hr_mod_k        &hr_mod_l        &hr_mod_semicolon    &kp APOS
-&kp LSHFT   &hr_mod_z         &kp X         &kp C         &kp V         &kp B        &kp RIGHT_ARROW  &kp N      &kp M         &kp COMMA        &kp DOT          &kp FSLH             &kp ENTER
-&kp C_MUTE  &kp LCTRL         &kp LEFT_GUI  &kp LEFT_ALT  &kp SPACE     &mo 1        &kp SPACE        &kp ENTER  &kp ENTER     &mo 2            &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5         &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
+&kp TAB     &kp Q                   &kp W         &mth E &eacute_morph   &kp R         &kp T          &kp DOWN_ARROW   &kp Y      &mth U &ugrave_morph  &mth I &igrave_morph   &mth O &ograve_morph      &kp P                &kp BSLH
+&kp CAPS    &mth A &agrave_moprh    &mtt S LCTRL  &mtt D LGUI            &mtt F LALT   &mtt G LSHIFT  &kp LEFT_ARROW   &kp H      &mtt J RSHIFT         &mtt K RALT            &mtt L RGUI               &mtt SEMI LCTRL      &kp APOS
+&kp LSHFT   &hr_mod_z               &kp X         &kp C                  &kp V         &kp B          &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
+&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1          &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &kp RIGHT_SHIFT           &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

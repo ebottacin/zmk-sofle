@@ -214,42 +214,42 @@
         };
 
         /*mod-tap: tap lettera normale, hold lettera accentata */
-        mt_a_agrave: hold_tap {
+        mt_a_agrave: mt_a_agrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_A_AGRAVE";
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp A>, <&agrave_morph>;
         };
-        mt_e_egrave: hold_tap {
+        mt_e_egrave: mt_e_egrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EGRAVE";
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
         };
-        mt_e_eacute: hold_tap {
+        mt_e_eacute: mt_e_eacute {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_E_EACUTE";
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp E>, <&egrave_morph>;
         };
-        mt_i_igrave: hold_tap {
+        mt_i_igrave: mt_i_igrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_I_IGRAVE";
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp I>, <&igrave_morph>;
         };
-        mt_o_ograve: hold_tap {
+        mt_o_ograve: mt_o_ograve {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_O_OGRAVE";
             tapping-term-ms  = <200>;
             flavor           = "hold-preferred";
             bindings         = <&kp O>, <&ograve_morph>;
         };
-        mt_u_ugrave: hold_tap {
+        mt_u_ugrave: mt_u_ugrave {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT_U_UGRAVE";
             tapping-term-ms  = <200>;
@@ -258,7 +258,7 @@
         };
 
         /* z → tap “z” | hold LCTRL */
-        hr_mod_z: hold_tap {
+        hr_mod_z: hr_mod_z {
             compatible       = "zmk,behavior-hold-tap";
             label            = "Z/CTRL";
             tapping-term-ms  = <200>;
@@ -267,7 +267,7 @@
         };
 
         /* S → tap “s” | hold LWIN */
-        hr_mod_s: hold_tap {
+        hr_mod_s: hr_mod_s {
             compatible       = "zmk,behavior-hold-tap";
             label            = "S/WIN";
             tapping-term-ms  = <200>;
@@ -276,7 +276,7 @@
         };
 
         /* D → tap “d” | hold LALT */
-        hr_mod_d: hold_tap {
+        hr_mod_d: hr_mod_d {
             compatible       = "zmk,behavior-hold-tap";
             label            = "D/LALT";
             tapping-term-ms  = <200>;
@@ -285,7 +285,7 @@
         };
 
         /* F → tap “f” | hold LSHIFT */
-        hr_mod_f: hold_tap {
+        hr_mod_f: hr_mod_f {
             compatible       = "zmk,behavior-hold-tap";
             label            = "F/SHIFT";
             tapping-term-ms  = <200>;
@@ -294,7 +294,7 @@
         };
 
         /* J → tap “j” | hold RSHIFT */
-        hr_mod_j: hold_tap {
+        hr_mod_j: hr_mod_j {
             compatible       = "zmk,behavior-hold-tap";
             label            = "J/SHIFT";
             tapping-term-ms  = <200>;
@@ -303,7 +303,7 @@
         };
 
         /* K → tap “k” | hold RGUI */
-        hr_mod_k: hold_tap {
+        hr_mod_k: hr_mod_k {
             compatible       = "zmk,behavior-hold-tap";
             label            = "K/ALT";
             tapping-term-ms  = <200>;
@@ -312,7 +312,7 @@
         };
 
         /* L → tap “l” | hold RALT */
-        hr_mod_l: hold_tap {
+        hr_mod_l: hr_mod_l {
             compatible       = "zmk,behavior-hold-tap";
             label            = "L/WIN";
             tapping-term-ms  = <200>;
@@ -321,7 +321,7 @@
         };
 
         /* ; → tap “;” | hold RCTRL */
-        hr_mod_semicolon: hold_tap {
+        hr_mod_semicolon: hr_mod_semicolon {
             compatible       = "zmk,behavior-hold-tap";
             label            = ";/CTRL";
             tapping-term-ms  = <200>;
@@ -372,7 +372,7 @@
 &trans      &trans    &trans  &kp KP_N7  &kp KP_N8  &kp KP_N9 &mmv MOVE_DOWN   &trans  &trans  &kp F11     &kp F12    &kp UNDER    &kp PLUS
 &trans      &trans    &trans  &kp KP_N4  &kp KP_N5  &kp KP_N6 &mmv MOVE_LEFT   &trans  &trans  &trans      &trans     &kp LBRC     &kp RBRC
 &trans      &trans    &trans  &kp KP_N1  &kp KP_N2  &kp KP_N3 &mmv MOVE_RIGHT  &trans  &trans  &trans      &trans     &trans       &trans
-&trans      &trans    &trans  &trans     &kp KP_N0  &trans    &mkp LCLK        &trans  &trans  &trans      &trans     &trans
+&trans      &trans    &trans  &kp KP_N0  &trans     &trans    &mkp LCLK        &trans  &trans  &trans      &trans     &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;

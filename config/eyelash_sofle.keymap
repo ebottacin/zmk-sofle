@@ -388,11 +388,11 @@
 
         layer_0 {
             bindings = <
-&kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5         &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
-&kp TAB     &kp Q                   &kp W         &mth E &eacute_morph   &kp R         &kp T          &kp DOWN_ARROW   &kp Y      &mth U &ugrave_morph  &mth I &igrave_morph   &mth O &ograve_morph      &kp P                &kp BSLH
-&kp CAPS    &mth A &agrave_morph    &mtt S LCTRL  &mtt D LGUI            &mtt F LALT   &mtt G LSHIFT  &kp LEFT_ARROW   &kp H      &mtt J RSHIFT         &mtt K RALT            &mtt L RGUI               &mtt SEMI LCTRL      &kp APOS
-&kp LSHFT   &hr_mod_z               &kp X         &kp C                  &kp V         &kp B          &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
-&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1          &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &kp RIGHT_SHIFT           &kp DELETE
+&kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5     &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
+&kp TAB     &kp Q                   &kp W         &mth E &eacute_morph   &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &mth U &ugrave_morph  &mth I &igrave_morph   &mth O &ograve_morph      &kp P                &kp BSLH
+&kp CAPS    &mth A &agrave_morph    &mtt S LGUI   &mtt D LALT            &mtt F LSHIFT &kp G      &kp LEFT_ARROW   &kp H      &mtt J RSHIFT         &mtt K RALT            &mtt L RGUI               &mtt SEMI LCTRL      &kp APOS
+&kp LSHFT   &mtt Z LCTRL            &kp X         &kp C                  &kp V         &kp B      &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
+&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &kp RIGHT_SHIFT           &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

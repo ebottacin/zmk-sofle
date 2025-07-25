@@ -258,9 +258,9 @@
             bindings = <
 &kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5     &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
 &kp TAB     &kp Q                   &kp W         &mth &eacute_morph E   &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &mth &ugrave_morph U  &mth &igrave_morph I   &mth &ograve_morph O      &kp P                &kp BSLH
-&kp CAPS    &mth agrave_morph A    &mtt LGUI S   &mtt LALT D            &mtt LSHIFT F &kp G      &kp LEFT_ARROW   &kp H      &mtt RSHIFT J         &mtt RALT K            &mtt RGUI L               &mtt LCTRL SEMI      &kp APOS
+&kp CAPS    &mth &agrave_morph A    &mtt LGUI S   &mtt LALT D            &mtt LSHIFT F &kp G      &kp LEFT_ARROW   &kp H      &mtt RSHIFT J         &mtt RALT K            &mtt RGUI L               &mtt LCTRL SEMI      &kp APOS
 &kp LSHFT   &mtt Z LCTRL            &kp X         &kp C                  &kp V         &kp B      &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
-&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &kp RIGHT_SHIFT           &kp DELETE
+&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &agrave_morph             &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

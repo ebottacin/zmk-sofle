@@ -298,7 +298,7 @@
 &none        &agrave_upper  &none     &egrave_lower  &none      &none    &none  &ugrave_lower    &igrave_lower   &ograve_lower  &none  &none  &none
 &none        &agrave_lower  &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
 &none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
-&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &trans  &none
+&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &trans 
             >;
 
             display-name = "INTL";

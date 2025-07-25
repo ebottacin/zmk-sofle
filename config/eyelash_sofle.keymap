@@ -27,7 +27,6 @@
     trigger-period-ms = <16>;
 };
 
-
 / {
 
     macros { 
@@ -169,7 +168,7 @@
         layer_3_combo {
             timeout-ms    = <50>;           /* finestra di “simultaneità” */
             key-positions = <56  60>;     /* &mo1 + &mo2 */
-            bindings      = <&tog 3>;        /* toggle layer 3 */
+            bindings      = <&tog 4>;        /* toggle layer 4 */
         };
     };
 
@@ -256,17 +255,17 @@
 
         layer_0 {
             bindings = <
-&kp ESC     &kp N1                  &kp N2        &kp N3                 &kp N4        &kp N5     &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
-&kp TAB     &kp Q                   &kp W         &mth &eacute_morph E   &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &mth &ugrave_morph U  &mth &igrave_morph I   &mth &ograve_morph O      &kp P                &kp BSLH
-&kp CAPS    &mth &agrave_morph A    &mtt LGUI S   &mtt LALT D            &mtt LSHIFT F &kp G      &kp LEFT_ARROW   &kp H      &mtt RSHIFT J         &mtt RALT K            &mtt RGUI L               &mtt LCTRL SEMI      &kp APOS
-&kp LSHFT   &mtt Z LCTRL            &kp X         &kp C                  &kp V         &kp B      &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
-&kp C_MUTE  &kp LCTRL               &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp ENTER  &kp ENTER             &mo 2                  &agrave_morph             &kp DELETE
+&kp ESC     &kp N1           &kp N2        &kp N3                 &kp N4        &kp N5     &kp UP_ARROW     &kp N6     &kp N7                &kp N8                 &kp N9                    &kp N0               &kp BACKSPACE
+&kp TAB     &kp Q            &kp W         &kp E                  &kp R         &kp T      &kp DOWN_ARROW   &kp Y      &kp U                 &kp I                  &kp O                     &kp P                &kp BSLH
+&kp CAPS    &mtt LCRL A      &mtt LGUI S   &mtt LALT D            &mtt LSHIFT F &kp G      &kp LEFT_ARROW   &kp H      &mtt RSHIFT J         &mtt RALT K            &mtt RGUI L               &mtt LCTRL SEMI      &kp APOS
+&kp LSHFT   &kp Z            &kp X         &kp C                  &kp V         &kp B      &kp RIGHT_ARROW  &kp N      &kp M                 &kp COMMA              &kp DOT                   &kp FSLH             &kp ENTER
+&kp C_MUTE  &kp LCTRL        &kp LEFT_GUI  &kp LEFT_ALT           &kp SPACE     &mo 1      &kp SPACE        &kp SPACE  &kp ENTER             &mo 2                  &mo 3                     &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
             display-name = "Base";
         };
-
+à
         layer_1 {
             bindings = <
 &trans      &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
@@ -295,11 +294,24 @@
 
         layer_3 {
             bindings = <
+&none        &none          &none     &egrave_upper  &none      &none    &none  &ugrave_upper    &igrave_upper   &ograve_upper  &none  &none  &none
+&none        &agrave_upper  &none     &egrave_lower  &none      &none    &none  &ugrave_lower    &igrave_lower   &ograve_lower  &none  &none  &none
+&none        &agrave_lower  &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
+&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &none  &none
+&none        &none          &none     &none          &none      &none    &none  &none            &none           &none          &none  &trans  &none
+            >;
+
+            display-name = "INTL";
+        };
+
+
+        layer_4 {
+            bindings = <
 &bootloader  &bt BT_SEL 0     &bt BT_SEL 1    &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4      &none  &none            &none            &none  &none  &none  &none
 &sys_reset   &bt BT_CLR       &bt BT_CLR_ALL  &none            &none            &none             &none  &none            &none            &none  &none  &none  &none
 &none        &out OUT_USB     &out OUT_BLE    &none            &none            &none             &none  &none            &none            &none  &none  &none  &none
 &none        &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI   &none  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &none  &none  &none  &none
-&none        &none            &none           &none            &none            &none             &none  &none            &trans           &none  &none  &none
+&none        &none            &none           &none            &none            &trans            &none  &none            &trans           &none  &none  &none
             >;
 
             display-name = "Config";

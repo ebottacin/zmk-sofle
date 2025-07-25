@@ -326,5 +326,5 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
-- p: [0, 1]
+- p: [57, 61]
   k: {t: Config, h: toggle}

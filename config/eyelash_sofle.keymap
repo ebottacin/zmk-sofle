@@ -211,8 +211,7 @@
             mods          = <(MOD_LSFT | MOD_RSFT)>;
             masked_mods   = <(MOD_LSFT | MOD_RSFT)>;
             bindings      = <&kp GRAVE>, <&kp TILDE>;
-        }
-
+        };
 
         /*mod-tap: tap lettera normale, hold lettera accentata */
         mt_a_agrave: hold_tap {

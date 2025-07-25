@@ -263,7 +263,7 @@
             label            = "Z/CTRL";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp Z  &hold LCTRL>;
+            bindings         = <&kp Z  &kp LCTRL>;
         };
 
         /* S → tap “s” | hold LWIN */
@@ -272,7 +272,7 @@
             label            = "S/WIN";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp S  &hold LGUI>;
+            bindings         = <&kp S  &kp LGUI>;
         };
 
         /* D → tap “d” | hold LALT */
@@ -281,7 +281,7 @@
             label            = "D/LALT";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp D  &hold LALT>;
+            bindings         = <&kp D  &kp LALT>;
         };
 
         /* F → tap “f” | hold LSHIFT */
@@ -290,7 +290,7 @@
             label            = "F/SHIFT";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp F  &hold LSHIFT>;
+            bindings         = <&kp F  &kp LSHIFT>;
         };
 
         /* J → tap “j” | hold RSHIFT */
@@ -299,7 +299,7 @@
             label            = "J/SHIFT";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp J  &hold RSHIFT>;
+            bindings         = <&kp J  &kp RSHIFT>;
         };
 
         /* K → tap “k” | hold RGUI */
@@ -308,7 +308,7 @@
             label            = "K/ALT";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp K  &hold RALT>;
+            bindings         = <&kp K  &kp RALT>;
         };
 
         /* L → tap “l” | hold RALT */
@@ -317,7 +317,7 @@
             label            = "L/WIN";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp L  &hold RGUI>;
+            bindings         = <&kp L  &kp RGUI>;
         };
 
         /* ; → tap “;” | hold RCTRL */
@@ -326,7 +326,7 @@
             label            = ";/CTRL";
             tapping-term-ms  = <200>;
             flavor           = "tap-preferred";
-            bindings         = <&kp SEMI  &hold RCTRL>;
+            bindings         = <&kp SEMI  &kp RCTRL>;
         };
     };
 

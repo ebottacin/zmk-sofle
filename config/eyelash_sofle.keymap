@@ -232,7 +232,7 @@
             bindings = <&mo 1>, <&tog 1>;
         };
 
-        td_mo2_tog2: td_mo1_tog1 {
+        td_mo2_tog2: td_mo2_tog2 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <100>;

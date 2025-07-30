@@ -227,6 +227,7 @@
 
         td_mo1_tog1: td_mo1_tog1 {
             compatible = "zmk,behavior-tap-dance";
+            label      = "M1";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
             bindings = <&mo 1>, <&tog 1>;
@@ -234,6 +235,7 @@
 
         td_mo2_tog2: td_mo2_tog2 {
             compatible = "zmk,behavior-tap-dance";
+            label      = "M2";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
             bindings = <&mo 2>, <&tog 2>;

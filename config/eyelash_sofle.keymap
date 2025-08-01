@@ -168,7 +168,7 @@
         /* Combina MO(1) + MO(2) → MO(3) */
         layer_3_combo {
             timeout-ms    = <200>;           /* finestra di “simultaneità” */
-            key-positions = <56  58>;         /* &mo1 + &mo2 */
+            key-positions = <57  59>;         /* &mo1 + &mo2 */
             bindings      = <&tog 4>;        /* toggle layer 4 */
         };
     };
@@ -267,7 +267,7 @@
 &kp CAPS    &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp BSLH
 &kp TAB     &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
 &kp LSHFT   &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &kp ENTER
-&kp C_MUTE  &mo 3            &kp EQUAL     &kp LEFT_BRACKET    &kp RIGHT_BRACKET  &td_mo1_tog1          &kp SPACE                       &td_mo2_tog2     &kp ENTER        &mo 3         &kp MINUS       &kp DELETE
+&kp C_MUTE  &kp EQUAL        &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_mo2_tog2     &kp ENTER        &mo 3         &kp MINUS       &kp DELETE
         >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

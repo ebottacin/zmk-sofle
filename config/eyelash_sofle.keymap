@@ -173,11 +173,6 @@
         };
     };
 
-    &caps_word {
-        continue-list = <UNDERSCORE MINUS>;
-    };
-
-
     combos {
         compatible = "zmk,combos";
         /* Combina MO(1) + MO(2) → TOG(4) */

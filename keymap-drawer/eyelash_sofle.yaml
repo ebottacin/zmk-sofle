@@ -14,7 +14,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - '&td_cpswl'
+  - $$mdi:apple-keyboard-caps$$
   - Q
   - W
   - E

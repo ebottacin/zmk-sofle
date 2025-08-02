@@ -14,7 +14,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:apple-keyboard-caps$$
+  - '&td_cpswl'
   - Q
   - W
   - E
@@ -62,9 +62,9 @@ layers:
   - $$mdi:keyboard-space$$
   - '&td_mo2_tog2'
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - I18n
+  - '&td_mo3_tog3'
   - {t: '-', s: _}
-  - BLSH
+  - {t: \, s: '|'}
   Arrow:
   - {t: '$$mdi:transfer$$', type: trans}
   - F1
@@ -257,7 +257,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   Config:

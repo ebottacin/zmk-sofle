@@ -288,7 +288,7 @@
 &trans       &none           &none             &egrave_upper   &none                &none                  &none                         &none            &ugrave_upper    &igrave_upper   &ograve_upper  &none             &none
 &trans       &agrave_upper   &none             &egrave_lower   &none                &none                  &none                         &none            &ugrave_lower    &igrave_lower   &ograve_lower  &none             &none
 &trans       &agrave_lower   &none             &euro           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
-&trans       &agrave_morph   &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
+&trans       &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
 &trans       &none           &none             &none           &trans               &trans                 &none                         &trans           &none            &trans          &none          &trans 
             >;
 

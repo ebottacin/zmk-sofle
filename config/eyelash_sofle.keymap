@@ -165,7 +165,7 @@
         euro: euro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            label = "";
+            label = "€";
             bindings
                 = <&macro_press &kp LALT>
                 , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N8>
@@ -201,7 +201,7 @@
             tapping-term-ms = <250>;
             bindings = <&mo 2>, <&tog 2>;
         };
-
+        /*
         td_mo3_tog3: td_mo3_tog3 {
             compatible = "zmk,behavior-tap-dance";
             label      = "M3";
@@ -209,13 +209,13 @@
             tapping-term-ms = <250>;
             bindings = <&mo 3>, <&tog 3>;
         };
-
+       
         prog_caps: prog_caps {
             compatible = "zmk,behavior-caps-word";
             #binding-cells = <0>;
             continue-list = <UNDERSCORE MINUS>;
         };
-
+        
         td_cpswl: td_cpswl {
             compatible = "zmk,behavior-tap-dance";
             label      = "CPS";
@@ -223,7 +223,7 @@
             tapping-term-ms = <250>;
             bindings = <&kp CAPS>, <&prog_caps>;
         };
-        
+        */
         mtt: mtt {
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT";
@@ -250,7 +250,7 @@
 &kp CAPS    &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp DELETE
 &kp TAB     &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
 &kp LSHFT   &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &kp ENTER
-&kp C_MUTE  &kp EQUAL        &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_mo2_tog2     &kp ENTER        &td_mo3_tog3  &kp MINUS       &kp BLSH
+&kp C_MUTE  &kp EQUAL        &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_mo2_tog2     &kp ENTER        &mo 3         &kp MINUS       &kp BLSH
         >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

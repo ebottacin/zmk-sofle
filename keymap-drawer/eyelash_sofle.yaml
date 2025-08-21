@@ -54,7 +54,7 @@ layers:
   - {t: /, s: '?'}
   - {t: _, s: '-'}
   - $$mdi:volume-off$$
-  - '&swapper'
+  - {t: '&swapper', h: '$$mdi:keyboard-return$$'}
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - $$mdi:keyboard-space$$

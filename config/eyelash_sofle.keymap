@@ -222,7 +222,7 @@
         prog_caps: prog_caps {
             compatible = "zmk,behavior-caps-word";
             #binding-cells = <0>;
-            continue-list = <UNDERSCORE MINUS>;
+            continue-list = <UNDERSCORE MINUS DEL BSPC>;
         };
         
         td_cpswl: td_cpswl {
@@ -240,7 +240,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         
-        hold_m: hold_m {
+        hld_m: hld_m {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
@@ -253,7 +253,7 @@
             label      = "M2MT";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&hold_m 2 2>, <&tog 2>; // Single tap = num_word, double tap = toggle layer 2, hold = momentart layer 2
+            bindings = <&hld_m 2 2>, <&tog 2>; // Single tap = num_word, double tap = toggle layer 2, hold = momentart layer 2
          };
                 
         mtt: mtt {
@@ -269,6 +269,14 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+        };
+
+        hld_swp: hld_swp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&swapper>;
         };
     };
 
@@ -288,7 +296,7 @@
 &td_cpswl   &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp DELETE
 &kp TAB     &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
 &kp LSHFT   &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &td_dsh_ndr
-&kp C_MUTE  &swapper         &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
+&kp C_MUTE  &hld_swp ENTER 0 &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
         >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

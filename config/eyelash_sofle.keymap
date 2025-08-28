@@ -176,23 +176,31 @@
 
     combos {
         compatible = "zmk,combos";
-        /* Combina MO(1) + MO(2) → TOG(4) */
         layer_4_combo {
-            timeout-ms    = <200>;           /* finestra di “simultaneità” */
+            timeout-ms    = <200>;           
             key-positions = <57  59>;         /* &mo1 + &mo2 */
-            bindings      = <&tog 4>;        /* toggle layer 4 */
+            bindings      = <&tog 4>;        
         };
 
-        compatible = "zmk,combos";
-        /* Combina MO(1) + MO(2) → TOG(4) */
         ctrl_a_combo {
-            timeout-ms    = <150>;           /* finestra di “simultaneità” */
-            key-positions = <27  15>;         /* &kp a + &kp r */
-            bindings      = <&kp LC(A)>;        /* toggle layer 4 */
+            timeout-ms    = <150>;           
+            key-positions = <27  15>;         /* &kp a + &kp w */
+            bindings      = <&kp LC(A)>;        
         };
-    };
 
-    
+        bkspc_combo {
+            timeout-ms    = <150>;           
+            key-positions = <1  2>;           /* &kp 1 + &kp 2 */  
+            bindings      = <&kp BACKSPACE>;        
+        };
+
+        del_combo {
+            timeout-ms    = <150>;           
+            key-positions = <14  15>;         /* &kp q + &kp w */  
+            bindings      = <&kp DELETE>;        
+        };
+
+    };  
 
     behaviors {
         td_mo1_tog1: td_mo1_tog1 {
@@ -240,12 +248,27 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         
-        hld_m: hld_m {
+        nav_word: nav_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <LEFT DOWN UP RIGHT PG_DN PG_UP HOME END DELETE BACKSPACE>;
+            ignore-modifiers;
+        };
+
+        hld_m_num: hld_m_num {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <250>;
             bindings = <&mo>, <&num_word>;
+        };
+
+         hld_m_nav: hld_m_nav {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <250>;
+            bindings = <&mo>, <&nav_word>;
         };
 
         td_m2: td_m2 {
@@ -253,7 +276,15 @@
             label      = "M2MT";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&hld_m 2 2>, <&tog 2>; // Single tap = num_word, double tap = toggle layer 2, hold = momentart layer 2
+            bindings = <&hld_m_num 2 2>, <&tog 2>; // Single tap = num_word, double tap = toggle layer 2, hold = momentart layer 2
+         };
+
+         td_m1: td_m1 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M2MT";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&hld_m_nav 1 1>, <&tog 1>; // Single tap = nav_word, double tap = toggle layer 1, hold = momentart layer 1
          };
                 
         mtt: mtt {
@@ -261,7 +292,7 @@
             label            = "MT";
             #binding-cells = <2>;
             tapping-term-ms  = <250>;
-            flavor           = "tap-preferred";
+            flavor           = "balanced";
             bindings         = <&kp>, <&kp>;
         };
     
@@ -296,7 +327,7 @@
 &td_cpswl   &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp DELETE
 &kp TAB     &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
 &kp LSHFT   &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &td_dsh_ndr
-&kp C_MUTE  &hld_swp ENTER 0 &kp LBKT      &kp RBKT            &kp SPACE          &td_mo1_tog1          &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
+&kp C_MUTE  &hld_swp ENTER 0 &kp LBKT      &kp RBKT            &kp SPACE          &ttd_m1               &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
         >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -319,10 +350,10 @@
         layer_2 {
             bindings = <
 &trans      &none            &none            &none            &none                &none                  &mmv MOVE_UP                  &none           &none             &none         &none           &none             &trans
-&trans      &none            &none            &kp KP_N7        &kp KP_N8            &kp KP_N9              &mmv MOVE_DOWN                &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F11           &trans
-&trans      &none            &none            &kp KP_N4        &kp KP_N5            &kp KP_N6              &mmv MOVE_LEFT                &trans          &trans            &trans        &trans          &trans            &trans
-&trans      &none            &none            &kp KP_N1        &kp KP_N2            &kp KP_N3              &mmv MOVE_RIGHT               &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F12           &trans
-&trans      &none            &none            &kp KP_N0        &trans               &trans                 &mkp LCLK                     &trans          &trans            &trans        &none           &trans
+&trans      &FSLH            &MINUS           &kp KP_N7        &kp KP_N8            &kp KP_N9              &mmv MOVE_DOWN                &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F11           &trans
+&trans      &STAR            &PLUS            &kp KP_N4        &kp KP_N5            &kp KP_N6              &mmv MOVE_LEFT                &trans          &trans            &trans        &trans          &trans            &trans
+&trans      &none            &ENTER           &kp KP_N1        &kp KP_N2            &kp KP_N3              &mmv MOVE_RIGHT               &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F12           &trans
+&trans      &trans           &DOT             &kp KP_N0        &trans               &trans                 &mkp LCLK                     &trans          &trans            &trans        &none           &trans
                  >;
 
             sensor-bindings = <&scroll_encoder>;

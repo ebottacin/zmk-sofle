@@ -58,7 +58,7 @@ layers:
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - $$mdi:keyboard-space$$
-  - '&td_mo1_tog1'
+  - '&ttd_m1'
   - $$mdi:keyboard-space$$
   - '&td_m2'
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -145,8 +145,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&FSLH'
+  - '&MINUS'
   - KP 7
   - KP 8
   - KP 9
@@ -158,8 +158,8 @@ layers:
   - F11
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&STAR'
+  - '&PLUS'
   - KP 4
   - KP 5
   - KP 6
@@ -172,7 +172,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '&ENTER'
   - KP 1
   - KP 2
   - KP 3
@@ -184,8 +184,8 @@ layers:
   - F12
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - '&DOT'
   - KP 0
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -330,3 +330,7 @@ combos:
   k: {t: Config, h: toggle}
 - p: [27, 15]
   k: Ctl+A
+- p: [1, 2]
+  k: {t: '$$mdi:backspace$$', type: backspace}
+- p: [14, 15]
+  k: $$mdi:backspace-reverse-outline$$

@@ -257,7 +257,7 @@
         num_word2: num_word2 {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
-            continue-list = <BSPC, DEL, DOT, COMMA, PLUS, MINUS, STAR, FSLH, EQUAL>;
+            continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
             ignore-numbers;
         };
 

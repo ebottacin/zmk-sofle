@@ -58,7 +58,7 @@ layers:
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - $$mdi:keyboard-space$$
-  - '&ttd_m1'
+  - '&td_m1'
   - $$mdi:keyboard-space$$
   - '&td_m2'
   - {t: '$$mdi:keyboard-return$$', type: enter}

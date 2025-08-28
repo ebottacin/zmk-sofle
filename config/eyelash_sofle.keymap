@@ -327,7 +327,7 @@
 &td_cpswl   &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp DELETE
 &kp TAB     &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
 &kp LSHFT   &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &td_dsh_ndr
-&kp C_MUTE  &hld_swp ENTER 0 &kp LBKT      &kp RBKT            &kp SPACE          &ttd_m1               &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
+&kp C_MUTE  &hld_swp ENTER 0 &kp LBKT      &kp RBKT            &kp SPACE          &td_m1                &kp SPACE                       &td_m2           &kp ENTER        &td_mo3_tog3  &kp EQUAL       &kp BSLH
         >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;

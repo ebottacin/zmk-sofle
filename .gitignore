@@ -3,3 +3,11 @@ zmk/
 modules/
 tools/
 .west/
+
+
+zephyr/*
+!zephyr/**/module.yml
+
+zmk-auto-layer
+zmk-tri-state
+mario-peripheral-animation

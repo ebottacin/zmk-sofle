@@ -52,7 +52,7 @@
 # - In assenza dello SDK, la build viene fermata con istruzioni.
 #
 # Uso (solo non posizionale):
-#   ./build-local.sh west-update=none pristine=no target=all extras=none
+#   ./build-local.sh west-update=none pristine=no target=all
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
 #
@@ -73,14 +73,9 @@
 #   no   usa la build incrementale (default)
 #   yes  esegue build pulita con `west build -p always`
 #
-# Extras disponibili:
-#   none                     non esegue operazioni extra sui moduli interni 
-#   attach-internal-modules  aggiunge origin se manca e riattacca branch main se detached [default]
-#
 # Esempi:
-#   ./build-local.sh west-update=none pristine=no target=all extras=none
+#   ./build-local.sh west-update=none pristine=no target=all
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
-#   ./build-local.sh west-update=none pristine=no target=all extras=attach-internal-modules
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
 
 set -euo pipefail
@@ -92,7 +87,6 @@ ZEPHYR_SDK_INSTALL_DIR_DEFAULT="$HOME/zephyr-sdk-0.16.9"
 TARGET="all"
 UPDATE_MODE="none"
 PRISTINE_MODE="no"
-EXTRAS_MODE="attach-internal-modules"
 ARTIFACTS_ROOT_DEFAULT="/mnt/c/Users/e.bottacin/zmk-sofle-builds"
 ARTIFACTS_ROOT_INPUT=""
 KEEP_BUILDS="10"
@@ -124,12 +118,9 @@ for arg in "$@"; do
       target)
         TARGET="$value"
         ;;
-      extras)
-        EXTRAS_MODE="$value"
-        ;;
       mode)
         echo "Errore: parametro 'mode' deprecato. Usa 'target'."
-        echo "Esempio: ./build-local.sh west-update=none pristine=no target=all extras=none"
+        echo "Esempio: ./build-local.sh west-update=none pristine=no target=all"
         exit 1
         ;;
       name)
@@ -137,14 +128,14 @@ for arg in "$@"; do
         ;;
       *)
         echo "Errore: parametro non riconosciuto: $key"
-        echo "Parametri validi: west-update, pristine, out_dir, keep, target, extras, name"
+        echo "Parametri validi: west-update, pristine, out_dir, keep, target, name"
         exit 1
         ;;
     esac
   else
     echo "Errore: parametro non valido '$arg'."
     echo "Usa solo argomenti nel formato chiave=valore."
-    echo "Esempio: ./build-local.sh west-update=none pristine=no target=all extras=none"
+    echo "Esempio: ./build-local.sh west-update=none pristine=no target=all"
     exit 1
   fi
 done
@@ -275,19 +266,11 @@ elif [[ "$UPDATE_MODE" == "none" ]]; then
   echo "Skip update: uso i sorgenti già presenti localmente."
 else
   echo "Errore: update mode non valido: $UPDATE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
   exit 1
 fi
 
-if [[ "$EXTRAS_MODE" == "attach-internal-modules" ]]; then
-  reattach_custom_modules
-elif [[ "$EXTRAS_MODE" == "none" ]]; then
-  echo "Skip extras: nessuna operazione aggiuntiva sui moduli interni."
-else
-  echo "Errore: extras non valido: $EXTRAS_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
-  exit 1
-fi
+reattach_custom_modules
 
 if [[ "$PRISTINE_MODE" == "yes" ]]; then
   BUILD_PRISTINE_ARGS=(-p always)
@@ -295,7 +278,7 @@ elif [[ "$PRISTINE_MODE" == "no" ]]; then
   BUILD_PRISTINE_ARGS=()
 else
   echo "Errore: pristine mode non valido: $PRISTINE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
   exit 1
 fi
 
@@ -558,7 +541,7 @@ case "$TARGET" in
     build_left_reset
     ;;
   *)
-    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>]"
+    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>]"
     exit 1
     ;;
 esac

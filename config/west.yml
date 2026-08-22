@@ -18,9 +18,6 @@ manifest:
     - name: ebottacin
       url-base: https://github.com/ebottacin
   projects:
-    - name: mario-peripheral-animation
-      remote: gpeye
-      revision: main
     - name: zmk-tri-state
       remote: urob
     - name: zmk-auto-layer
@@ -29,6 +26,9 @@ manifest:
       remote: ssbb
       revision: v1
     - name: zmk-caps-lock-events
+      remote: ebottacin
+      revision: main
+    - name: zmk-info-widget
       remote: ebottacin
       revision: main
     - name: zmk

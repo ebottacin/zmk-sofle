@@ -20,7 +20,7 @@ Supported key=value parameters:
 - `target=[all|all-with-studio|right|left|left_studio|left_reset]`
   - `all`: `right + left + left_reset`
   - `all-with-studio`: `right + left_studio + left_reset`
-  - `right`: `eyelash_sofle_right + nice_view_custom`
+  - `right`: `eyelash_sofle_right + nice_view_infos`
   - `left`: `eyelash_sofle_left + nice_view`
   - `left_studio`: `eyelash_sofle_left + nice_view + studio-rpc-usb-uart`
   - `left_reset`: `eyelash_sofle_left + settings_reset`

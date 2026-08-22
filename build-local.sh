@@ -52,14 +52,14 @@
 # - In assenza dello SDK, la build viene fermata con istruzioni.
 #
 # Uso (solo non posizionale):
-#   ./build-local.sh west-update=none pristine=no target=all
+#   ./build-local.sh west-update=none pristine=no target=all extras=none
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
 #
 # Target disponibili:
 #   all          Build di right + left + left_reset (default)
 #   all-with-studio Build di right + left_studio + left_reset
-#   right        eyelash_sofle_right + nice_view_custom
+#   right        eyelash_sofle_right + nice_view_infos
 #   left         eyelash_sofle_left + nice_view
 #   left_studio  eyelash_sofle_left + nice_view + studio-rpc-usb-uart
 #   left_reset   eyelash_sofle_left + settings_reset
@@ -73,9 +73,14 @@
 #   no   usa la build incrementale (default)
 #   yes  esegue build pulita con `west build -p always`
 #
+# Extras disponibili:
+#   none                     non esegue operazioni extra sui moduli interni 
+#   attach-internal-modules  aggiunge origin se manca e riattacca branch main se detached [default]
+#
 # Esempi:
-#   ./build-local.sh west-update=none pristine=no target=all
+#   ./build-local.sh west-update=none pristine=no target=all extras=none
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
+#   ./build-local.sh west-update=none pristine=no target=all extras=attach-internal-modules
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
 
 set -euo pipefail
@@ -87,6 +92,7 @@ ZEPHYR_SDK_INSTALL_DIR_DEFAULT="$HOME/zephyr-sdk-0.16.9"
 TARGET="all"
 UPDATE_MODE="none"
 PRISTINE_MODE="no"
+EXTRAS_MODE="attach-internal-modules"
 ARTIFACTS_ROOT_DEFAULT="/mnt/c/Users/e.bottacin/zmk-sofle-builds"
 ARTIFACTS_ROOT_INPUT=""
 KEEP_BUILDS="10"
@@ -95,6 +101,8 @@ ARTIFACTS_OUT_DIR=""
 BUILD_TIMESTAMP=""
 ARTIFACT_SOURCES=()
 ARTIFACT_DESTS=()
+BUILD_VERSION_VALUE=""
+BUILD_VERSION_CMAKE_ARG=""
 
 for arg in "$@"; do
   if [[ "$arg" == *=* ]]; then
@@ -116,9 +124,12 @@ for arg in "$@"; do
       target)
         TARGET="$value"
         ;;
+      extras)
+        EXTRAS_MODE="$value"
+        ;;
       mode)
         echo "Errore: parametro 'mode' deprecato. Usa 'target'."
-        echo "Esempio: ./build-local.sh west-update=none pristine=no target=all"
+        echo "Esempio: ./build-local.sh west-update=none pristine=no target=all extras=none"
         exit 1
         ;;
       name)
@@ -126,14 +137,14 @@ for arg in "$@"; do
         ;;
       *)
         echo "Errore: parametro non riconosciuto: $key"
-        echo "Parametri validi: west-update, pristine, out_dir, keep, target, name"
+        echo "Parametri validi: west-update, pristine, out_dir, keep, target, extras, name"
         exit 1
         ;;
     esac
   else
     echo "Errore: parametro non valido '$arg'."
     echo "Usa solo argomenti nel formato chiave=valore."
-    echo "Esempio: ./build-local.sh west-update=none pristine=no target=all"
+    echo "Esempio: ./build-local.sh west-update=none pristine=no target=all extras=none"
     exit 1
   fi
 done
@@ -145,6 +156,24 @@ if [[ ! -d "config" ]] || [[ ! -f "config/west.yml" ]]; then
   echo "Errore: esegui questo script dalla root del repository (cartella zmk-sofle)."
   exit 1
 fi
+
+resolve_build_version() {
+  local version_from_tag=""
+  local version_from_hash=""
+
+  if version_from_tag="$(git describe --tags --exact-match 2>/dev/null)"; then
+    BUILD_VERSION_VALUE="$version_from_tag"
+    echo "Versione FW da tag HEAD: $BUILD_VERSION_VALUE"
+  elif version_from_hash="$(git rev-parse --short=8 HEAD 2>/dev/null)"; then
+    BUILD_VERSION_VALUE="$version_from_hash"
+    echo "Versione FW da hash commit: $BUILD_VERSION_VALUE"
+  else
+    BUILD_VERSION_VALUE="unknown"
+    echo "Attenzione: impossibile risolvere versione git, uso fallback: $BUILD_VERSION_VALUE"
+  fi
+
+  BUILD_VERSION_CMAKE_ARG="-DBUILD_VERSION=$BUILD_VERSION_VALUE"
+}
 
 if [[ -z "${VIRTUAL_ENV:-}" ]]; then
   echo "Errore: ambiente virtuale Python non attivo."
@@ -167,6 +196,72 @@ if ! command -v west >/dev/null 2>&1; then
   exit 1
 fi
 
+resolve_build_version
+
+reattach_module_branch_if_detached() {
+  local module_dir="$1"
+  local remote_name="$2"
+  local branch_name="$3"
+
+  if [[ ! -d "$module_dir/.git" ]]; then
+    echo "Skip reattach: modulo non trovato o non git repo: $module_dir"
+    return 0
+  fi
+
+  local current_head
+  current_head="$(git -C "$module_dir" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
+
+  if [[ "$current_head" != "HEAD" ]]; then
+    return 0
+  fi
+
+  echo "Reattach branch per $module_dir: detached HEAD -> $branch_name"
+
+  if ! git -C "$module_dir" fetch "$remote_name" "$branch_name" >/dev/null 2>&1; then
+    echo "Attenzione: fetch fallita per $module_dir ($remote_name/$branch_name), lascio detached HEAD"
+    return 0
+  fi
+
+  if git -C "$module_dir" show-ref --verify --quiet "refs/heads/$branch_name"; then
+    git -C "$module_dir" checkout "$branch_name" >/dev/null
+    git -C "$module_dir" branch --set-upstream-to="$remote_name/$branch_name" "$branch_name" >/dev/null 2>&1 || true
+  else
+    git -C "$module_dir" checkout -b "$branch_name" --track "$remote_name/$branch_name" >/dev/null
+  fi
+}
+
+ensure_module_origin_remote() {
+  local module_dir="$1"
+  local fallback_remote="$2"
+
+  if [[ ! -d "$module_dir/.git" ]]; then
+    echo "Skip origin setup: modulo non trovato o non git repo: $module_dir"
+    return 0
+  fi
+
+  if git -C "$module_dir" remote get-url origin >/dev/null 2>&1; then
+    return 0
+  fi
+
+  local origin_url=""
+  origin_url="$(git -C "$module_dir" remote get-url "$fallback_remote" 2>/dev/null || true)"
+
+  if [[ -z "$origin_url" ]]; then
+    echo "Attenzione: impossibile aggiungere origin in $module_dir (fallback remoto '$fallback_remote' non trovato)"
+    return 0
+  fi
+
+  git -C "$module_dir" remote add origin "$origin_url"
+  echo "Origin aggiunto in $module_dir -> $origin_url"
+}
+
+reattach_custom_modules() {
+  ensure_module_origin_remote "$PWD/zmk-caps-lock-events" "ebottacin"
+  ensure_module_origin_remote "$PWD/zmk-info-widget" "ebottacin"
+  reattach_module_branch_if_detached "$PWD/zmk-caps-lock-events" "ebottacin" "main"
+  reattach_module_branch_if_detached "$PWD/zmk-info-widget" "ebottacin" "main"
+}
+
 echo "[1/3] Inizializzo/aggiorno workspace west..."
 if [[ ! -d ".west" ]]; then
   west init -l config
@@ -180,7 +275,17 @@ elif [[ "$UPDATE_MODE" == "none" ]]; then
   echo "Skip update: uso i sorgenti già presenti localmente."
 else
   echo "Errore: update mode non valido: $UPDATE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  exit 1
+fi
+
+if [[ "$EXTRAS_MODE" == "attach-internal-modules" ]]; then
+  reattach_custom_modules
+elif [[ "$EXTRAS_MODE" == "none" ]]; then
+  echo "Skip extras: nessuna operazione aggiuntiva sui moduli interni."
+else
+  echo "Errore: extras non valido: $EXTRAS_MODE"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
   exit 1
 fi
 
@@ -190,7 +295,7 @@ elif [[ "$PRISTINE_MODE" == "no" ]]; then
   BUILD_PRISTINE_ARGS=()
 else
   echo "Errore: pristine mode non valido: $PRISTINE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
   exit 1
 fi
 
@@ -360,7 +465,7 @@ copy_artifacts() {
 }
 
 build_right() {
-  echo "[2/3] Build right (eyelash_sofle_right + nice_view_custom)..."
+  echo "[2/3] Build right (eyelash_sofle_right + nice_view_infos)..."
   local snippet
   local snippet_args=()
   snippet="$(snippet_arg "")"
@@ -369,7 +474,8 @@ build_right() {
   fi
   west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/right -b eyelash_sofle_right -- \
     "${snippet_args[@]}" \
-    -DSHIELD=nice_view_custom \
+    "$BUILD_VERSION_CMAKE_ARG" \
+    -DSHIELD=nice_view_infos \
     -DBOARD_ROOT="$PWD" \
     -DZMK_CONFIG="$PWD/config"
   register_artifact "build/right/zephyr/zmk.uf2" "eyelash_sofle_right.uf2"
@@ -385,6 +491,7 @@ build_left() {
   fi
   west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left -b eyelash_sofle_left -- \
     "${snippet_args[@]}" \
+    "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=nice_view \
     -DBOARD_ROOT="$PWD" \
     -DZMK_CONFIG="$PWD/config"
@@ -401,6 +508,7 @@ build_left_reset() {
   fi
   west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_reset -b eyelash_sofle_left -- \
     ${snippet_args:+"${snippet_args[@]}"} \
+    "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=settings_reset \
     -DBOARD_ROOT="$PWD" \
     -DZMK_CONFIG="$PWD/config"
@@ -417,6 +525,7 @@ build_left_studio() {
   fi
   west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_studio -b eyelash_sofle_left -- \
     "${snippet_args[@]}" \
+    "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=nice_view \
     -DCONFIG_ZMK_STUDIO=y \
     -DCONFIG_ZMK_STUDIO_LOCKING=n \
@@ -449,7 +558,7 @@ case "$TARGET" in
     build_left_reset
     ;;
   *)
-    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>]"
+    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] extras=[none|attach-internal-modules] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>]"
     exit 1
     ;;
 esac

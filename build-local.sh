@@ -60,8 +60,9 @@
 #   all          Build di right + left + left_reset (default)
 #   all-with-studio Build di right + left_studio + left_reset
 #   right        eyelash_sofle_right + nice_view_infos
-#   left         eyelash_sofle_left + nice_view
-#   left_studio  eyelash_sofle_left + nice_view + studio-rpc-usb-uart
+#   left         eyelash_sofle_left + nice_view_infos
+#   left_right   eyelash_sofle_left + eyelash_sofle_right + nice_view_infos
+#   left_studio  eyelash_sofle_left + nice_view_infos + studio-rpc-usb-uart
 #   left_reset   eyelash_sofle_left + settings_reset
 #
 # Update mode disponibili:
@@ -533,6 +534,10 @@ case "$TARGET" in
     ;;
   left)
     build_left
+    ;;
+  left_right)
+    build_left
+    build_right
     ;;
   left_studio)
     build_left_studio

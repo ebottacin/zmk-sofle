@@ -1,5 +1,6 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+#define RGB_SOLID RGB_EFS_CMD 0
  
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -171,6 +172,42 @@
                 , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N8>
                 , <&macro_release &kp LALT>;
         };
+
+        rgb_layer0_off: rgb_layer0_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_OFF>;
+        };
+
+        rgb_caps_white: rgb_caps_white {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(0,0,100)>;
+        };
+
+        rgb_layer1: rgb_layer1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(220,100,70)>;
+        };
+
+        rgb_layer2: rgb_layer2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,70)>;
+        };
+
+        rgb_layer3: rgb_layer3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(300,100,70)>;
+        };
+
+        rgb_layer4: rgb_layer4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(30,100,70)>;
+        };
     };
 
     combos {
@@ -231,13 +268,25 @@
             #binding-cells = <0>;
             continue-list = <UNDERSCORE MINUS DEL BSPC>;
         };
+
+        caps_word_white: caps_word_white {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_caps_white>, <&macro_tap &prog_caps>;
+        };
+
+        caps_lock_white: caps_lock_white {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_caps_white>, <&macro_tap &kp CAPS>;
+        };
         
         td_cpswl: td_cpswl {
             compatible = "zmk,behavior-tap-dance";
             label      = "CPS";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&prog_caps>, <&kp CAPS>;
+            bindings = <&caps_word_white>, <&caps_lock_white>;
         };
 
         td_dsh_ndr: td_dsh_ndr {
@@ -322,6 +371,49 @@
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
         tap-ms = <100>;
+    };
+
+    layer_listeners {
+        compatible = "zmk,layer-listeners";
+        tap-ms = <5>;
+        wait-ms = <5>;
+
+        on_layer0 {
+            layers = <0>;
+            bindings = <&rgb_layer0_off>;
+        };
+
+        on_layer1 {
+            layers = <1>;
+            bindings = <&rgb_layer1>, <&rgb_layer0_off>;
+        };
+
+        on_layer2 {
+            layers = <2>;
+            bindings = <&rgb_layer2>, <&rgb_layer0_off>;
+        };
+
+        on_layer3 {
+            layers = <3>;
+            bindings = <&rgb_layer3>, <&rgb_layer0_off>;
+        };
+
+        on_layer4 {
+            layers = <4>;
+            bindings = <&rgb_layer4>, <&rgb_layer0_off>;
+        };
+    };
+
+    caps_lock_listener {
+        compatible = "zmk,caps-lock-listener";
+        tap-ms = <5>;
+        wait-ms = <5>;
+        trigger-on-shift;
+        trigger-on-implicit-modifiers;
+        ignore-implicit-modifier-alphas;
+        ignore-implicit-modifier-numbers;
+        implicit-shift-continuations = <UNDERSCORE MINUS DEL BSPC>;
+        bindings = <&rgb_caps_white>, <&rgb_layer0_off>, <&rgb_layer1>, <&rgb_layer2>, <&rgb_layer3>, <&rgb_layer4>;
     };
 
     keymap {

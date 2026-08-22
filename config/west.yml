@@ -13,6 +13,10 @@ manifest:
       url-base: https://github.com/urob
     - name: gpeye
       url-base: https://github.com/GPeye
+    - name: ssbb
+      url-base: https://github.com/ssbb
+    - name: ebottacin
+      url-base: https://github.com/ebottacin
   projects:
     - name: mario-peripheral-animation
       remote: gpeye
@@ -21,6 +25,12 @@ manifest:
       remote: urob
     - name: zmk-auto-layer
       remote: urob
+    - name: zmk-listeners
+      remote: ssbb
+      revision: v1
+    - name: zmk-caps-lock-events
+      remote: ebottacin
+      revision: main
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml

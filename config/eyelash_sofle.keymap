@@ -1,6 +1,15 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 #define RGB_SOLID RGB_EFS_CMD 0
+#define TT_TAP_DANCE_BASE 180
+#define TT_TAP_DANCE_BOOT 250
+#define TT_HOLD_TAP_BASE 180
+#define TT_HOLD_TAP_MTT 230
+#define TT_HOLD_TAP_SWAPPER 200
+#define COMBO_TIMEOUT_BASE 150
+#define COMBO_TIMEOUT_LAYER_TOGGLE 200
+#define LISTENER_TAP_MS 5
+#define LISTENER_WAIT_MS 5
  
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -213,26 +222,29 @@
     combos {
         compatible = "zmk,combos";
         layer_4_combo {
-            timeout-ms    = <200>;           
+            timeout-ms    = <COMBO_TIMEOUT_LAYER_TOGGLE>;
             key-positions = <57  59>;         /* &mo1 + &mo2 */
             bindings      = <&tog 4>;        
         };
 
         ctrl_a_combo {
-            timeout-ms    = <150>;           
+            timeout-ms    = <COMBO_TIMEOUT_BASE>;
             key-positions = <27  15>;         /* &kp a + &kp w */
+            layers        = <0 1 2 3>;
             bindings      = <&kp LC(A)>;        
         };
 
         bkspc_combo {
-            timeout-ms    = <150>;           
+            timeout-ms    = <COMBO_TIMEOUT_BASE>;
             key-positions = <1  2>;           /* &kp 1 + &kp 2 */  
+            layers        = <0 1 2 3>;
             bindings      = <&kp BACKSPACE>;        
         };
 
         del_combo {
-            timeout-ms    = <150>;           
+            timeout-ms    = <COMBO_TIMEOUT_BASE>;
             key-positions = <14  15>;         /* &kp q + &kp w */  
+            layers        = <0 1 2 3>;
             bindings      = <&kp DELETE>;        
         };
 
@@ -243,7 +255,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "M1";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&mo 1>, <&tog 1>;
         };
 
@@ -251,7 +263,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "M2";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&mo 2>, <&tog 2>;
         };
         
@@ -259,7 +271,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "M3";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&mo 3>, <&tog 3>;
         };
        
@@ -291,7 +303,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "CPS";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&caps_word_white>, <&caps_lock_white>;
         };
 
@@ -306,7 +318,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "BTSX";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BOOT>;
             bindings = <&none>, <&bootloader>;
         };
 
@@ -314,7 +326,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "BTDX";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BOOT>;
             bindings = <&none>, <&bootloader>;
         };
         
@@ -336,7 +348,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
             bindings = <&mo>, <&num_word2>;
         };
 
@@ -344,7 +356,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
             bindings = <&mo>, <&nav_word>;
         };
 
@@ -352,7 +364,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "M2MT";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&hld_m_num 2 2>, <&tog 2>; // Single tap = num_word, double tap = toggle layer 2, hold = momentart layer 2
          };
 
@@ -360,7 +372,7 @@
             compatible = "zmk,behavior-tap-dance";
             label      = "M1MT";
             #binding-cells = <0>;
-            tapping-term-ms = <250>;
+                tapping-term-ms = <TT_TAP_DANCE_BASE>;
             bindings = <&hld_m_nav 1 1>, <&tog 1>; // Single tap = nav_word, double tap = toggle layer 1, hold = momentart layer 1
          };
                 
@@ -368,7 +380,7 @@
             compatible       = "zmk,behavior-hold-tap";
             label            = "MT";
             #binding-cells = <2>;
-            tapping-term-ms  = <250>;
+            tapping-term-ms  = <TT_HOLD_TAP_MTT>;
             flavor           = "balanced";
             bindings         = <&kp>, <&kp>;
         };
@@ -383,7 +395,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <TT_HOLD_TAP_SWAPPER>;
             bindings = <&kp>, <&swapper>;
         };
     };
@@ -397,8 +409,8 @@
 
     layer_listeners {
         compatible = "zmk,layer-listeners";
-        tap-ms = <5>;
-        wait-ms = <5>;
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
 
         on_layer0 {
             layers = <0>;
@@ -428,8 +440,8 @@
 
     caps_lock_listener {
         compatible = "zmk,caps-lock-listener";
-        tap-ms = <5>;
-        wait-ms = <5>;
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
         trigger-on-shift;
         trigger-on-implicit-modifiers;
         ignore-implicit-modifier-alphas;

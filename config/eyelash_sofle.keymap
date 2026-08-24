@@ -295,6 +295,22 @@
             bindings = <&kp UNDER>, <&kp MINUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        td_boot_sx: td_boot_sx {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "BTSX";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&none>, <&bootloader>;
+        };
+
+        td_boot_dx: td_boot_dx {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "BTDX";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&none>, <&bootloader>;
+        };
         
         nav_word: nav_word {
             compatible = "zmk,behavior-auto-layer";
@@ -476,7 +492,7 @@
 &bootloader       &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &none            &none            &none          &none          &none              &none
 &sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
-&none             &rgb_ug RGB_OFF &rgb_ug RGB_ON    &rgb_ug RGB_EFF &rgb_ug RGB_EFR      &rgb_ug RGB_SPI        &none                          &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &none          &none          &none              &none
+&none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx      &none            &none          &none          &none              &none
 &none             &none           &none             &none           &none                &trans                 &none                          &none            &trans           &none          &none          &none
             >;
 

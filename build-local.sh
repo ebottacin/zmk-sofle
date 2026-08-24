@@ -55,6 +55,7 @@
 #   ./build-local.sh west-update=none pristine=no target=all
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
+#   ./build-local.sh west-update=none pristine=no target=left_right extras=reattach-custom-modules
 #
 # Target disponibili:
 #   all          Build di right + left + left_reset (default)
@@ -74,10 +75,14 @@
 #   no   usa la build incrementale (default)
 #   yes  esegue build pulita con `west build -p always`
 #
+# Extras disponibili (parametro `extras`):
+#   reattach-custom-modules    esegue la funzione reattach_custom_modules
+#
 # Esempi:
 #   ./build-local.sh west-update=none pristine=no target=all
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
+#   ./build-local.sh target=left_right extras=reattach-custom-modules
 
 set -euo pipefail
 
@@ -98,6 +103,7 @@ ARTIFACT_SOURCES=()
 ARTIFACT_DESTS=()
 BUILD_VERSION_VALUE=""
 BUILD_VERSION_CMAKE_ARG=""
+EXTRAS=""
 
 for arg in "$@"; do
   if [[ "$arg" == *=* ]]; then
@@ -119,17 +125,15 @@ for arg in "$@"; do
       target)
         TARGET="$value"
         ;;
-      mode)
-        echo "Errore: parametro 'mode' deprecato. Usa 'target'."
-        echo "Esempio: ./build-local.sh west-update=none pristine=no target=all"
-        exit 1
-        ;;
       name)
         BUILD_NAME="$value"
         ;;
+      extras)
+        EXTRAS="$value"
+        ;;
       *)
         echo "Errore: parametro non riconosciuto: $key"
-        echo "Parametri validi: west-update, pristine, out_dir, keep, target, name"
+        echo "Parametri validi: west-update, pristine, out_dir, keep, target, name, extras"
         exit 1
         ;;
     esac
@@ -267,11 +271,16 @@ elif [[ "$UPDATE_MODE" == "none" ]]; then
   echo "Skip update: uso i sorgenti già presenti localmente."
 else
   echo "Errore: update mode non valido: $UPDATE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules]"
   exit 1
 fi
 
-reattach_custom_modules
+EXTRAS_NORMALIZED=",${EXTRAS// /,},"
+if [[ "$EXTRAS_NORMALIZED" == *",reattach-custom-modules,"* ]]; then
+  reattach_custom_modules
+else
+  echo "Skip reattach_custom_modules (extras=$EXTRAS)"
+fi
 
 if [[ "$PRISTINE_MODE" == "yes" ]]; then
   BUILD_PRISTINE_ARGS=(-p always)
@@ -279,7 +288,7 @@ elif [[ "$PRISTINE_MODE" == "no" ]]; then
   BUILD_PRISTINE_ARGS=()
 else
   echo "Errore: pristine mode non valido: $PRISTINE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules]"
   exit 1
 fi
 
@@ -435,6 +444,12 @@ prune_old_builds() {
 }
 
 copy_artifacts() {
+  local legacy_artifacts_dir="$PWD/build/artifacts"
+
+  mkdir -p "$legacy_artifacts_dir"
+  find "$legacy_artifacts_dir" -mindepth 1 -maxdepth 1 -type f -delete
+  echo "Pulizia artifact legacy completata: $legacy_artifacts_dir"
+
   local index
   for index in "${!ARTIFACT_SOURCES[@]}"; do
     local source_file="${ARTIFACT_SOURCES[$index]}"
@@ -442,6 +457,8 @@ copy_artifacts() {
     if [[ -f "$source_file" ]]; then
       cp "$source_file" "$ARTIFACTS_OUT_DIR/$dest_file"
       echo "Artifact copiato: $ARTIFACTS_OUT_DIR/$dest_file"
+      cp "$source_file" "$legacy_artifacts_dir/$dest_file"
+      echo "Artifact copiato: $legacy_artifacts_dir/$dest_file"
     else
       echo "Attenzione: artifact non trovato: $source_file"
     fi
@@ -546,7 +563,7 @@ case "$TARGET" in
     build_left_reset
     ;;
   *)
-    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>]"
+    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>] [extras=reattach-custom-modules]"
     exit 1
     ;;
 esac

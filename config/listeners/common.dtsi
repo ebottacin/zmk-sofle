@@ -1,0 +1,49 @@
+    scroll_encoder: scroll_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        tap-ms = <100>;
+    };
+
+    layer_listeners {
+        compatible = "zmk,layer-listeners";
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
+
+        on_layer0 {
+            layers = <0>;
+            bindings = <&rgb_layer0_off>;
+        };
+
+        on_layer1 {
+            layers = <1>;
+            bindings = <&rgb_layer1>, <&rgb_layer0_off>;
+        };
+
+        on_layer2 {
+            layers = <2>;
+            bindings = <&rgb_layer2>, <&rgb_layer0_off>;
+        };
+
+        on_layer3 {
+            layers = <3>;
+            bindings = <&rgb_layer3>, <&rgb_layer0_off>;
+        };
+
+        on_layer4 {
+            layers = <4>;
+            bindings = <&rgb_layer4>, <&rgb_layer0_off>;
+        };
+    };
+
+    caps_lock_listener {
+        compatible = "zmk,caps-lock-listener";
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
+        trigger-on-shift;
+        trigger-on-implicit-modifiers;
+        ignore-implicit-modifier-alphas;
+        ignore-implicit-modifier-numbers;
+        implicit-shift-continuations = <UNDERSCORE MINUS DEL BSPC>;
+        bindings = <&rgb_caps_white>, <&rgb_layer0_off>, <&rgb_layer1>, <&rgb_layer2>, <&rgb_layer3>, <&rgb_layer4>;
+    };

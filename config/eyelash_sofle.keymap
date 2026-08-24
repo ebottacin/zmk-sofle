@@ -269,6 +269,12 @@
             continue-list = <UNDERSCORE MINUS DEL BSPC>;
         };
 
+        caps_sync: caps_sync {
+            compatible = "zmk,behavior-caps-state-sync";
+            label = "CAPSYNC";
+            #binding-cells = <2>;
+        };
+
         caps_word_white: caps_word_white {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;

@@ -98,3 +98,34 @@ Alternative Windows commands (same result):
 ## Layouts
 
 <img src="keymap-drawer/eyelash_sofle.svg" >
+
+## Host GUI (Build + Optional Reset + Optional Flash + Serial Logs)
+
+A host-side GUI is available in `tools/zmk-host-gui`.
+
+Install dependencies:
+
+`python -m pip install -r tools/zmk-host-gui/requirements.txt`
+
+Run:
+
+`python tools/zmk-host-gui/main.py`
+
+Behavior in Build tab:
+
+- `Reset 1200 baud` checkbox:
+  - enabled: after a successful build, the tool sends a 1200 baud touch-reset on configured COM ports.
+  - disabled: no automatic reset is sent (you can reset manually from layer 4).
+- `Flash UF2` checkbox:
+  - enabled: after build (and optional reset), the tool waits for configured drives and copies only UF2 files that actually exist in the latest out_dir build folder.
+  - disabled: no UF2 copy is performed.
+
+Serial tabs (Left/Right):
+
+- Each tab has COM port, baudrate, and log file path fields.
+- Serial output is shown live and always appended to the configured log file path.
+
+Configuration:
+
+- `tools/zmk-host-gui/defaults.json`: base defaults.
+- `tools/zmk-host-gui/runtime.json`: values saved from UI (`Save Runtime Config`).

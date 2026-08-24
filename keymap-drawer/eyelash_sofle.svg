@@ -2087,18 +2087,6 @@ rect.held, rect.combo.held {
 <text x="462" y="294" class="combo tap layer-activator">Config</text>
 </a><text x="462" y="305" class="combo hold">toggle</text>
 </g>
-<g class="combo combopos-1">
-<rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>
-<text x="112" y="130" class="combo tap">Ctl+A</text>
-</g>
-<g class="combo backspace combopos-2">
-<rect rx="6" ry="6" x="98" y="33" width="28" height="26" class="combo backspace"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="37" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
-</g>
-<g class="combo combopos-3">
-<rect rx="6" ry="6" x="98" y="89" width="28" height="26" class="combo"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="93" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
-</g>
 </g>
 </g>
 </svg>

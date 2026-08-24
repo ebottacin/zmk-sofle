@@ -330,7 +330,10 @@ combos:
   k: {t: Config, h: toggle}
 - p: [27, 15]
   k: Ctl+A
+  l: [Base, Arrow, Keypad, I18n]
 - p: [1, 2]
   k: {t: '$$mdi:backspace$$', type: backspace}
+  l: [Base, Arrow, Keypad, I18n]
 - p: [14, 15]
   k: $$mdi:backspace-reverse-outline$$
+  l: [Base, Arrow, Keypad, I18n]

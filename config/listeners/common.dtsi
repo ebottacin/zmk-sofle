@@ -67,3 +67,8 @@
             bindings = <&rgb_caps_white>, <&rgb_layer4>;
         };
     };
+
+    dynamic_logging_listener {
+        compatible = "zmk,dynamic-logging-listener";
+        log-level = "DBG";
+    };

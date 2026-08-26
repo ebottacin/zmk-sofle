@@ -61,9 +61,9 @@
 #   all          Build di right + left + left_reset (default)
 #   all-with-studio Build di right + left_studio + left_reset
 #   right        eyelash_sofle_right + nice_view_infos
-#   left         eyelash_sofle_left + nice_view_infos
-#   left_right   eyelash_sofle_left + eyelash_sofle_right + nice_view_infos
-#   left_studio  eyelash_sofle_left + nice_view_infos + studio-rpc-usb-uart
+#   left         eyelash_sofle_left + nice_view
+#   left_right   eyelash_sofle_left + eyelash_sofle_right (left: nice_view, right: nice_view_infos)
+#   left_studio  eyelash_sofle_left + nice_view + studio-rpc-usb-uart
 #   left_reset   eyelash_sofle_left + settings_reset
 #
 # Update mode disponibili:

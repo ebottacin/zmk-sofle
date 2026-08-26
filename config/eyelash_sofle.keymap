@@ -111,7 +111,7 @@
 
         layer_4 {
             bindings = <
-&bootloader       &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &none            &none            &none          &none          &none              &none
+&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &none            &none          &none          &none              &none
 &sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx      &none            &none          &none          &none              &none

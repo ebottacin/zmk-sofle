@@ -31,6 +31,10 @@ manifest:
     - name: zmk-info-widget
       remote: ebottacin
       revision: main
+    - name: zmk-dynamic-logging
+      remote: ebottacin
+      repo-path: zmk_dynamic-logging
+      revision: main
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml

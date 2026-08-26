@@ -59,7 +59,7 @@
 #
 # Target disponibili:
 #   all          Build di right + left + left_reset (default)
-#   all-with-studio Build di right + left_studio + left_reset
+#   all-with-studio Build di right + left + left_studio + left_reset
 #   right        eyelash_sofle_right + nice_view_infos
 #   left         eyelash_sofle_left + nice_view
 #   left_right   eyelash_sofle_left + eyelash_sofle_right (left: nice_view, right: nice_view_infos)
@@ -589,6 +589,7 @@ case "$TARGET" in
     ;;
   all-with-studio)
     build_right
+    build_left
     build_left_studio
     build_left_reset
     ;;
@@ -621,7 +622,7 @@ esac
 echo "[3/3] Build completata."
 echo "Artefatti principali:"
 echo "  build/right/zephyr/zmk.uf2"
-if [[ "$TARGET" == "all" || "$TARGET" == "left" ]]; then
+if [[ "$TARGET" == "all" || "$TARGET" == "left" || "$TARGET" == "all-with-studio" ]]; then
   echo "  build/left/zephyr/zmk.uf2"
 fi
 if [[ "$TARGET" == "all-with-studio" || "$TARGET" == "left_studio" ]]; then

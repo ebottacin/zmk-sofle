@@ -317,6 +317,48 @@ snippet_arg() {
   fi
 }
 
+resolved_snippet_value() {
+  local base_snippet="$1"
+  if [[ -n "$USB_LOG_SNIPPET" && -n "$base_snippet" ]]; then
+    echo "$USB_LOG_SNIPPET;$base_snippet"
+  elif [[ -n "$USB_LOG_SNIPPET" ]]; then
+    echo "$USB_LOG_SNIPPET"
+  elif [[ -n "$base_snippet" ]]; then
+    echo "$base_snippet"
+  else
+    echo ""
+  fi
+}
+
+ensure_snippet_compatible_build_dir() {
+  local build_dir="$1"
+  local base_snippet="$2"
+
+  # In pristine mode west already forces a clean configure/build.
+  if [[ "$PRISTINE_MODE" == "yes" ]]; then
+    return 0
+  fi
+
+  local cache_file="$build_dir/CMakeCache.txt"
+  if [[ ! -f "$cache_file" ]]; then
+    return 0
+  fi
+
+  local requested_snippet=""
+  local cached_snippet=""
+
+  requested_snippet="$(resolved_snippet_value "$base_snippet")"
+  cached_snippet="$(grep -E '^SNIPPET:STRING=' "$cache_file" | head -n1 | cut -d= -f2- || true)"
+
+  if [[ "$cached_snippet" == "$requested_snippet" ]]; then
+    return 0
+  fi
+
+  echo "Snippet cambiato per $build_dir: '$cached_snippet' -> '$requested_snippet'."
+  echo "Pulizia mirata della build directory per evitare cache CMake incoerente."
+  rm -rf "$build_dir"
+}
+
 if ! python3 -c "import pkg_resources" >/dev/null 2>&1; then
   echo "Errore: pkg_resources non trovato nel venv."
   echo "Esegui:"
@@ -467,6 +509,7 @@ copy_artifacts() {
 
 build_right() {
   echo "[2/3] Build right (eyelash_sofle_right + nice_view_infos)..."
+  ensure_snippet_compatible_build_dir "build/right" ""
   local snippet
   local snippet_args=()
   snippet="$(snippet_arg "")"
@@ -484,6 +527,7 @@ build_right() {
 
 build_left() {
   echo "[2/3] Build left (eyelash_sofle_left + nice_view)..."
+  ensure_snippet_compatible_build_dir "build/left" ""
   local snippet
   local snippet_args=()
   snippet="$(snippet_arg "")"
@@ -501,6 +545,7 @@ build_left() {
 
 build_left_reset() {
   echo "[2/3] Build left reset (eyelash_sofle_left + settings_reset)..."
+  ensure_snippet_compatible_build_dir "build/left_reset" ""
   local snippet
   local snippet_args=()
   snippet="$(snippet_arg "")"
@@ -518,6 +563,7 @@ build_left_reset() {
 
 build_left_studio() {
   echo "[2/3] Build left studio (eyelash_sofle_left + nice_view + studio snippet)..."
+  ensure_snippet_compatible_build_dir "build/left_studio" "studio-rpc-usb-uart"
   local snippet
   local snippet_args=()
   snippet="$(snippet_arg "studio-rpc-usb-uart")"

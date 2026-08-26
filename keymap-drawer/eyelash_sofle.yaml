@@ -58,11 +58,11 @@ layers:
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - $$mdi:keyboard-space$$
-  - '&td_m1'
+  - {t: '&td_m1_tap', h: Arrow}
   - $$mdi:keyboard-space$$
-  - '&td_m2'
+  - {t: '&td_m2_tap', h: Keypad}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&td_mo3_tog3'
+  - {t: '&td_mo3_tog3', h: I18n}
   - {t: '=', s: +}
   - {t: \, s: '|'}
   Arrow:
@@ -123,7 +123,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -190,7 +190,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:mouse-left-click-outline$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -257,7 +257,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   Config:

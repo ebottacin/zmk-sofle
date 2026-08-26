@@ -41,9 +41,11 @@
         };
 
         prog_caps: prog_caps {
-            compatible = "zmk,behavior-caps-word";
+            compatible = "zmk,behavior-caps-word-with-events";
             #binding-cells = <0>;
             continue-list = <UNDERSCORE MINUS DEL BSPC>;
+            emit-caps-state-events;
+            emit-custom-split-sync;
         };
 
         caps_sync: caps_sync {

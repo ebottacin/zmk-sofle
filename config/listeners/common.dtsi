@@ -41,9 +41,5 @@
         tap-ms = <LISTENER_TAP_MS>;
         wait-ms = <LISTENER_WAIT_MS>;
         trigger-on-shift;
-        trigger-on-implicit-modifiers;
-        ignore-implicit-modifier-alphas;
-        ignore-implicit-modifier-numbers;
-        implicit-shift-continuations = <UNDERSCORE MINUS DEL BSPC>;
         bindings = <&rgb_caps_white>, <&rgb_layer0_off>, <&rgb_layer1>, <&rgb_layer2>, <&rgb_layer3>, <&rgb_layer4>;
     };

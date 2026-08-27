@@ -10,6 +10,30 @@ Run from repository root:
 ./build-local.sh west-update=none pristine=no target=all
 ```
 
+## Docker Build Script
+
+Run from repository root:
+
+```bash
+./docker-build.sh west-update=none pristine=no target=left_right out_dir=C:/Users/<user>/zmk-sofle-builds
+```
+
+Docker mode details:
+
+- Uses image `zmkfirmware/zmk-build-arm:stable` by default
+- Mounts repo root into container workdir `/workspace/zmk-sofle`
+- Mounts the provided host `out_dir` to `/artifacts` in container
+- Executes `build-local.sh` inside container with `ZMK_DOCKER_MODE=1`
+- Accepts optional extra Docker args through env var `DOCKER_EXTRA_ARGS`
+
+Examples:
+
+```bash
+./docker-build.sh west-update=none pristine=no target=left_right out_dir=C:/Users/<user>/zmk-sofle-builds
+DOCKER_EXTRA_ARGS="--pull always" ./docker-build.sh west-update=minimal pristine=yes target=all-with-studio out_dir=C:/Users/<user>/zmk-sofle-builds
+DOCKER_EXTRA_ARGS="--pull always" ./docker-build.sh west-update=none pristine=no target=all extras=generate-keymaps-svg out_dir=C:/Users/<user>/zmk-sofle-builds
+```
+
 Supported parameters:
 
 - `west-update=[minimal|full|none]`
@@ -72,6 +96,7 @@ Pipeline:
 Requirement:
 
 - `keymap` CLI from `keymap-drawer` must be available in your active environment
+- In Docker mode, you can set `DOCKER_VENV_PATH` to point to a venv containing `keymap`
 
 ## Firmware Versioning
 

@@ -88,6 +88,12 @@
 
 set -euo pipefail
 
+ZMK_DOCKER_MODE="${ZMK_DOCKER_MODE:-0}"
+
+is_docker_mode() {
+  [[ "$ZMK_DOCKER_MODE" == "1" ]]
+}
+
 # Config opzionale: imposta qui il path dello Zephyr SDK dopo l'installazione.
 # Esempio: ZEPHYR_SDK_INSTALL_DIR_DEFAULT="$HOME/zephyr-sdk-0.16.9"
 ZEPHYR_SDK_INSTALL_DIR_DEFAULT="$HOME/zephyr-sdk-0.16.9"
@@ -106,6 +112,10 @@ ARTIFACT_DESTS=()
 BUILD_VERSION_VALUE=""
 BUILD_VERSION_CMAKE_ARG=""
 EXTRAS=""
+
+if is_docker_mode; then
+  ARTIFACTS_ROOT_DEFAULT="/artifacts"
+fi
 
 for arg in "$@"; do
   if [[ "$arg" == *=* ]]; then
@@ -150,6 +160,10 @@ done
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+if is_docker_mode; then
+  echo "Modalita Docker attiva (ZMK_DOCKER_MODE=1)"
+fi
+
 if [[ ! -d "config" ]] || [[ ! -f "config/west.yml" ]]; then
   echo "Errore: esegui questo script dalla root del repository (cartella zmk-sofle)."
   exit 1
@@ -174,16 +188,20 @@ resolve_build_version() {
 }
 
 if [[ -z "${VIRTUAL_ENV:-}" ]]; then
-  echo "Errore: ambiente virtuale Python non attivo."
-  if [[ -d ".venv" ]]; then
-    echo "Attiva il venv e rilancia:"
-    echo "  source .venv/bin/activate"
+  if is_docker_mode; then
+    echo "Skip check venv: modalita Docker"
   else
-    echo "Crea e attiva il venv, poi rilancia:"
-    echo "  python3 -m venv .venv"
-    echo "  source .venv/bin/activate"
+    echo "Errore: ambiente virtuale Python non attivo."
+    if [[ -d ".venv" ]]; then
+      echo "Attiva il venv e rilancia:"
+      echo "  source .venv/bin/activate"
+    else
+      echo "Crea e attiva il venv, poi rilancia:"
+      echo "  python3 -m venv .venv"
+      echo "  source .venv/bin/activate"
+    fi
+    exit 1
   fi
-  exit 1
 fi
 
 if ! command -v west >/dev/null 2>&1; then
@@ -396,12 +414,16 @@ ensure_snippet_compatible_build_dir() {
 }
 
 if ! python3 -c "import pkg_resources" >/dev/null 2>&1; then
-  echo "Errore: pkg_resources non trovato nel venv."
-  echo "Esegui:"
-  echo "  python3 -m pip uninstall -y setuptools"
-  echo "  python3 -m pip install 'setuptools<81'"
-  echo "  python3 -c \"import pkg_resources; print(pkg_resources.__file__)\""
-  exit 1
+  if is_docker_mode; then
+    echo "Skip check pkg_resources: modalita Docker"
+  else
+    echo "Errore: pkg_resources non trovato nel venv."
+    echo "Esegui:"
+    echo "  python3 -m pip uninstall -y setuptools"
+    echo "  python3 -m pip install 'setuptools<81'"
+    echo "  python3 -c \"import pkg_resources; print(pkg_resources.__file__)\""
+    exit 1
+  fi
 fi
 
 configure_toolchain() {
@@ -417,6 +439,15 @@ configure_toolchain() {
 
     return 0
   }
+
+  if is_docker_mode; then
+    if [[ -n "${ZEPHYR_SDK_INSTALL_DIR:-}" ]]; then
+      echo "Toolchain: Zephyr SDK (${ZEPHYR_SDK_INSTALL_DIR})"
+    else
+      echo "Toolchain: modalita Docker (skip probe Zephyr SDK host)"
+    fi
+    return
+  fi
 
   if [[ -n "$ZEPHYR_SDK_INSTALL_DIR_DEFAULT" ]]; then
     export ZEPHYR_SDK_INSTALL_DIR="$ZEPHYR_SDK_INSTALL_DIR_DEFAULT"

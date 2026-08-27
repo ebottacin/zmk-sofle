@@ -1,166 +1,46 @@
-# Eyelash Sofle - Build and USB Debug Guide
-
-English is now the primary documentation language for this repository.
+# Eyelash Sofle
 
 ## Changelog
 
-- 2025/03/30: increased sleep timeout to 1 hour, increased debounce time, optimized post-sleep power usage.
-- 2024/12/21: added ZMK Studio support (flash the left half only).
-- 2024/10/24:
-  - changed power mode to reduce consumption.
-  - fixed RGB auto power-off behavior.
+Commit summary generated from recent repository history.
 
-If your keyboard firmware is older than 2024/10/24, update to the latest firmware.
+### v 1.4.1
 
-## Build Script Configuration
+- Keymap layout fixes and keymap-drawer updates for cleaner rendered layers.
+- Added and integrated `zmk-dynamic-logging`.
+- Migrated caps workflow to the event-driven `zmk-caps-lock-events` module.
+- Added a custom split sync channel for caps state and fixed split sync label issues.
+- Added `zmk-usb-logging` snippet support.
+- Improved build scripts and CI stability, including Node 20 warning fixes.
+- Refined auto-layer and num-word behavior.
+- Improved combos and hold-tap behavior for daily typing/navigation.
+- Prepared release updates and keymap iteration.
 
-Run from repository root:
+### v 1.0
 
-`./build-local.sh west-update=none pristine=no target=all`
+- Continued board and keymap refinements.
+- Added/updated split and studio support.
+- Updated build matrix and core configuration files.
 
-Supported key=value parameters:
+## Keyboard Layout
 
-- `west-update=[minimal|full|none]`
-  - `minimal`: `west update --narrow --fetch-opt=--depth=1`
-  - `full`: full `west update`
-  - `none`: skip update and use local sources
-- `pristine=[yes|no]`
-  - `yes`: clean build (`-p always`)
-  - `no`: incremental build
-- `target=[all|all-with-studio|right|left|left_right|left_studio|left_reset]`
-  - `all`: `right + left + left_reset`
-  - `all-with-studio`: `right + left_studio + left_reset`
-  - `right`: `eyelash_sofle_right + nice_view_infos`
-  - `left`: `eyelash_sofle_left + nice_view`
-  - `left_right`: `eyelash_sofle_left + nice_view` and `eyelash_sofle_right + nice_view_infos`
-  - `left_studio`: `eyelash_sofle_left + nice_view + studio-rpc-usb-uart`
-  - `left_reset`: `eyelash_sofle_left + settings_reset`
-- `out_dir=/path/to/output`
-  - root directory where timestamped artifact folders are created
-- `keep=<N>`
-  - keep only the latest `N` output folders (retention)
-- `name=<suffix>`
-  - optional suffix appended to timestamp folder name
-- `extras=reattach-custom-modules`
-  - reattaches local module branches if they are in detached HEAD
+- SVG layout: [keymap-drawer/eyelash_sofle.svg](keymap-drawer/eyelash_sofle.svg)
 
-Examples:
+<img src="keymap-drawer/eyelash_sofle.svg" alt="Eyelash Sofle keymap" />
 
-- `./build-local.sh west-update=none pristine=no target=all`
-- `./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10`
-- `./build-local.sh out_dir=/mnt/c/Users/<user>/zmk-sofle-builds name=test_caps`
+## Features and Used Repositories
 
-## Firmware Versioning
+- ZMK firmware base: [zmkfirmware/zmk](https://github.com/zmkfirmware/zmk)
+- Tri-state behavior: [urob/zmk-tri-state](https://github.com/urob/zmk-tri-state)
+- Auto-layer and num-word: [urob/zmk-auto-layer](https://github.com/urob/zmk-auto-layer)
+- Listener framework: [ssbb/zmk-listeners](https://github.com/ssbb/zmk-listeners)
+- Caps lock/caps word events and split sync: [ebottacin/zmk-caps-lock-events](https://github.com/ebottacin/zmk-caps-lock-events)
+- Runtime logging controls: [ebottacin/zmk_dynamic-logging](https://github.com/ebottacin/zmk_dynamic-logging)
+- Display info widget: [ebottacin/zmk-info-widget](https://github.com/ebottacin/zmk-info-widget)
+- Keymap rendering: [caksoylar/keymap-drawer](https://github.com/caksoylar/keymap-drawer)
+- Optional host-side utility: [ebottacin/zmk-host-gui](https://github.com/ebottacin/zmk-host-gui)
 
-`BUILD_VERSION` is passed both locally and in CI:
+## Build and Technical Documentation
 
-- local build script behavior in `build-local.sh`:
-  - if `HEAD` is exactly on a tag, `BUILD_VERSION=<tag>`
-  - otherwise, `BUILD_VERSION=<short commit hash>` (8 chars)
-- CI build behavior in `build.yaml`:
-  - tag builds use `GITHUB_REF_NAME`
-  - non-tag builds use short `GITHUB_SHA` (8 chars)
-
-This keeps firmware version display consistent between local and CI artifacts.
-
-## USB Logging (Enable)
-
-Enable USB logging in `config/eyelash_sofle.conf`:
-
-`CONFIG_ZMK_USB_LOGGING=y`
-
-Then rebuild and flash the USB central half (usually left in this project setup).
-
-## USB Logging (Read Logs with Python miniterm)
-
-Install Python serial tools:
-
-`python -m pip install --user pyserial`
-
-List available serial ports:
-
-`python -m serial.tools.list_ports -v`
-
-### Windows host
-
-Find the keyboard port in Device Manager (`Ports (COM & LPT)`) or with:
-
-`python -m serial.tools.list_ports -v`
-
-Then open miniterm on the detected `COMx` port:
-
-`python -m serial.tools.miniterm COM6 115200`
-
-If your Python command is `py`, use:
-
-`py -m serial.tools.miniterm COM6 115200`
-
-### Linux host
-
-Find the device node:
-
-`ls /dev/ttyACM*`
-
-Then open miniterm:
-
-`python3 -m serial.tools.miniterm /dev/ttyACM0 115200`
-
-Exit miniterm:
-
-- `Ctrl+]`
-
-Notes:
-
-- if no output appears, verify you are connected to the central half serial port.
-- if a port opens but shows no logs, confirm the flashed firmware was built with `CONFIG_ZMK_USB_LOGGING=y`.
-- on Linux, if you get access errors, add your user to `dialout` and re-login.
-
-## Contact
-
-For 3D-print model files or keyboard issues, contact: `380465425@qq.com`
-
-## Layouts
-
-<img src="keymap-drawer/eyelash_sofle.svg" >
-
-## Host GUI (Build + Optional Reset + Optional Flash + Serial Logs)
-
-A host-side GUI is available in the separate repository `zmk-host-gui`.
-
-Repository:
-
-`https://github.com/ebottacin/zmk-host-gui`
-
-Clone it locally:
-
-`git clone https://github.com/ebottacin/zmk-host-gui`
-
-`cd zmk-host-gui`
-
-Install dependencies:
-
-`python -m pip install -r requirements.txt`
-
-Run:
-
-`python main.py`
-
-Behavior in Build tab:
-
-- `Reset 1200 baud` checkbox:
-  - enabled: after a successful build, sends a 1200 baud touch-reset on configured COM ports.
-  - disabled: no automatic reset is sent.
-- `Flash UF2` checkbox:
-  - enabled: after build (and optional reset), waits for configured drives and copies only UF2 files that exist in the latest out_dir build folder.
-  - disabled: no UF2 copy is performed.
-
-Serial tabs (Left/Right):
-
-- each tab has COM port, baudrate, and log file path fields.
-- serial output is shown live and appended to the configured log file path.
-
-Configuration:
-
-- `defaults.json`: base defaults.
-- `runtime.json`: values saved from UI (`Save Runtime Config`).
+- See [BUILD.md](BUILD.md) for build scripts, CI matrix, keymap SVG generation, versioning, and USB logging.
 

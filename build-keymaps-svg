@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# build-keymaps-svg
+#
+# Genera i file keymap-drawer YAML/SVG in locale partendo dai keymap ZMK.
+# Output: keymap-drawer/<nome>.yaml e keymap-drawer/<nome>.svg
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+CONFIG_FILE="$SCRIPT_DIR/keymap_drawer.config.yaml"
+ZMK_CONFIG_DIR="$SCRIPT_DIR/config"
+OUTPUT_DIR="$SCRIPT_DIR/keymap-drawer"
+KEYMAP_CMD=""
+
+if [[ ! -d "$ZMK_CONFIG_DIR" ]]; then
+  echo "Errore: directory config non trovata: $ZMK_CONFIG_DIR"
+  exit 1
+fi
+
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  echo "Errore: file config keymap-drawer non trovato: $CONFIG_FILE"
+  exit 1
+fi
+
+if command -v keymap >/dev/null 2>&1; then
+  KEYMAP_CMD="$(command -v keymap)"
+elif [[ -x "$SCRIPT_DIR/../.venv/bin/keymap" ]]; then
+  KEYMAP_CMD="$SCRIPT_DIR/../.venv/bin/keymap"
+  echo "Info: uso keymap da venv parent: $KEYMAP_CMD"
+else
+  echo "Errore: comando 'keymap' non trovato nel PATH."
+  echo "Installa keymap-drawer nel tuo ambiente Python attivo, ad esempio:"
+  echo "  pip install keymap-drawer"
+  echo "Oppure attiva il venv parent se presente: source ../.venv/bin/activate"
+  exit 1
+fi
+
+mkdir -p "$OUTPUT_DIR"
+
+shopt -s nullglob
+keymap_files=("$ZMK_CONFIG_DIR"/*.keymap)
+shopt -u nullglob
+
+if [[ ${#keymap_files[@]} -eq 0 ]]; then
+  echo "Nessun file .keymap trovato in $ZMK_CONFIG_DIR"
+  exit 1
+fi
+
+for keymap_file in "${keymap_files[@]}"; do
+  base_name="$(basename "$keymap_file" .keymap)"
+  yaml_out="$OUTPUT_DIR/$base_name.yaml"
+  svg_out="$OUTPUT_DIR/$base_name.svg"
+
+  echo "[keymap-drawer] Parse: $keymap_file -> $yaml_out"
+  "$KEYMAP_CMD" -c "$CONFIG_FILE" parse -z "$keymap_file" > "$yaml_out"
+
+  echo "[keymap-drawer] Draw: $yaml_out -> $svg_out"
+  "$KEYMAP_CMD" -c "$CONFIG_FILE" draw "$yaml_out" > "$svg_out"
+done
+
+echo "Generazione keymap completata in: $OUTPUT_DIR"

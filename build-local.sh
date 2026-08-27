@@ -77,12 +77,14 @@
 #
 # Extras disponibili (parametro `extras`):
 #   reattach-custom-modules    esegue la funzione reattach_custom_modules
+#   generate-keymaps-svg       genera YAML/SVG keymap tramite script build-keymaps-svg (solo target all, all-with-studio, left_right)
 #
 # Esempi:
 #   ./build-local.sh west-update=none pristine=no target=all
 #   ./build-local.sh west-update=minimal pristine=yes target=all-with-studio keep=10
 #   ./build-local.sh out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds name=test_caps
 #   ./build-local.sh target=left_right extras=reattach-custom-modules
+#   ./build-local.sh target=all extras=reattach-custom-modules,generate-keymaps-svg
 
 set -euo pipefail
 
@@ -258,6 +260,40 @@ reattach_custom_modules() {
   reattach_module_branch_if_detached "$PWD/zmk-info-widget" "ebottacin" "main"
 }
 
+is_keymap_svg_target_enabled() {
+  case "$TARGET" in
+    all|all-with-studio|left_right)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+generate_keymaps_svg() {
+  local script_path="$PWD/build-keymaps-svg"
+
+  if ! is_keymap_svg_target_enabled; then
+    echo "Skip generate_keymaps-svg: target '$TARGET' non supportato (usa: all, all-with-studio, left_right)."
+    return 0
+  fi
+
+  if [[ ! -f "$script_path" ]]; then
+    echo "Errore: script non trovato: $script_path"
+    return 1
+  fi
+
+  if [[ ! -x "$script_path" ]]; then
+    echo "Errore: script non eseguibile: $script_path"
+    echo "Esegui: chmod +x $script_path"
+    return 1
+  fi
+
+  echo "[extra] Generazione keymap YAML/SVG..."
+  "$script_path"
+}
+
 echo "[1/3] Inizializzo/aggiorno workspace west..."
 if [[ ! -d ".west" ]]; then
   west init -l config
@@ -271,7 +307,7 @@ elif [[ "$UPDATE_MODE" == "none" ]]; then
   echo "Skip update: uso i sorgenti già presenti localmente."
 else
   echo "Errore: update mode non valido: $UPDATE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules,generate-keymaps-svg]"
   exit 1
 fi
 
@@ -288,7 +324,7 @@ elif [[ "$PRISTINE_MODE" == "no" ]]; then
   BUILD_PRISTINE_ARGS=()
 else
   echo "Errore: pristine mode non valido: $PRISTINE_MODE"
-  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules]"
+  echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [extras=reattach-custom-modules,generate-keymaps-svg]"
   exit 1
 fi
 
@@ -610,7 +646,7 @@ case "$TARGET" in
     build_left_reset
     ;;
   *)
-    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>] [extras=reattach-custom-modules]"
+    echo "Uso: ./build-local.sh west-update=[minimal|full|none] pristine=[yes|no] target=[all|all-with-studio|right|left|left_right|left_studio|left_reset] [keep=10] [out_dir=/mnt/c/Users/e.bottacin/zmk-sofle-builds] [name=<suffix>] [extras=reattach-custom-modules,generate-keymaps-svg]"
     exit 1
     ;;
 esac
@@ -618,6 +654,12 @@ esac
   init_artifacts_output_dir
   copy_artifacts
   prune_old_builds
+
+if [[ "$EXTRAS_NORMALIZED" == *",generate-keymaps-svg,"* ]]; then
+  generate_keymaps_svg
+else
+  echo "Skip generate_keymaps_svg (extras=$EXTRAS)"
+fi
 
 echo "[3/3] Build completata."
 echo "Artefatti principali:"

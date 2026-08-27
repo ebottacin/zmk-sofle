@@ -136,29 +136,32 @@ parse_config:
     # Home rows
     "&hm LEFT_GUI A":
       tap: 'A'
-      shifted: $$mdi:apple-keyboard-command$$
+      shifted: $$mdi:microsoft-windows$$
     "&hm LEFT_ALT S":
       tap: 'S'
-      shifted: $$mdi:apple-keyboard-option$$
+      shifted: ALT
     "&hm LEFT_CONTROL D":
       tap: 'D'
-      shifted: $$mdi:apple-keyboard-control$$
+      shifted: CTRL
     "&hm LEFT_SHIFT F":
       tap: 'F'
-      shifted: $$mdi:apple-keyboard-shift$$
+      shifted: $$material:shift$$
     "&hm RIGHT_SHIFT J":
       tap: 'J'
-      shifted: $$mdi:apple-keyboard-shift$$
+      shifted: $$material:shift$$
     "&hm RIGHT_CONTROL K":
       tap: 'K'
-      shifted: $$mdi:apple-keyboard-control$$
+      shifted: CTRL
     "&hm RIGHT_ALT L":
       tap: 'L'
-      shifted: $$mdi:apple-keyboard-option$$
+      shifted: ALT
     # self behaviors
     "&hm LG(LS(V)) P":
       tap: 'P'
       shifted: $$mdi:content-copy$$
+    "&hld_swp ENTER 0":
+      tap: $$mdi:flip-to-back$$
+      hold: ALT
     # Mouse
     "&msc SCRL_UP":
       tap: $$mdi:pan-up$$
@@ -201,7 +204,7 @@ parse_config:
     # Modifiers
     "&caps_word": $$mdi:alpha-w-box$$
     "&kt RSHIFT":
-      tap: $$mdi:apple-keyboard-shift$$
+      tap: $$material:shift$$
       hold: $$mdi:toggle-switch$$
 
     # Empty
@@ -248,12 +251,74 @@ parse_config:
       shifted: $$mdi:bluetooth-connect$$
       tap: ""
       hold: $$mdi:arrow-down-bold$$
+    "&bt BT_CLR":
+      tap: $$mdi:bluetooth$$
+      hold: CLR
+    "&bt BT_CLR_ALL":
+      tap: $$mdi:bluetooth$$
+      hold: CLR
+      shifted: ALL
+    "&out OUT_USB":
+      tap: $$mdi:usb$$
+      hold: OUT
+    "&out OUT_BLE":
+      tap: $$mdi:bluetooth$$
+      hold: OUT
     # Reset
     "&sys_reset":
       type: bootloader
       tap: $$mdi:backup-restore$$
     "&bootloader":
       tap: $$mdi:progress-download$$
+    "&td_boot_sx":
+      tap: $$mdi:progress-download$$
+      hold: BOOT
+      shifted: sx
+    "&td_boot_dx":
+      tap: $$mdi:progress-download$$
+      hold: BOOT
+      shifted: dx
+
+    # Custom actions
+    "&dynamic_logging_toggle":
+      tap: $$material:bug_report$$
+      hold: $$mdi:toggle-switch$$
+    "&td_cpswl":
+      tap: $$mdi:alpha-w-box$$
+      hold: CAPS
+    "&td_m1_tap":
+      tap: $$mdi:navigation-variant$$
+      hold: TOG
+    "&td_m2_tap":
+      tap: $$mdi:numeric$$
+      hold: TOG
+    "&td_mo3_tog3":
+      tap: $$mdi:earth$$
+      hold: I18n
+    "&swapper":
+      tap: $$mdi:keyboard-tab$$
+      hold: ALT
+    "&mkp MB4":
+      tap: $$mdi:arrow-left-bold$$
+      hold: $$mdi:mouse$$
+    "&mkp MB5":
+      tap: $$mdi:arrow-right-bold$$
+      hold: $$mdi:mouse$$
+
+    # Localized macros
+    "&agrave_lower": "à"
+    "&agrave_upper": "À"
+    "&egrave_lower": "è"
+    "&egrave_upper": "È"
+    "&eacute_lower": "é"
+    "&eacute_upper": "É"
+    "&igrave_lower": "ì"
+    "&igrave_upper": "Ì"
+    "&ograve_lower": "ò"
+    "&ograve_upper": "Ò"
+    "&ugrave_lower": "ù"
+    "&ugrave_upper": "Ù"
+    "&euro": "€"
 
   # ZMK
   zmk_keycode_map:
@@ -395,26 +460,29 @@ parse_config:
       shifted: ")"
 
     # Modifiers
-    LCTRL: $$mdi:apple-keyboard-control$$
-    LEFT_CONTROL: $$mdi:apple-keyboard-control$$
-    LALT: $$mdi:apple-keyboard-option$$
-    LEFT_ALT: $$mdi:apple-keyboard-option$$
-    LSHIFT: $$mdi:apple-keyboard-shift$$
-    LEFT_SHIFT: $$mdi:apple-keyboard-shift$$
-    LSHFT: $$mdi:apple-keyboard-shift$$
+    LCTRL: CTRL
+    LEFT_CONTROL: CTRL
+    LALT: ALT
+    LEFT_ALT: ALT
+    LSHIFT: $$material:shift$$
+    LEFT_SHIFT: $$material:shift$$
+    LSHFT: $$material:shift$$
     LCMD: $$mdi:apple-keyboard-command$$
-    LG: $$mdi:apple-keyboard-command$$
-    LEFT_GUI: $$mdi:apple-keyboard-command$$
+    LGUI: $$mdi:microsoft-windows$$
+    LG: $$mdi:microsoft-windows$$
+    LEFT_GUI: $$mdi:microsoft-windows$$
     LEFT_COMMAND: $$mdi:apple-keyboard-command$$
-    RCTRL: $$mdi:apple-keyboard-control$$
-    RIGHT_CONTROL: $$mdi:apple-keyboard-control$$
-    RALT: $$mdi:apple-keyboard-option$$
-    RIGHT_ALT: $$mdi:apple-keyboard-option$$
-    RSHIFT: $$mdi:apple-keyboard-shift$$
-    RIGHT_SHIFT: $$mdi:apple-keyboard-shift$$
-    RSHFT: $$mdi:apple-keyboard-shift$$
+    RCTRL: CTRL
+    RIGHT_CONTROL: CTRL
+    RALT: ALT
+    RIGHT_ALT: ALT
+    RSHIFT: $$material:shift$$
+    RIGHT_SHIFT: $$material:shift$$
+    RSHFT: $$material:shift$$
     RCMD: $$mdi:apple-keyboard-command$$
-    RG: $$mdi:apple-keyboard-command$$
+    RGUI: $$mdi:microsoft-windows$$
+    RG: $$mdi:microsoft-windows$$
+    RIGHT_GUI: $$mdi:microsoft-windows$$
     PSCRN: $$mdi:printer-outline$$
     RIGHT_COMMAND: $$mdi:apple-keyboard-command$$
     PAGE_UP:

@@ -22,6 +22,7 @@ Docker mode details:
 
 - Uses image `zmkfirmware/zmk-build-arm:stable` by default
 - Mounts repo root into container workdir `/workspace/zmk-sofle`
+- Mounts a persistent Docker volume on `/workspace/zmk-sofle/build` for faster compilation
 - Mounts the provided host `out_dir` to `/artifacts` in container
 - Executes `build-local.sh` inside container with `ZMK_DOCKER_MODE=1`
 - Accepts optional extra Docker args through env var `DOCKER_EXTRA_ARGS`

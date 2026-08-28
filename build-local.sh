@@ -173,6 +173,13 @@ resolve_build_version() {
   local version_from_tag=""
   local version_from_hash=""
 
+  if [[ -n "${BUILD_VERSION_OVERRIDE:-}" ]]; then
+    BUILD_VERSION_VALUE="$BUILD_VERSION_OVERRIDE"
+    echo "Versione FW da BUILD_VERSION_OVERRIDE: $BUILD_VERSION_VALUE"
+    BUILD_VERSION_CMAKE_ARG="-DBUILD_VERSION=$BUILD_VERSION_VALUE"
+    return
+  fi
+
   if version_from_tag="$(git describe --tags --exact-match 2>/dev/null)"; then
     BUILD_VERSION_VALUE="$version_from_tag"
     echo "Versione FW da tag HEAD: $BUILD_VERSION_VALUE"
@@ -346,30 +353,38 @@ else
   exit 1
 fi
 
-west zephyr-export
+west_export_log="$(mktemp)"
+if west zephyr-export >"$west_export_log" 2>&1; then
+  :
+else
+  if grep -q 'unknown command "zephyr-export"' "$west_export_log"; then
+    echo "Skip zephyr-export: comando non disponibile in questo workspace west."
+  else
+    cat "$west_export_log"
+    rm -f "$west_export_log"
+    exit 1
+  fi
+fi
+rm -f "$west_export_log"
 
 if [[ -f "zephyr/scripts/requirements.txt" ]]; then
-  python3 -m pip install -r zephyr/scripts/requirements.txt
+  if python3 -m pip --version >/dev/null 2>&1; then
+    python3 -m pip install -r zephyr/scripts/requirements.txt
+  elif is_docker_mode; then
+    echo "Attenzione: python3 pip non disponibile nel container, skip install requirements Zephyr."
+  else
+    echo "Errore: python3 pip non disponibile. Installa pip nel tuo ambiente e rilancia."
+    exit 1
+  fi
 fi
 
 USB_LOG_SNIPPET=""
 USB_LOGGING_ENABLED=0
-if grep -Eq '^CONFIG_ZMK_USB_LOGGING=y$' "config/eyelash_sofle.conf"; then
+if grep -Eq '^[[:space:]]*CONFIG_ZMK_USB_LOGGING=y[[:space:]]*\r?$' "config/eyelash_sofle.conf"; then
   USB_LOG_SNIPPET="zmk-usb-logging"
   USB_LOGGING_ENABLED=1
   echo "USB logging abilitato: uso snippet zmk-usb-logging"
 fi
-
-snippet_arg() {
-  local base_snippet="$1"
-  if [[ -n "$USB_LOG_SNIPPET" && -n "$base_snippet" ]]; then
-    echo "-DSNIPPET=$USB_LOG_SNIPPET;$base_snippet"
-  elif [[ -n "$USB_LOG_SNIPPET" ]]; then
-    echo "-DSNIPPET=$USB_LOG_SNIPPET"
-  elif [[ -n "$base_snippet" ]]; then
-    echo "-DSNIPPET=$base_snippet"
-  fi
-}
 
 resolved_snippet_value() {
   local base_snippet="$1"
@@ -577,14 +592,13 @@ copy_artifacts() {
 build_right() {
   echo "[2/3] Build right (eyelash_sofle_right + nice_view_infos)..."
   ensure_snippet_compatible_build_dir "build/right" ""
-  local snippet
-  local snippet_args=()
-  snippet="$(snippet_arg "")"
-  if [[ -n "$snippet" ]]; then
-    snippet_args+=("$snippet")
+  local snippet_value
+  local west_snippet_args=()
+  snippet_value="$(resolved_snippet_value "")"
+  if [[ -n "$snippet_value" ]]; then
+    west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/right -b eyelash_sofle_right -- \
-    "${snippet_args[@]}" \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/right -b eyelash_sofle_right "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=nice_view_infos \
     -DBOARD_ROOT="$PWD" \
@@ -595,14 +609,13 @@ build_right() {
 build_left() {
   echo "[2/3] Build left (eyelash_sofle_left + nice_view)..."
   ensure_snippet_compatible_build_dir "build/left" ""
-  local snippet
-  local snippet_args=()
-  snippet="$(snippet_arg "")"
-  if [[ -n "$snippet" ]]; then
-    snippet_args+=("$snippet")
+  local snippet_value
+  local west_snippet_args=()
+  snippet_value="$(resolved_snippet_value "")"
+  if [[ -n "$snippet_value" ]]; then
+    west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left -b eyelash_sofle_left -- \
-    "${snippet_args[@]}" \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=nice_view \
     -DBOARD_ROOT="$PWD" \
@@ -613,14 +626,13 @@ build_left() {
 build_left_reset() {
   echo "[2/3] Build left reset (eyelash_sofle_left + settings_reset)..."
   ensure_snippet_compatible_build_dir "build/left_reset" ""
-  local snippet
-  local snippet_args=()
-  snippet="$(snippet_arg "")"
-  if [[ -n "$snippet" ]]; then
-    snippet_args+=("$snippet")
+  local snippet_value
+  local west_snippet_args=()
+  snippet_value="$(resolved_snippet_value "")"
+  if [[ -n "$snippet_value" ]]; then
+    west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_reset -b eyelash_sofle_left -- \
-    ${snippet_args:+"${snippet_args[@]}"} \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_reset -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=settings_reset \
     -DBOARD_ROOT="$PWD" \
@@ -631,14 +643,13 @@ build_left_reset() {
 build_left_studio() {
   echo "[2/3] Build left studio (eyelash_sofle_left + nice_view + studio snippet)..."
   ensure_snippet_compatible_build_dir "build/left_studio" "studio-rpc-usb-uart"
-  local snippet
-  local snippet_args=()
-  snippet="$(snippet_arg "studio-rpc-usb-uart")"
-  if [[ -n "$snippet" ]]; then
-    snippet_args+=("$snippet")
+  local snippet_value
+  local west_snippet_args=()
+  snippet_value="$(resolved_snippet_value "studio-rpc-usb-uart")"
+  if [[ -n "$snippet_value" ]]; then
+    west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_studio -b eyelash_sofle_left -- \
-    "${snippet_args[@]}" \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_studio -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=nice_view \
     -DCONFIG_ZMK_STUDIO=y \

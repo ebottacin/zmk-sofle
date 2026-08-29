@@ -44,6 +44,7 @@
             label = "É";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N1>
                 , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;

@@ -119,8 +119,8 @@ parse_config:
   raw_binding_map:
     # Layers
     "&ltq 1 BACKSPACE":
-      tap:  $$mdi:backspace$$
-      hold: '$$mdi:navigation-variant$$'
+      tap: $$mdi:backspace$$
+      hold: "$$mdi:navigation-variant$$"
     "&ltq 3 TAB":
       tap: $$mdi:keyboard-tab$$
       hold: $$mdi:numeric$$
@@ -135,29 +135,29 @@ parse_config:
       hold: $$mdi:navigation-variant$$
     # Home rows
     "&hm LEFT_GUI A":
-      tap: 'A'
+      tap: "A"
       shifted: $$mdi:microsoft-windows$$
     "&hm LEFT_ALT S":
-      tap: 'S'
+      tap: "S"
       shifted: ALT
     "&hm LEFT_CONTROL D":
-      tap: 'D'
+      tap: "D"
       shifted: CTRL
     "&hm LEFT_SHIFT F":
-      tap: 'F'
+      tap: "F"
       shifted: $$material:shift$$
     "&hm RIGHT_SHIFT J":
-      tap: 'J'
+      tap: "J"
       shifted: $$material:shift$$
     "&hm RIGHT_CONTROL K":
-      tap: 'K'
+      tap: "K"
       shifted: CTRL
     "&hm RIGHT_ALT L":
-      tap: 'L'
+      tap: "L"
       shifted: ALT
     # self behaviors
     "&hm LG(LS(V)) P":
-      tap: 'P'
+      tap: "P"
       shifted: $$mdi:content-copy$$
     "&hld_swp ENTER 0":
       tap: $$mdi:flip-to-back$$
@@ -165,35 +165,35 @@ parse_config:
     # Mouse
     "&msc SCRL_UP":
       tap: $$mdi:pan-up$$
-      hold: ''
-      shifted: ''
+      hold: ""
+      shifted: ""
     "&msc SCRL_DOWN":
       tap: $$mdi:pan-down$$
-      hold: ''
-      shifted: ''
+      hold: ""
+      shifted: ""
     "&msc SCRL_LEFT":
       tap: $$mdi:pan-left$$
-      hold: ''
-      shifted: ''
+      hold: ""
+      shifted: ""
     "&msc SCRL_RIGHT":
       tap: $$mdi:pan-right$$
-      hold: ''
-      shifted: ''
+      hold: ""
+      shifted: ""
     "&mmv MOVE_LEFT":
       tap: $$mdi:menu-left$$
-      hold: ''
+      hold: ""
       shifted: $$mdi:mouse$$
     "&mmv MOVE_RIGHT":
       tap: $$mdi:menu-right$$
-      hold: ''
+      hold: ""
       shifted: $$mdi:mouse$$
     "&mmv MOVE_UP":
       tap: $$mdi:menu-up$$
-      hold: ''
+      hold: ""
       shifted: $$mdi:mouse$$
     "&mmv MOVE_DOWN":
       tap: $$mdi:menu-down$$
-      hold: ''
+      hold: ""
       shifted: $$mdi:mouse$$
     "&mkp LCLK":
       tap: $$mdi:mouse-left-click-outline$$
@@ -306,19 +306,24 @@ parse_config:
       hold: $$mdi:mouse$$
 
     # Localized macros
-    "&agrave_lower": "à"
-    "&agrave_upper": "À"
-    "&egrave_lower": "è"
-    "&egrave_upper": "È"
-    "&eacute_lower": "é"
-    "&eacute_upper": "É"
-    "&igrave_lower": "ì"
-    "&igrave_upper": "Ì"
-    "&ograve_lower": "ò"
-    "&ograve_upper": "Ò"
-    "&ugrave_lower": "ù"
-    "&ugrave_upper": "Ù"
-    "&euro": "€"
+    "&a_l3 LCTRL 0":
+      tap: "à"
+      hold: CTRL
+    "&e_l3":
+      shifted: "È"
+      left: "€"
+      tap: "è"
+      right: "é"
+      right_shifted: "É"
+    "&u_l3":
+      tap: "ù"
+      shifted: "Ù"
+    "&i_l3":
+      tap: "ì"
+      shifted: "Ì"
+    "&o_l3":
+      tap: "ò"
+      shifted: "Ò"
 
   # ZMK
   zmk_keycode_map:
@@ -383,10 +388,10 @@ parse_config:
     SQT:
       tap: "'"
       shifted: '"'
-    APOSTROPHE: 
+    APOSTROPHE:
       tap: "'"
       shifted: '"'
-    APOS: 
+    APOS:
       tap: "'"
       shifted: '"'
     DOUBLE_QUOTES: '"'
@@ -394,7 +399,7 @@ parse_config:
 
     LESS_THAN: <
     LT: <
-    PERIOD: '.'
+    PERIOD: "."
     DOT:
       tap: "."
       shifted: ">"
@@ -486,14 +491,14 @@ parse_config:
     PSCRN: $$mdi:printer-outline$$
     RIGHT_COMMAND: $$mdi:apple-keyboard-command$$
     PAGE_UP:
-      tap: 'PgUp'
-      shifted: ''
+      tap: "PgUp"
+      shifted: ""
     PAGE_DOWN:
-      tap: 'PgDn'
-      shifted: ''
+      tap: "PgDn"
+      shifted: ""
     INSERT:
-       tap: 'Ins'
-       shifted: ''
+      tap: "Ins"
+      shifted: ""
     # "Meh" key
     LS(LC(LALT)): $$mdi:star-three-points$$
 
@@ -560,30 +565,30 @@ parse_config:
     C_AL_LOCK: $$mdi:lock$$
     K_CANCEL: $$mdi:close-box$$
     K_FIND: $$mdi:apple-finder$$
-    # Command + 
+    # Command +
     LG(A):
-      tap: 'A'
+      tap: "A"
       hold: $$mdi:apple-keyboard-command$$
     LG(S):
-      tap: 'S'
+      tap: "S"
       hold: $$mdi:apple-keyboard-command$$
     LG(D):
-      tap: 'D'
+      tap: "D"
       hold: $$mdi:apple-keyboard-command$$
     LG(F):
-      tap: 'F'
+      tap: "F"
       hold: $$mdi:apple-keyboard-command$$
     LG(Z):
-      tap: 'Z'
+      tap: "Z"
       hold: $$mdi:apple-keyboard-command$$
     LG(X):
-      tap: 'X'
+      tap: "X"
       hold: $$mdi:apple-keyboard-command$$
     LG(C):
-      tap: 'C'
+      tap: "C"
       hold: $$mdi:apple-keyboard-command$$
     LG(V):
-      tap: 'V'
+      tap: "V"
       hold: $$mdi:apple-keyboard-command$$
     # Zoom
     RG(RS(A)):

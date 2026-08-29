@@ -98,9 +98,9 @@
 
         layer_3 {
             bindings = <
-&trans            &none           &none             &egrave_upper   &none                &none                  &none                         &none            &ugrave_upper    &igrave_upper   &ograve_upper  &none             &none
-&trans            &agrave_upper   &none             &egrave_lower   &none                &none                  &none                         &none            &ugrave_lower    &igrave_lower   &ograve_lower  &none             &none
-&trans            &agrave_lower   &none             &euro           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
+&trans            &none           &none             &e_l3           &none                &none                  &none                         &none            &u_l3           &i_l3           &o_l3         &none             &none
+&trans            &a_l3 LCTRL 0   &trans            &trans          &trans               &trans                 &none                         &trans           &trans          &trans          &trans         &trans            &none
 &trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
 &trans            &none           &none             &none           &trans               &trans                 &none                         &trans           &none            &trans          &none          &trans 
             >;

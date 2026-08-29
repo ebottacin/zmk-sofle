@@ -11,8 +11,6 @@ manifest:
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
     - name: urob
       url-base: https://github.com/urob
-    - name: gpeye
-      url-base: https://github.com/GPeye
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: ebottacin
@@ -34,6 +32,9 @@ manifest:
     - name: zmk-dynamic-logging
       remote: ebottacin
       repo-path: zmk_dynamic-logging
+      revision: main
+    - name: zmk-deferred-morph
+      remote: ebottacin
       revision: main
     - name: zmk
       remote: zmkfirmware

@@ -308,13 +308,14 @@ parse_config:
     # Localized macros
     "&a_l3 LCTRL 0":
       tap: "à"
+      shifted: "À"
       hold: CTRL
     "&e_l3":
       shifted: "È"
-      left: "€"
+      left: "é"
       tap: "è"
-      right: "é"
-      right_shifted: "É"
+      right: "€"
+      tl: "É"
     "&u_l3":
       tap: "ù"
       shifted: "Ù"

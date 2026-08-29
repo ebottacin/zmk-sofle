@@ -5,7 +5,9 @@
             label = "à";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N4>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -16,7 +18,9 @@
             label = "À";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N2>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -27,7 +31,9 @@
             label = "é";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N3>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -39,6 +45,7 @@
             bindings
                 = <&macro_press &kp LALT>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N1>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -49,7 +56,9 @@
             label = "è";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N2>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -60,7 +69,9 @@
             label = "È";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N0>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -71,7 +82,9 @@
             label = "ì";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N6>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -82,7 +95,9 @@
             label = "Ì";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N4>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -93,7 +108,9 @@
             label = "ò";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N2>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -104,7 +121,9 @@
             label = "Ò";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N0>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -115,7 +134,9 @@
             label = "ù";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N9>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -126,7 +147,9 @@
             label = "Ù";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N7>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };
 
@@ -136,6 +159,8 @@
             label = "€";
             bindings
                 = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
                 , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N8>
+                , <&macro_wait_time 15>
                 , <&macro_release &kp LALT>;
         };

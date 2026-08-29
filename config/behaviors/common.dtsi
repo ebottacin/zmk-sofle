@@ -249,7 +249,7 @@
             label            = "MT";
             #binding-cells = <2>;
             tapping-term-ms  = <TT_HOLD_TAP_MTT>;
-            flavor           = "balanced";
+            flavor           = "tap-preferred";
             bindings         = <&kp>, <&kp>;
         };
 

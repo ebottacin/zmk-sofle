@@ -57,7 +57,7 @@ DOCKER_BIN="$(resolve_docker_bin)"
 DOCKER_IMAGE="${ZMK_DOCKER_IMAGE:-zmkfirmware/zmk-build-arm:stable}"
 CONTAINER_WORKDIR="${ZMK_DOCKER_WORKDIR:-/workspace/zmk-sofle}"
 CONTAINER_OUT_DIR="${ZMK_DOCKER_OUT_DIR:-/artifacts}"
-DOCKER_VENV_PATH_DEFAULT="${DOCKER_VENV_PATH:-/opt/venv}"
+DOCKER_VENV_PATH_DEFAULT="${DOCKER_VENV_PATH:-$CONTAINER_WORKDIR/build/.venv}"
 ZMK_DOCKER_BUILD_VOLUME="zmk-sofle-build-cache"
 ZMK_DOCKER_SOURCE_VOLUME="${ZMK_DOCKER_SOURCE_VOLUME:-zmk-sofle-source-cache}"
 ZMK_DOCKER_RSYNC_IMAGE="${ZMK_DOCKER_RSYNC_IMAGE:-alpine:3.20}"
@@ -245,3 +245,13 @@ echo "[docker-build] sync: rsync host -> source volume"
 run_docker_cmd "${sync_cmd[@]}"
 
 run_docker_cmd "${docker_cmd[@]}"
+
+keymap_drawer_sync_cmd=(
+  "$DOCKER_BIN" run --rm -t
+  -v "$repo_mount:/workspace/zmk-sofle-host"
+  -v "$ZMK_DOCKER_SOURCE_VOLUME:$CONTAINER_WORKDIR:ro"
+  "$ZMK_DOCKER_RSYNC_IMAGE" sh -lc
+  "apk add --no-cache rsync >/dev/null && if [ -d \"${CONTAINER_WORKDIR}/keymap-drawer\" ]; then echo \"[docker-build] sync: keymap-drawer source volume -> host\"; mkdir -p /workspace/zmk-sofle-host/keymap-drawer; rsync -a --delete \"${CONTAINER_WORKDIR}/keymap-drawer/\" /workspace/zmk-sofle-host/keymap-drawer/; fi"
+)
+
+run_docker_cmd "${keymap_drawer_sync_cmd[@]}"

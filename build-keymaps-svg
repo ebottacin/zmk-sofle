@@ -25,21 +25,57 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
   exit 1
 fi
 
-if command -v keymap >/dev/null 2>&1; then
-  KEYMAP_CMD="$(command -v keymap)"
-elif [[ -n "${DOCKER_VENV_PATH:-}" ]] && [[ -x "${DOCKER_VENV_PATH}/bin/keymap" ]]; then
-  KEYMAP_CMD="${DOCKER_VENV_PATH}/bin/keymap"
-  echo "Info: uso keymap da Docker venv: $KEYMAP_CMD"
-elif [[ -x "$SCRIPT_DIR/../.venv/bin/keymap" ]]; then
-  KEYMAP_CMD="$SCRIPT_DIR/../.venv/bin/keymap"
-  echo "Info: uso keymap da venv parent: $KEYMAP_CMD"
-else
+ensure_keymap_available() {
+  if command -v keymap >/dev/null 2>&1; then
+    KEYMAP_CMD="$(command -v keymap)"
+    return 0
+  fi
+
+  if [[ -n "${DOCKER_VENV_PATH:-}" ]] && [[ -x "${DOCKER_VENV_PATH}/bin/keymap" ]]; then
+    KEYMAP_CMD="${DOCKER_VENV_PATH}/bin/keymap"
+    echo "Info: uso keymap da Docker venv: $KEYMAP_CMD"
+    return 0
+  fi
+
+  if [[ -x "$SCRIPT_DIR/../.venv/bin/keymap" ]]; then
+    KEYMAP_CMD="$SCRIPT_DIR/../.venv/bin/keymap"
+    echo "Info: uso keymap da venv parent: $KEYMAP_CMD"
+    return 0
+  fi
+
+  if [[ "${ZMK_DOCKER_MODE:-0}" == "1" ]]; then
+    local venv_path="${DOCKER_VENV_PATH:-$SCRIPT_DIR/build/.venv}"
+    echo "[keymap-drawer] keymap non trovato, installazione nel venv Docker: $venv_path..."
+
+    if [[ ! -x "${venv_path}/bin/pip" ]]; then
+      if command -v apt-get >/dev/null 2>&1; then
+        echo "[keymap-drawer] installazione prerequisiti (python3-pip, python3-venv)..."
+        apt-get update >/dev/null && apt-get install -y --no-install-recommends python3-pip python3-venv >/dev/null
+      fi
+      if [[ ! -d "$venv_path" ]]; then
+        python3 -m venv "$venv_path"
+      fi
+    fi
+
+    if [[ -x "${venv_path}/bin/pip" ]]; then
+      "${venv_path}/bin/pip" install --no-cache-dir keymap-drawer >/dev/null
+    fi
+
+    if [[ -x "${venv_path}/bin/keymap" ]]; then
+      KEYMAP_CMD="${venv_path}/bin/keymap"
+      echo "Info: keymap installato con successo in: $KEYMAP_CMD"
+      return 0
+    fi
+  fi
+
   echo "Errore: comando 'keymap' non trovato nel PATH."
   echo "Installa keymap-drawer nel tuo ambiente Python attivo, ad esempio:"
   echo "  pip install keymap-drawer"
   echo "Oppure attiva il venv parent se presente: source ../.venv/bin/activate"
   exit 1
-fi
+}
+
+ensure_keymap_available
 
 mkdir -p "$OUTPUT_DIR"
 

@@ -65,6 +65,11 @@ PULL_RETRIES="${ZMK_DOCKER_PULL_RETRIES:-4}"
 PULL_BACKOFF_SECONDS="${ZMK_DOCKER_PULL_BACKOFF_SECONDS:-5}"
 
 pull_image_with_retry() {
+  if run_docker_cmd "$DOCKER_BIN" image inspect "$DOCKER_IMAGE" >/dev/null 2>&1; then
+    echo "[docker-build] image already available locally: $DOCKER_IMAGE"
+    return 0
+  fi
+
   local attempt=1
   local max_attempts="$PULL_RETRIES"
 

@@ -2,5 +2,14 @@
   "git.autoRepositoryDetection": "subFolders",
   "git.detectSubmodules": true,
   "git.repositoryScanMaxDepth": 1,
-  "git.repositoryScanMaxRepositories": 50
+  "git.repositoryScanIgnoredFolders": [
+    "mario-peripheral-animation",
+    "zmk",
+    "zmk-auto-layer",
+    "zmk-listeners",
+    "zmk-tri-state"
+  ],
+  "scm.repositories.sortOrder": "name",
+  "scm.repositories.visible": 20,
+  "scm.repositories.selectionMode": "multiple"
 }

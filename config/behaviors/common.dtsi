@@ -43,7 +43,7 @@
         prog_caps: prog_caps {
             compatible = "zmk,behavior-caps-word-with-events";
             #binding-cells = <0>;
-            continue-list = <UNDERSCORE MINUS DEL BSPC>;
+            continue-list = <UNDERSCORE MINUS DEL BSPC F24>;
             emit-caps-state-events;
             emit-custom-split-sync;
         };
@@ -236,6 +236,22 @@
             flavor = "hold-preferred";
             tapping-term-ms = <TT_HOLD_TAP_BASE>;
             bindings = <&mo>, <&td_mo3_tog3>;
+        };
+
+        td_mo4_tog4: td_mo4_tog4 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M4";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&mo 4>, <&tog 4>;
+        };
+
+        hld_m4: hld_m4 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&td_mo4_tog4>;
         };
 
         /*

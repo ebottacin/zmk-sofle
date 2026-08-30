@@ -295,6 +295,12 @@ parse_config:
     "&td_mo3_tog3":
       tap: $$mdi:earth$$
       hold: I18n
+    "&hld_m4 4 0":
+      tap: $$mdi:earth$$
+      hold: I18n
+    "&tog 6":
+      tap: $$mdi:earth$$
+      hold: Toggle
     "&swapper":
       tap: $$mdi:keyboard-tab$$
       hold: ALT
@@ -306,6 +312,24 @@ parse_config:
       hold: $$mdi:mouse$$
 
     # Localized macros
+    "&wc_a":
+      tap: "à"
+      shifted: "À"
+    "&wc_e":
+      shifted: "È"
+      left: "é"
+      tap: "è"
+      right: "€"
+      tl: "É"
+    "&wc_u":
+      tap: "ù"
+      shifted: "Ù"
+    "&wc_i":
+      tap: "ì"
+      shifted: "Ì"
+    "&wc_o":
+      tap: "ò"
+      shifted: "Ò"
     "&a_l3 LCTRL 0":
       tap: "à"
       shifted: "À"

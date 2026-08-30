@@ -40,6 +40,7 @@
 / {
     macros {
 #include "macros/altgr_chars.dtsi"
+#include "macros/wincompose_chars.dtsi"
 #include "macros/rgb_layers.dtsi"
     };
 
@@ -50,9 +51,20 @@
 
     behaviors {
 #include "behaviors/common.dtsi"
+
+        info_layer_sync: info_layer_sync {
+            compatible = "zmk,behavior-info-layer-sync";
+            label = "INFOSYNC";
+            #binding-cells = <2>;
+        };
     };
 
 #include "listeners/common.dtsi"
+
+    info_widget: info_widget {
+        compatible = "zmk,info-widget";
+        layer-to-monitor = <6>;
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -99,6 +111,18 @@
         layer_3 {
             bindings = <
 &trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
+&trans            &none           &none             &wc_e           &none                &none                  &none                         &none            &wc_u           &wc_i           &wc_o          &none             &none
+&trans            &wc_a           &trans            &trans          &trans               &trans                 &none                         &trans           &trans          &trans          &trans         &trans            &none
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
+&trans            &none           &none             &none           &trans               &trans                 &none                         &trans           &none            &trans          &none          &trans
+            >;
+
+            display-name = "I18n - WC";
+        };
+
+        layer_4 {
+            bindings = <
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
 &trans            &none           &none             &e_l3           &none                &none                  &none                         &none            &u_l3           &i_l3           &o_l3         &none             &none
 &trans            &a_l3 LCTRL 0   &trans            &trans          &trans               &trans                 &none                         &trans           &trans          &trans          &trans         &trans            &none
 &trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
@@ -109,9 +133,9 @@
         };
 
 
-        layer_4 {
+        layer_5 {
             bindings = <
-&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &none            &none          &none          &none              &none
+&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &tog 6          &none          &none          &none              &none
 &sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx      &none            &none          &none          &none              &none
@@ -119,6 +143,18 @@
             >;
 
             display-name = "Config";
+        };
+
+        layer_6 {
+            bindings = <
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &hld_m4 4 0    &trans         &trans
+            >;
+
+            display-name = "I18n Unicode";
         };
     };
 };

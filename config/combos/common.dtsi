@@ -1,7 +1,14 @@
-        layer_4_combo {
+        layer_5_combo {
             timeout-ms    = <COMBO_TIMEOUT_LAYER_TOGGLE>;
             key-positions = <57  59>;         /* &mo1 + &mo2 */
-            bindings      = <&tog 4>;
+            bindings      = <&tog 5>;
+        };
+
+        wc_compose_combo {
+            timeout-ms    = <COMBO_TIMEOUT_BASE>;
+            key-positions = <18 20>;           /* &kp t + &kp y */
+            layers        = <0>;
+            bindings      = <&kp F24>;
         };
 
         ctrl_a_combo {

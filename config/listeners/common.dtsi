@@ -32,6 +32,11 @@
 
         on_layer4 {
             layers = <4>;
+            bindings = <&rgb_layer3>, <&rgb_layer0_off>;
+        };
+
+        on_layer5 {
+            layers = <5>;
             bindings = <&rgb_layer4>, <&rgb_layer0_off>;
         };
     };
@@ -64,6 +69,11 @@
 
         on_layer4 {
             layers = <4>;
+            bindings = <&rgb_caps_white>, <&rgb_layer3>;
+        };
+
+        on_layer5 {
+            layers = <5>;
             bindings = <&rgb_caps_white>, <&rgb_layer4>;
         };
     };

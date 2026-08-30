@@ -1,0 +1,155 @@
+    #define WC_WAIT_MS 10
+
+        wc_a_lower: wc_a_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp A>;
+        };
+
+        wc_a_upper: wc_a_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(A)>;
+        };
+
+        wc_a: wc_a {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_a_lower>, <&wc_a_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_e_grave_lower: wc_e_grave_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp E>;
+        };
+
+        wc_e_grave_upper: wc_e_grave_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(E)>;
+        };
+
+        wc_e_grave: wc_e_grave {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_e_grave_lower>, <&wc_e_grave_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_e_acute_lower: wc_e_acute_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp APOS>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp E>;
+        };
+
+        wc_e_acute_upper: wc_e_acute_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp APOS>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(E)>;
+        };
+
+        wc_e_acute: wc_e_acute {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_e_acute_lower>, <&wc_e_acute_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_e_euro_tap: wc_e_euro_tap {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp E>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp EQUAL>;
+        };
+
+        wc_e_euro: wc_e_euro {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_e_euro_tap>, <&wc_e_euro_tap>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_e_alt: wc_e_alt {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_e_grave>, <&wc_e_euro>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        wc_e: wc_e {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_e_alt>, <&wc_e_acute>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        wc_u_lower: wc_u_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp U>;
+        };
+
+        wc_u_upper: wc_u_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(U)>;
+        };
+
+        wc_u: wc_u {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_u_lower>, <&wc_u_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_i_lower: wc_i_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp I>;
+        };
+
+        wc_i_upper: wc_i_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(I)>;
+        };
+
+        wc_i: wc_i {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_i_lower>, <&wc_i_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        wc_o_lower: wc_o_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp O>;
+        };
+
+        wc_o_upper: wc_o_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F24>, <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp GRAVE>,
+                       <&macro_wait_time WC_WAIT_MS>, <&macro_tap &kp LS(O)>;
+        };
+
+        wc_o: wc_o {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&wc_o_lower>, <&wc_o_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };

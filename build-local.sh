@@ -693,15 +693,15 @@ case "$TARGET" in
     ;;
 esac
 
-  init_artifacts_output_dir
-  copy_artifacts
-  prune_old_builds
-
 if [[ "$EXTRAS_NORMALIZED" == *",generate-keymaps-svg,"* ]]; then
   generate_keymaps_svg
 else
   echo "Skip generate_keymaps_svg (extras=$EXTRAS)"
 fi
+
+  init_artifacts_output_dir
+  copy_artifacts
+  prune_old_builds
 
 echo "[3/3] Build completata."
 echo "Artefatti principali:"

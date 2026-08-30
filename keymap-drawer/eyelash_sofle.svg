@@ -1,4 +1,4 @@
-<svg width="1004" height="2772" viewBox="0 0 1004 2772" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1004" height="2774" viewBox="0 0 1004 2774" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>/* start glyphs */
 <svg id="material:bug_report">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-180q72 0 123-50.5T654-353v-167q0-72-51-122.5T480-693q-72 0-123 50.5T306-520v167q0 72 51 122.5T480-180Zm-80-140h160v-60H400v60Zm0-173h160v-60H400v60Zm80.5 57h-.5.5-.5.5-.5.5-.5.5Zm-.5 316q-65 0-121-31t-83-89H160v-60h92q-7-26-7-52.5V-406h-85v-60h85q0-29 .5-57.5T254-580h-94v-60h120q14-28 37-49t51-35l-77-76 40-40 94 94q28-10 56.5-10t56.5 10l94-94 40 40-76 76q28 14 49.5 35.5T683-640h117v60h-94q9 28 8.5 56.5T714-466h86v60h-86q0 27 .5 53.5T708-300h92v60H685q-26 59-82.5 89.5T480-120Z"/></svg>
@@ -688,16 +688,16 @@ rect.held, rect.combo.held {
 <text x="462" y="91" class="combo tap">F24</text>
 </g>
 <g class="combo combopos-2">
-<rect rx="6" ry="6" x="98" y="116" width="28" height="26" class="combo"/>
-<text x="112" y="129" class="combo tap">Ctl+A</text>
+<rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>
+<text x="112" y="130" class="combo tap">Ctl+A</text>
 </g>
 <g class="combo backspace combopos-3">
-<rect rx="6" ry="6" x="98" y="32" width="28" height="26" class="combo backspace"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="36" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
+<rect rx="6" ry="6" x="98" y="33" width="28" height="26" class="combo backspace"/>
+<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="37" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
 </g>
 <g class="combo combopos-4">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="92" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+<rect rx="6" ry="6" x="98" y="89" width="28" height="26" class="combo"/>
+<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="93" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
 </g>
 </g>
@@ -1042,16 +1042,16 @@ rect.held, rect.combo.held {
 </a><text x="462" y="305" class="combo hold">toggle</text>
 </g>
 <g class="combo combopos-1">
-<rect rx="6" ry="6" x="98" y="116" width="28" height="26" class="combo"/>
-<text x="112" y="129" class="combo tap">Ctl+A</text>
+<rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>
+<text x="112" y="130" class="combo tap">Ctl+A</text>
 </g>
 <g class="combo backspace combopos-2">
-<rect rx="6" ry="6" x="98" y="32" width="28" height="26" class="combo backspace"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="36" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
+<rect rx="6" ry="6" x="98" y="33" width="28" height="26" class="combo backspace"/>
+<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="37" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
 </g>
 <g class="combo combopos-3">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="92" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+<rect rx="6" ry="6" x="98" y="89" width="28" height="26" class="combo"/>
+<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="93" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
 </g>
 </g>
@@ -1417,20 +1417,20 @@ rect.held, rect.combo.held {
 </a><text x="462" y="305" class="combo hold">toggle</text>
 </g>
 <g class="combo combopos-1">
-<rect rx="6" ry="6" x="98" y="116" width="28" height="26" class="combo"/>
-<text x="112" y="129" class="combo tap">Ctl+A</text>
+<rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>
+<text x="112" y="130" class="combo tap">Ctl+A</text>
 </g>
 <g class="combo backspace combopos-2">
-<rect rx="6" ry="6" x="98" y="32" width="28" height="26" class="combo backspace"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="36" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
+<rect rx="6" ry="6" x="98" y="33" width="28" height="26" class="combo backspace"/>
+<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="37" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
 </g>
 <g class="combo combopos-3">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="92" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+<rect rx="6" ry="6" x="98" y="89" width="28" height="26" class="combo"/>
+<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="93" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
 </g>
 </g>
-<g transform="translate(40, 1164)" class="layer-I18n - WC">
+<g transform="translate(40, 1165)" class="layer-I18n - WC">
 <text x="0" y="28" class="label" id="I18n---WC">I18n - WC:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key trans keypos-0">
@@ -1769,20 +1769,20 @@ rect.held, rect.combo.held {
 </a><text x="462" y="305" class="combo hold">toggle</text>
 </g>
 <g class="combo combopos-1">
-<rect rx="6" ry="6" x="98" y="116" width="28" height="26" class="combo"/>
-<text x="112" y="129" class="combo tap">Ctl+A</text>
+<rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>
+<text x="112" y="130" class="combo tap">Ctl+A</text>
 </g>
 <g class="combo backspace combopos-2">
-<rect rx="6" ry="6" x="98" y="32" width="28" height="26" class="combo backspace"/>
-<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="36" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
+<rect rx="6" ry="6" x="98" y="33" width="28" height="26" class="combo backspace"/>
+<use href="#mdi:backspace" xlink:href="#mdi:backspace" x="103" y="37" height="18" width="18.0" class="combo backspace tap glyph mdi:backspace"/>
 </g>
 <g class="combo combopos-3">
-<rect rx="6" ry="6" x="98" y="88" width="28" height="26" class="combo"/>
-<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="92" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
+<rect rx="6" ry="6" x="98" y="89" width="28" height="26" class="combo"/>
+<use href="#mdi:backspace-reverse-outline" xlink:href="#mdi:backspace-reverse-outline" x="103" y="93" height="18" width="18.0" class="combo tap glyph mdi:backspace-reverse-outline"/>
 </g>
 </g>
 </g>
-<g transform="translate(40, 1552)" class="layer-I18n">
+<g transform="translate(40, 1553)" class="layer-I18n">
 <text x="0" y="28" class="label" id="I18n">I18n:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key trans keypos-0">
@@ -2124,7 +2124,7 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 1940)" class="layer-Config">
+<g transform="translate(40, 1941)" class="layer-Config">
 <text x="0" y="28" class="label" id="Config">Config:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key none keypos-0">
@@ -2177,7 +2177,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:earth" xlink:href="#mdi:earth" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:earth"/>
-<text x="0" y="24" class="key hold">TOG</text>
+<text x="0" y="24" class="key hold">Toggle</text>
 </g>
 <g transform="translate(728, 28)" class="key none keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key none side"/>
@@ -2473,7 +2473,7 @@ rect.held, rect.combo.held {
 </g>
 </g>
 </g>
-<g transform="translate(40, 2328)" class="layer-I18n Unicode">
+<g transform="translate(40, 2329)" class="layer-I18n Unicode">
 <text x="0" y="28" class="label" id="I18n-Unicode">I18n Unicode:</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key trans keypos-0">

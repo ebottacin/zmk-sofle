@@ -64,6 +64,8 @@
     info_widget: info_widget {
         compatible = "zmk,info-widget";
         layer-to-monitor = <6>;
+        compose-key = <F24>;
+        compose-terminator = <SPACE>;
     };
 
     keymap {

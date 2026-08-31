@@ -57,6 +57,18 @@
             label = "INFOSYNC";
             #binding-cells = <2>;
         };
+
+        rgb_l0_mode: rgb_l0_mode {
+            compatible = "zmk,behavior-rgb-mode";
+            #binding-cells = <0>;
+            bindings = <&rgb_layer0 &rgb_layer0_off>;
+        };
+
+        rgb_l0_mode_toggle: rgb_l0_mode_toggle {
+            compatible = "zmk,behavior-rgb-mode-toggle";
+            #binding-cells = <0>;
+            rgb-mode = <&rgb_l0_mode>;
+        };
     };
 
 #include "listeners/common.dtsi"
@@ -137,7 +149,7 @@
 
         layer_5 {
             bindings = <
-&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &tog 6          &none          &none          &none              &none
+&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &tog 6          &rgb_l0_mode_toggle &none          &none              &none
 &sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none            &none            &none          &none          &none              &none
 &none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx      &none            &none          &none          &none              &none

@@ -5,6 +5,13 @@
             bindings = <&macro_tap &rgb_ug RGB_OFF>;
         };
 
+                /* Layer 0: magenta */
+        rgb_layer0: rgb_layer0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_ON>, <&macro_tap &rgb_ug RGB_SOLID>, <&macro_tap &rgb_ug RGB_COLOR_HSB(300,100,70)>;
+        };
+
                 /* Caps: bianco */
         rgb_caps_white: rgb_caps_white {
             compatible = "zmk,behavior-macro";

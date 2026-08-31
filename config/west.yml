@@ -33,6 +33,10 @@ manifest:
       remote: ebottacin
       repo-path: zmk_dynamic-logging
       revision: main
+    - name: zmk-rgb-mode
+      remote: ebottacin
+      repo-path: zmk-rgb-mode
+      revision: main
     - name: zmk-deferred-morph
       remote: ebottacin
       revision: main

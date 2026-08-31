@@ -145,7 +145,7 @@
             >;
 
             display-name = "Config";
-        };
+        }; 
 
         layer_6 {
             bindings = <

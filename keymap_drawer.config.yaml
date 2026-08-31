@@ -206,7 +206,9 @@ parse_config:
     "&kt RSHIFT":
       tap: $$material:shift$$
       hold: $$mdi:toggle-switch$$
-
+    "&rgb_l0_mode_toggle":
+      tap: $$mdi:lightbulb-outline$$
+      hold: $$mdi:toggle-switch$$
     # Empty
     "&none":
       tap: $$mdi:minus-circle-outline$$
@@ -300,7 +302,7 @@ parse_config:
       hold: I18n
     "&tog 6":
       tap: $$mdi:earth$$
-      hold: Toggle
+      hold: $$mdi:toggle-switch$$
     "&swapper":
       tap: $$mdi:keyboard-tab$$
       hold: ALT

@@ -334,8 +334,8 @@ layers:
   - {h: '5', s: '$$mdi:bluetooth-connect$$'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$material:bug_report$$', h: '$$mdi:toggle-switch$$'}
-  - {t: '$$mdi:earth$$', h: Toggle}
-  - {t: '$$mdi:lightbulb-outline$$', h: Toggle}
+  - {t: '$$mdi:earth$$', h: '$$mdi:toggle-switch$$'}
+  - {t: '$$mdi:lightbulb-outline$$', h: '$$mdi:toggle-switch$$'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}

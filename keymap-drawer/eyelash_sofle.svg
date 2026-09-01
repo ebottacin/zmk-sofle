@@ -677,18 +677,18 @@ rect.held, rect.combo.held {
 <text x="0" y="-24" class="key shifted">|</text>
 </g>
 <g class="combo combopos-0">
+<path d="M462,91 l-135,0" class="combo"/>
+<path d="M462,91 l135,0" class="combo"/>
+<rect rx="6" ry="6" x="448" y="78" width="28" height="26" class="combo"/>
+<text x="462" y="91" class="combo tap">F24</text>
+</g>
+<g class="combo combopos-1">
 <path d="M462,294 l-54,0" class="combo"/>
 <path d="M462,294 l54,0" class="combo"/>
 <rect rx="6" ry="6" x="448" y="281" width="28" height="26" class="combo"/>
 <a href="#Config">
 <text x="462" y="294" class="combo tap layer-activator">Config</text>
 </a><text x="462" y="305" class="combo hold">toggle</text>
-</g>
-<g class="combo combopos-1">
-<path d="M462,91 l-135,0" class="combo"/>
-<path d="M462,91 l135,0" class="combo"/>
-<rect rx="6" ry="6" x="448" y="78" width="28" height="26" class="combo"/>
-<text x="462" y="91" class="combo tap">F24</text>
 </g>
 <g class="combo combopos-2">
 <rect rx="6" ry="6" x="98" y="117" width="28" height="26" class="combo"/>

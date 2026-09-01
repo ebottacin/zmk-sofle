@@ -456,11 +456,11 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
-- p: [57, 59]
-  k: {t: Config, h: toggle}
 - p: [18, 20]
   k: F24
   l: [Base]
+- p: [57, 59]
+  k: {t: Config, h: toggle}
 - p: [27, 15]
   k: Ctl+A
   l: [Base, Arrow, Keypad, I18n - WC]

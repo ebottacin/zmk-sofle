@@ -206,7 +206,7 @@ parse_config:
     "&kt RSHIFT":
       tap: $$material:shift$$
       hold: $$mdi:toggle-switch$$
-    "&rgb_l0_mode_toggle":
+    "&rgbstatus_l0_toggle":
       tap: $$mdi:lightbulb-outline$$
       hold: $$mdi:toggle-switch$$
     # Empty

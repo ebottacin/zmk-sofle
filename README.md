@@ -1,9 +1,10 @@
+
 # Eyelash Sofle
 
 ## Changelog
 
-
 ### v1.6.0
+
 
 - Added the L0 backlight toggle, implemented through the generic status selector module.
 - Updated keymap-drawer configuration and the rendered keymap layout.
@@ -58,5 +59,5 @@
 
 ## Build and Technical Documentation
 
-- See [BUILD.md](BUILD.md) for build scripts, CI matrix, keymap SVG generation, versioning, and USB logging.
+- See [BUILD.md](BUILD.md) for build scripts, CI matrix, keymap SVG generation, versioning, and USB logging
 

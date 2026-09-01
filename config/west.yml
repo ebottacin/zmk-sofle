@@ -5,10 +5,9 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-      # Additional modules containing boards/shields/custom code can be listed here as well.
-      # See:
-      # - https://zmk.dev/docs/features/modules
-      # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
+    # Retained for upstream compatibility; 
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: urob
       url-base: https://github.com/urob
     - name: ssbb
@@ -40,8 +39,30 @@ manifest:
     - name: zmk-deferred-morph
       remote: ebottacin
       revision: main
+    # Custom ZMK fork required by the optional Studio custom RPC modules below.
     - name: zmk
-      remote: zmkfirmware
+      remote: cormoran
+      revision: v0.3-branch+dya
       import: app/west.yml
+    # Retained for upstream compatibility; no encoder uses rsr_* in the local keymap.
+    - name: zmk-behavior-runtime-sensor-rotate
+      remote: cormoran
+      revision: main
+    # Optional ZMK Studio UI for BLE profiles and split connection management.
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: zmk-v0.3.0.0
+    # Battery history is currently disabled in both shield conf files.
+    - name: zmk-module-battery-history
+      remote: cormoran
+      revision: main
+    # Optional ZMK Studio RPC for activity settings and split settings relay.
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+    # Optional runtime pointing-device configuration; the local keymap uses static scalers.
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: zmk-v0.3.0.0
   self:
-    path: boards
+    path: config

@@ -14,12 +14,13 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
+// Retained for upstream compatibility; rsr_* is not assigned to local sensor-bindings.
+#include <behaviors/runtime-sensor-rotate.dtsi>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/outputs.h>
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -37,6 +38,11 @@
     trigger-period-ms = <16>;
 };
 
+/*
+ * Disabled: the softoff combo was removed and this keyboard does not use soft_off.
+ * &soft_off { hold-time-ms = <2000>; };
+ */
+
 / {
     macros {
 #include "macros/altgr_chars.dtsi"
@@ -51,6 +57,22 @@
 
     behaviors {
 #include "behaviors/common.dtsi"
+        
+        // Upstream uses this for encoder volume control; this keyboard currently has no encoder.
+        // rsr_vol: rsr_vol {
+        //     compatible = "zmk,behavior-runtime-sensor-rotate";
+        //     #sensor-binding-cells = <0>;
+        //     tap-ms = <5>;
+        //     cw-binding = <&kp C_VOL_UP>;
+        //     ccw-binding = <&kp C_VOL_DN>;
+        // };
+
+        // Upstream uses this transparent runtime behavior on encoder layers; retained unreferenced.
+        // rsr_trans: rsr_trans {
+        //     compatible = "zmk,behavior-runtime-sensor-rotate";
+        //     #sensor-binding-cells = <0>;
+        //     tap-ms = <0>;
+        // };
 
         info_layer_sync: info_layer_sync {
             compatible = "zmk,behavior-info-layer-sync";
@@ -92,7 +114,8 @@
 &kp C_MUTE        &kp GRAVE        &kp LBKT      &kp RBKT            &kp SPACE          &hld_m1 1 0           &kp SPACE                       &hld_m2 2 0      &kp ENTER        &hld_m3 3 0   &kp EQUAL       &kp BSLH
         >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
             display-name = "Base";
         };
 
@@ -106,7 +129,8 @@
             >;
 
             display-name = "Arrow";
-            sensor-bindings = <&scroll_encoder>;
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&scroll_encoder>;
         };
 
         layer_2 {
@@ -118,7 +142,8 @@
 &trans            &trans           &kp DOT          &kp KP_N0        &trans               &trans                 &mkp LCLK                     &trans          &trans            &trans        &none           &trans
                  >;
 
-            sensor-bindings = <&scroll_encoder>;
+                // Disabled: the current keyboard has no encoder.
+                // sensor-bindings = <&scroll_encoder>;
             display-name = "Keypad";
         };
 
@@ -132,6 +157,8 @@
             >;
 
             display-name = "I18n - WC";
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&scroll_encoder>;
         };
 
         layer_4 {
@@ -144,6 +171,8 @@
             >;
 
             display-name = "I18n";
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&scroll_encoder>;
         };
 
 
@@ -156,6 +185,8 @@
 &none             &none           &none             &none           &none                &trans                 &none                          &none                                   &trans               &none          &none          &none
             >;
 
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&scroll_encoder>;
             display-name = "Config";
         }; 
 
@@ -168,6 +199,8 @@
 &trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &hld_m4 4 0    &trans         &trans
             >;
 
+            // Disabled: the current keyboard has no encoder.
+            // sensor-bindings = <&scroll_encoder>;
             display-name = "I18n Unicode";
         };
     };

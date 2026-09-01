@@ -600,9 +600,9 @@ build_right() {
   if [[ -n "$snippet_value" ]]; then
     west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/right -b eyelash_sofle_right "${west_snippet_args[@]}" -- \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/right -b nice_nano_v2 "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
-    -DSHIELD=nice_view_infos \
+    -DSHIELD="eyelash_sofle_right nice_view_infos" \
     -DBOARD_ROOT="$PWD" \
     -DZMK_CONFIG="$PWD/config"
   register_artifact "build/right/zephyr/zmk.uf2" "eyelash_sofle_right.uf2"
@@ -617,9 +617,9 @@ build_left() {
   if [[ -n "$snippet_value" ]]; then
     west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left -b nice_nano_v2 "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
-    -DSHIELD=nice_view \
+    -DSHIELD="eyelash_sofle_left nice_view" \
     -DBOARD_ROOT="$PWD" \
     -DZMK_CONFIG="$PWD/config"
   register_artifact "build/left/zephyr/zmk.uf2" "eyelash_sofle_left.uf2"
@@ -634,7 +634,7 @@ build_left_reset() {
   if [[ -n "$snippet_value" ]]; then
     west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_reset -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_reset -b nice_nano_v2 "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
     -DSHIELD=settings_reset \
     -DBOARD_ROOT="$PWD" \
@@ -651,9 +651,9 @@ build_left_studio() {
   if [[ -n "$snippet_value" ]]; then
     west_snippet_args=(-S "$snippet_value")
   fi
-  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_studio -b eyelash_sofle_left "${west_snippet_args[@]}" -- \
+  west build "${BUILD_PRISTINE_ARGS[@]}" -s zmk/app -d build/left_studio -b nice_nano_v2 "${west_snippet_args[@]}" -- \
     "$BUILD_VERSION_CMAKE_ARG" \
-    -DSHIELD=nice_view \
+    -DSHIELD="eyelash_sofle_left nice_view" \
     -DCONFIG_ZMK_STUDIO=y \
     -DCONFIG_ZMK_STUDIO_LOCKING=n \
     -DBOARD_ROOT="$PWD" \

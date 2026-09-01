@@ -2,19 +2,35 @@
 
 ## Changelog
 
-Commit summary generated from recent repository history.
 
-### v 1.4.1
+### v1.6.0
 
-- Keymap layout fixes and keymap-drawer updates for cleaner rendered layers.
-- Added and integrated `zmk-dynamic-logging`.
-- Migrated caps workflow to the event-driven `zmk-caps-lock-events` module.
-- Added a custom split sync channel for caps state and fixed split sync label issues.
-- Added `zmk-usb-logging` snippet support.
-- Improved build scripts and CI stability, including Node 20 warning fixes.
-- Refined auto-layer and num-word behavior.
-- Improved combos and hold-tap behavior for daily typing/navigation.
-- Prepared release updates and keymap iteration.
+- Added the L0 backlight toggle, implemented through the generic status selector module.
+- Updated keymap-drawer configuration and the rendered keymap layout.
+
+### v1.5.2
+
+- Added Compose support to `zmk-info-widget`.
+
+### v1.5.1
+
+- Improved extended-character handling with WinCompose macros.
+
+### v1.5.0
+
+- Added Docker build support, image-pull caching, and the related build-script workflow.
+- Added the `zmk-usb-logging` snippet and improved local build scripts.
+- Fixed Node 20 warnings in CI.
+- Refined keymap-drawer configuration, generated layout, and documentation.
+- Updated the custom character configuration to use vowel-only handling.
+
+### v1.4.1
+
+- Corrected keymap-drawer configuration.
+
+### v1.4.0
+
+- Added and integrated `zmk-dynamic-logging` runtime controls.
 
 ### v 1.0
 
@@ -30,14 +46,14 @@ Commit summary generated from recent repository history.
 
 ## Features and Used Repositories
 
-- ZMK firmware base: [zmkfirmware/zmk](https://github.com/zmkfirmware/zmk)
 - Tri-state behavior: [urob/zmk-tri-state](https://github.com/urob/zmk-tri-state)
 - Auto-layer and num-word: [urob/zmk-auto-layer](https://github.com/urob/zmk-auto-layer)
 - Listener framework: [ssbb/zmk-listeners](https://github.com/ssbb/zmk-listeners)
 - Caps lock/caps word events and split sync: [ebottacin/zmk-caps-lock-events](https://github.com/ebottacin/zmk-caps-lock-events)
 - Runtime logging controls: [ebottacin/zmk_dynamic-logging](https://github.com/ebottacin/zmk_dynamic-logging)
 - Display info widget: [ebottacin/zmk-info-widget](https://github.com/ebottacin/zmk-info-widget)
-- Keymap rendering: [caksoylar/keymap-drawer](https://github.com/caksoylar/keymap-drawer)
+- Generic status selector: [ebottacin/zmk-status-selector](https://github.com/ebottacin/zmk-status-selector)
+
 - Optional host-side utility: [ebottacin/zmk-host-gui](https://github.com/ebottacin/zmk-host-gui)
 
 ## Build and Technical Documentation

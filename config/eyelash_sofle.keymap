@@ -45,19 +45,26 @@
 
 / {
     macros {
-#include "macros/altgr_chars.dtsi"
-#include "macros/wincompose_chars.dtsi"
-#include "macros/rgb_layers.dtsi"
+#include "features/compose/altgr-macros.dtsi"
+#include "features/compose/wincompose-macros.dtsi"
+#include "features/lighting/macros.dtsi"
     };
 
     combos {
         compatible = "zmk,combos";
-#include "combos/common.dtsi"
+#include "features/compose/combos.dtsi"
+#include "features/layers/combos.dtsi"
+#include "features/shortcuts/combos.dtsi"
     };
 
     behaviors {
-#include "behaviors/common.dtsi"
-        
+#include "features/system/behaviors.dtsi"
+#include "features/compose/behaviors.dtsi"
+#include "features/caps/behaviors.dtsi"
+#include "features/logging/behaviors.dtsi"
+#include "features/layers/behaviors.dtsi"
+#include "features/lighting/behaviors.dtsi"
+
         // Upstream uses this for encoder volume control; this keyboard currently has no encoder.
         // rsr_vol: rsr_vol {
         //     compatible = "zmk,behavior-runtime-sensor-rotate";
@@ -74,33 +81,13 @@
         //     tap-ms = <0>;
         // };
 
-        info_layer_sync: info_layer_sync {
-            compatible = "zmk,behavior-info-layer-sync";
-            label = "INFOSYNC";
-            #binding-cells = <2>;
-        };
-
-        rgbstatus_l0_handler: rgbstatus_l0_handler {
-            compatible = "zmk,behavior-status-selector-handler";
-            #binding-cells = <0>;
-            bindings = <&rgb_layer0 &rgb_layer0_off>;
-        };
-
-        rgbstatus_l0_toggle: rgbstatus_l0_toggle {
-            compatible = "zmk,behavior-status-selector-toggle";
-            #binding-cells = <0>;
-            handler = <&rgbstatus_l0_handler>;
-        };
     };
 
-#include "listeners/common.dtsi"
+#include "features/caps/listeners.dtsi"
+#include "features/lighting/listeners.dtsi"
+#include "features/logging/listeners.dtsi"
 
-    info_widget: info_widget {
-        compatible = "zmk,info-widget";
-        layer-to-monitor = <6>;
-        compose-key = <F24>;
-        compose-terminator = <SPACE>;
-    };
+#include "features/compose/widget.dtsi"
 
     keymap {
         compatible = "zmk,keymap";

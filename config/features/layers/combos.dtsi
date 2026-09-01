@@ -1,0 +1,5 @@
+        layer_5_combo {
+            timeout-ms    = <COMBO_TIMEOUT_LAYER_TOGGLE>;
+            key-positions = <57 59>;
+            bindings      = <&tog 5>;
+        };

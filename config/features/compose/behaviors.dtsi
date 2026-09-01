@@ -1,0 +1,81 @@
+        a_l3_tap: a_l3_tap {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&agrave_lower>, <&agrave_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        a_l3: a_l3 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <TT_HOLD_TAP_MTT>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&a_l3_tap>;
+        };
+
+        e_l3_grave_shift: e_l3_grave_shift {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&egrave_lower>, <&egrave_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        e_l3_acute_shift: e_l3_acute_shift {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&eacute_lower>, <&eacute_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        e_l3_euro_shift: e_l3_euro_shift {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&euro>, <&euro>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        e_l3_alt: e_l3_alt {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&e_l3_grave_shift>, <&e_l3_euro_shift>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+            /* Alt must stay unmasked: the euro macro itself needs Alt held for its numpad sequence. */
+            keep-mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        e_l3_ctrl_alt: e_l3_ctrl_alt {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&e_l3_acute_shift>, <&e_l3_acute_shift>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+            /* Both branches use Alt internally for their numpad sequence; never mask it. */
+            keep-mods = <(MOD_LALT|MOD_RALT)>;
+        };
+
+        e_l3: e_l3 {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&e_l3_alt>, <&e_l3_ctrl_alt>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        u_l3: u_l3 {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&ugrave_lower>, <&ugrave_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        i_l3: i_l3 {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&igrave_lower>, <&igrave_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        o_l3: o_l3 {
+            compatible = "zmk,behavior-deferred-morph";
+            #binding-cells = <0>;
+            bindings = <&ograve_lower>, <&ograve_upper>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };

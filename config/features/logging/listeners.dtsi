@@ -1,0 +1,4 @@
+    dynamic_logging_listener {
+        compatible = "zmk,dynamic-logging-listener";
+        log-level = "DBG";
+    };

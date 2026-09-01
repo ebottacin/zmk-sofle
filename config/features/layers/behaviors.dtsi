@@ -1,0 +1,169 @@
+        /*
+         * Mini-spec td_mo1_tog1
+         * Input: tap dance su tasto M1.
+         * Tap: layer momentaneo 1 (&mo 1).
+         * Double tap: toggle persistente layer 1 (&tog 1).
+         */
+        td_mo1_tog1: td_mo1_tog1 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M1";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&mo 1>, <&tog 1>;
+        };
+
+        /*
+         * Mini-spec td_mo2_tog2
+         * Input: tap dance su tasto M2.
+         * Tap: layer momentaneo 2 (&mo 2).
+         * Double tap: toggle persistente layer 2 (&tog 2).
+         */
+        td_mo2_tog2: td_mo2_tog2 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M2";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&mo 2>, <&tog 2>;
+        };
+
+        /*
+         * Mini-spec td_mo3_tog3
+         * Input: tap dance su tasto M3.
+         * Tap: layer momentaneo 3 (&mo 3).
+         * Double tap: toggle persistente layer 3 (&tog 3).
+         */
+        td_mo3_tog3: td_mo3_tog3 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M3";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&mo 3>, <&tog 3>;
+        };
+
+         nav_word: nav_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <LEFT DOWN UP RIGHT PG_DN PG_UP HOME END DELETE BACKSPACE LC(X) LC(A) LC(C) LC(V) LG(V)>;
+            ignore-modifiers;
+        };
+
+        num_word2: num_word2 {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+            ignore-numbers;
+        };
+
+        /*
+         * Mini-spec hld_m_num
+         * Input: &hld_m_num <layer_hold> <layer_num_word>.
+         * Tap: attiva num_word2 sul layer passato come secondo argomento.
+         * Hold: attiva &mo sul layer passato come primo argomento.
+         */
+        hld_m_num: hld_m_num {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&num_word2>;
+        };
+
+        /*
+         * Mini-spec hld_m_nav
+         * Input: &hld_m_nav <layer_hold> <layer_nav_word>.
+         * Tap: attiva nav_word sul layer passato come secondo argomento.
+         * Hold: attiva &mo sul layer passato come primo argomento.
+         */
+        hld_m_nav: hld_m_nav {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&nav_word>;
+        };
+
+        /*
+         * Mini-spec td_m2_tap
+         * Input: tap path del tasto M2.
+         * Tap: attiva num_word2 sul layer 2.
+         * Double tap: toggle persistente del layer 2.
+         */
+        td_m2_tap: td_m2_tap {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M2TP";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&num_word2 2>, <&tog 2>;
+        };
+
+        /*
+         * Mini-spec hld_m2
+         * Input: &hld_m2 <layer_hold> <unused> su tasto M2.
+         * Hold: attiva subito &mo sul layer passato come primo argomento.
+         * Tap: esegue td_m2_tap (single=num_word2, double=tog 2).
+         */
+        hld_m2: hld_m2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&td_m2_tap>;
+        };
+
+        /*
+         * Mini-spec td_m1_tap
+         * Input: tap path del tasto M1.
+         * Tap: attiva nav_word sul layer 1.
+         * Double tap: toggle persistente del layer 1.
+         */
+        td_m1_tap: td_m1_tap {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M1TP";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&nav_word 1>, <&tog 1>;
+        };
+
+        /*
+         * Mini-spec hld_m1
+         * Input: &hld_m1 <layer_hold> <unused> su tasto M1.
+         * Hold: attiva subito &mo sul layer passato come primo argomento.
+         * Tap: esegue td_m1_tap (single=nav_word, double=tog 1).
+         */
+        hld_m1: hld_m1 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&td_m1_tap>;
+        };
+
+        /*
+         * Mini-spec hld_m3
+         * Input: &hld_m3 <layer_hold> <unused> su tasto M3.
+         * Hold: attiva subito &mo sul layer passato come primo argomento.
+         * Tap: esegue td_mo3_tog3 (single=mo 3, double=tog 3).
+         */
+        hld_m3: hld_m3 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&td_mo3_tog3>;
+        };
+
+        td_mo4_tog4: td_mo4_tog4 {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "M4";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&mo 4>, <&tog 4>;
+        };
+
+        hld_m4: hld_m4 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_BASE>;
+            bindings = <&mo>, <&td_mo4_tog4>;
+        };

@@ -1,0 +1,73 @@
+        td_dsh_ndr: td_dsh_ndr {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp UNDER>, <&kp MINUS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        /*
+         * Mini-spec td_boot_sx
+         * Input: tap dance su tasto boot sinistro.
+         * Tap: nessuna azione (&none).
+         * Double tap: ingresso bootloader.
+         */
+        td_boot_sx: td_boot_sx {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "BTSX";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BOOT>;
+            bindings = <&none>, <&bootloader>;
+        };
+
+        /*
+         * Mini-spec td_boot_dx
+         * Input: tap dance su tasto boot destro.
+         * Tap: nessuna azione (&none).
+         * Double tap: ingresso bootloader.
+         */
+        td_boot_dx: td_boot_dx {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "BTDX";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BOOT>;
+            bindings = <&none>, <&bootloader>;
+        };
+
+       
+
+        /*
+         * Mini-spec mtt
+         * Input: &mtt <mod> <key>.
+         * Tap: invia il keycode passato come secondo argomento.
+         * Hold: mantiene il modificatore passato come primo argomento.
+         */
+        mtt: mtt {
+            compatible       = "zmk,behavior-hold-tap";
+            label            = "MT";
+            #binding-cells = <2>;
+            tapping-term-ms  = <TT_HOLD_TAP_MTT>;
+            flavor           = "tap-preferred";
+            bindings         = <&kp>, <&kp>;
+        };
+
+        
+
+        swapper: swapper {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+        };
+
+        /*
+         * Mini-spec hld_swp
+         * Input: &hld_swp <tap_keycode> <unused>.
+         * Tap: invia il keycode passato come primo argomento.
+         * Hold: avvia il comportamento swapper (ciclo Alt-Tab).
+         */
+        hld_swp: hld_swp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <TT_HOLD_TAP_SWAPPER>;
+            bindings = <&kp>, <&swapper>;
+        };

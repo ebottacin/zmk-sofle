@@ -1,0 +1,11 @@
+        rgbstatus_l0_handler: rgbstatus_l0_handler {
+            compatible = "zmk,behavior-status-selector-handler";
+            #binding-cells = <0>;
+            bindings = <&rgb_layer0 &rgb_layer0_off>;
+        };
+
+        rgbstatus_l0_toggle: rgbstatus_l0_toggle {
+            compatible = "zmk,behavior-status-selector-toggle";
+            #binding-cells = <0>;
+            handler = <&rgbstatus_l0_handler>;
+        };

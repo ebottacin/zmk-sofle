@@ -1,0 +1,39 @@
+        prog_caps: prog_caps {
+            compatible = "zmk,behavior-caps-word-with-events";
+            #binding-cells = <0>;
+            continue-list = <UNDERSCORE MINUS DEL BSPC F24>;
+            emit-caps-state-events;
+            emit-custom-split-sync;
+        };
+
+        caps_sync: caps_sync {
+            compatible = "zmk,behavior-caps-state-sync";
+            label = "CAPSYNC";
+            #binding-cells = <2>;
+        };
+
+        caps_word_white: caps_word_white {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_caps_white>, <&macro_tap &prog_caps>;
+        };
+
+        caps_lock_white: caps_lock_white {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &rgb_caps_white>, <&macro_tap &kp CAPS>;
+        };
+
+        /*
+         * Mini-spec td_cpswl
+         * Input: tap dance su un tasto dedicato.
+         * Tap: esegue caps_word_white (RGB bianco + Caps Word).
+         * Double tap: esegue caps_lock_white (RGB bianco + Caps Lock).
+         */
+        td_cpswl: td_cpswl {
+            compatible = "zmk,behavior-tap-dance";
+            label      = "CPS";
+            #binding-cells = <0>;
+            tapping-term-ms = <TT_TAP_DANCE_BASE>;
+            bindings = <&caps_word_white>, <&caps_lock_white>;
+        };

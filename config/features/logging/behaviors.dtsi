@@ -1,0 +1,10 @@
+        dynamic_logging_toggle: dynamic_logging_toggle {
+            compatible = "zmk,behavior-dynamic-logging-toggle";
+            #binding-cells = <0>;
+        };
+
+        dynamic_logging_sync: dynamic_logging_sync {
+            compatible = "zmk,behavior-dynamic-logging-sync";
+            label = "LOGSYNC";
+            #binding-cells = <2>;
+        };

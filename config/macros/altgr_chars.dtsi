@@ -1,0 +1,167 @@
+        /* à = AltGr + 0 2 2 4 */
+        agrave_lower: agrave_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "à";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N2 &kp KP_N4>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* À = AltGr + 0 1 9 2 */
+        agrave_upper: agrave_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "À";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N2>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* é = AltGr + 0 2 3 3 */
+        eacute_lower: eacute_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "é";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N3>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* É = AltGr + 0 2 0 1 */
+        eacute_upper: eacute_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "É";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N1>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* è = AltGr + 0 2 3 2 */
+        egrave_lower: egrave_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "è";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N2>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* È = AltGr + 0 2 0 0 */
+        egrave_upper: egrave_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "È";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N0>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* ì = AltGr + 0 2 3 6 */
+        igrave_lower: igrave_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "ì";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N6>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* Ì = AltGr + 0 2 0 4 */
+        igrave_upper: igrave_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "Ì";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N0 &kp KP_N4>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* ò = AltGr + 0 2 4 2 */
+        ograve_lower: ograve_lower {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "ò";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N2>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* Ò = AltGr + 0 2 1 0 */
+        ograve_upper: ograve_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "Ò";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N0>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* ù = AltGr + 0 2 4 9 */
+        ugrave_lower: ugrave {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "ù";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N9>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        /* Ù = AltGr + 0 2 1 7 */
+        ugrave_upper: ugrave_upper {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "Ù";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N7>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };
+
+        euro: euro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            label = "€";
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_wait_time 15>
+                , <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N8>
+                , <&macro_wait_time 15>
+                , <&macro_release &kp LALT>;
+        };

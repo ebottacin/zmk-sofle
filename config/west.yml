@@ -1,12 +1,42 @@
 manifest:
+  defaults:
+    revision: v0.3
+
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
     - name: cormoran
       url-base: https://github.com/cormoran
+    - name: urob
+      url-base: https://github.com/urob
+    - name: ssbb
+      url-base: https://github.com/ssbb
+    - name: ebottacin
+      url-base: https://github.com/ebottacin
   projects:
-    - name: eyelash_sofle
-      url: https://github.com/a741725193/zmk-sofle
+    - name: zmk-tri-state
+      remote: urob
+    - name: zmk-auto-layer
+      remote: urob
+    - name: zmk-listeners
+      remote: ssbb
+      revision: v1
+    - name: zmk-caps-lock-events
+      remote: ebottacin
+      revision: main
+    - name: zmk-info-widget
+      remote: ebottacin
+      revision: main
+    - name: zmk-dynamic-logging
+      remote: ebottacin
+      repo-path: zmk_dynamic-logging
+      revision: main
+    - name: zmk-status-selector
+      remote: ebottacin
+      repo-path: zmk-status-selector
+      revision: main
+    - name: zmk-deferred-morph
+      remote: ebottacin
       revision: main
     - name: zmk
       remote: cormoran

@@ -1,6 +1,16 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
-
+#define RGB_SOLID RGB_EFS_CMD 0
+#define TT_TAP_DANCE_BASE 230
+#define TT_TAP_DANCE_BOOT 250
+#define TT_HOLD_TAP_BASE 180
+#define TT_HOLD_TAP_MTT 200
+#define TT_HOLD_TAP_SWAPPER 200
+#define COMBO_TIMEOUT_BASE 150
+#define COMBO_TIMEOUT_LAYER_TOGGLE 200
+#define LISTENER_TAP_MS 5
+#define LISTENER_WAIT_MS 5
+ 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
@@ -30,15 +40,20 @@
 &soft_off { hold-time-ms = <2000>; };
 
 / {
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+    macros {
+#include "macros/altgr_chars.dtsi"
+#include "macros/wincompose_chars.dtsi"
+#include "macros/rgb_layers.dtsi"
+    };
 
-        tap-ms = <100>;
+    combos {
+        compatible = "zmk,combos";
+#include "combos/common.dtsi"
     };
 
     behaviors {
+#include "behaviors/common.dtsi"
+        
         rsr_vol: rsr_vol {
             compatible = "zmk,behavior-runtime-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -52,6 +67,33 @@
             #sensor-binding-cells = <0>;
             tap-ms = <0>;
         };
+
+        info_layer_sync: info_layer_sync {
+            compatible = "zmk,behavior-info-layer-sync";
+            label = "INFOSYNC";
+            #binding-cells = <2>;
+        };
+
+        rgbstatus_l0_handler: rgbstatus_l0_handler {
+            compatible = "zmk,behavior-status-selector-handler";
+            #binding-cells = <0>;
+            bindings = <&rgb_layer0 &rgb_layer0_off>;
+        };
+
+        rgbstatus_l0_toggle: rgbstatus_l0_toggle {
+            compatible = "zmk,behavior-status-selector-toggle";
+            #binding-cells = <0>;
+            handler = <&rgbstatus_l0_handler>;
+        };
+    };
+
+#include "listeners/common.dtsi"
+
+    info_widget: info_widget {
+        compatible = "zmk,info-widget";
+        layer-to-monitor = <6>;
+        compose-key = <F24>;
+        compose-terminator = <SPACE>;
     };
 
     combos {
@@ -83,69 +125,92 @@
     keymap {
         compatible = "zmk,keymap";
 
-        layer0 {
-            bindings = <
-&kp ESC     &kp N1     &kp N2        &kp N3        &kp N4  &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q      &kp W         &kp E         &kp R   &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp BSLH
-&kp CAPS    &kp A      &kp S         &kp D         &kp F   &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z      &kp X         &kp C         &kp V   &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &mo 1   &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &mo 2      &kp RIGHT_SHIFT  &kp DELETE
-            >;
+        layer_0 {
+        bindings = <
+&kp ESC           &kp N1           &kp N2        &kp N3              &kp N4             &kp N5                &kp UP_ARROW                    &kp N6           &kp N7           &kp N8        &kp N9          &kp N0           &kp BACKSPACE
+&td_cpswl         &kp Q            &kp W         &kp E               &kp R              &kp T                 &kp DOWN_ARROW                  &kp Y            &kp U            &kp I         &kp O           &kp P            &kp DELETE
+&kp TAB           &mtt LCTRL A     &mtt LGUI S   &mtt LALT D         &mtt LSHIFT F      &kp G                 &kp LEFT_ARROW                  &kp H            &mtt RSHIFT J    &mtt RALT K   &mtt RGUI L     &mtt RCTRL SEMI  &kp APOS
+&hld_swp ENTER 0  &kp Z            &kp X         &kp C               &kp V              &kp B                 &kp RIGHT_ARROW                 &kp N            &kp M            &kp COMMA     &kp DOT         &kp FSLH         &td_dsh_ndr
+&kp C_MUTE        &kp GRAVE        &kp LBKT      &kp RBKT            &kp SPACE          &hld_m1 1 0           &kp SPACE                       &hld_m2 2 0      &kp ENTER        &hld_m3 3 0   &kp EQUAL       &kp BSLH
+        >;
 
-            sensor-bindings = <&rsr_vol &rsr_trans>;
-            display-name = "LAYER0";
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+            display-name = "Base";
         };
 
         layer_1 {
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
-&kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+&trans            &kp F1           &kp F2          &kp F3            &kp F4              &kp F5                 &mmv MOVE_UP                   &kp F6           &kp F7           &kp F8        &kp F9         &kp F10           &trans
+&trans            &none            &mkp LCLK       &mkp MCLK         &mkp RCLK           &mkp MB4               &mmv MOVE_DOWN                 &kp PG_UP        &kp END          &kp UP        &kp HOME       &kp F11           &trans
+&trans            &trans           &trans          &trans            &trans              &mkp MB5               &mmv MOVE_LEFT                 &kp PG_DN        &kp LEFT         &kp DOWN      &kp RIGHT      &trans            &trans
+&trans            &trans           &trans          &trans            &trans              &none                  &mmv MOVE_RIGHT                &kp HOME         &kp END          &kp INSERT    &kp PSCRN      &kp F12           &trans
+&trans            &trans           &trans          &trans            &trans              &trans                 &mkp LCLK                      &trans           &trans           &trans        &trans         &trans 
             >;
 
-            sensor-bindings = <&rsr_vol &rsr_trans>;
-            display-name = "LAYER1";
+            display-name = "Arrow";
+            sensor-bindings = <&scroll_encoder>;
         };
 
         layer_2 {
             bindings = <
-&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &kp F6  &kp F7  &kp F8      &kp F9     &kp F10      &trans
-&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans  &trans  &kp F11     &kp F12    &kp UNDER    &kp PLUS
-&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans  &trans  &trans      &trans     &kp LBRC     &kp RBRC
-&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans  &trans  &sys_reset  &soft_off  &bootloader  &trans
-&trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans  &trans      &trans     &trans
-            >;
+&trans            &none            &none            &none            &none                &none                  &mmv MOVE_UP                  &none           &none             &none         &none           &none             &trans
+&trans            &kp FSLH         &kp MINUS        &kp KP_N7        &kp KP_N8            &kp KP_N9              &mmv MOVE_DOWN                &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F11           &trans
+&trans            &kp STAR         &kp PLUS         &kp KP_N4        &kp KP_N5            &kp KP_N6              &mmv MOVE_LEFT                &trans          &trans            &trans        &trans          &trans            &trans
+&trans            &none            &kp ENTER        &kp KP_N1        &kp KP_N2            &kp KP_N3              &mmv MOVE_RIGHT               &kp LBKT        &kp RBKT          &kp LBRC      &kp RBRC        &kp F12           &trans
+&trans            &trans           &kp DOT          &kp KP_N0        &trans               &trans                 &mkp LCLK                     &trans          &trans            &trans        &none           &trans
+                 >;
 
-            display-name = "LAYER2";
-            sensor-bindings = <&rsr_vol &rsr_trans>;
+            sensor-bindings = <&scroll_encoder>;
+            display-name = "Keypad";
         };
 
         layer_3 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
+&trans            &none           &none             &wc_e           &none                &none                  &none                         &none            &wc_u           &wc_i           &wc_o          &none             &none
+&trans            &wc_a           &trans            &trans          &trans               &trans                 &none                         &trans           &trans          &trans          &trans         &trans            &none
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
+&trans            &none           &none             &none           &trans               &trans                 &none                         &trans           &none            &trans          &none          &trans
             >;
 
-            display-name = "LAYER3";
-            sensor-bindings = <&rsr_vol &rsr_trans>;
+            display-name = "I18n - WC";
         };
 
         layer_4 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &none
+&trans            &none           &none             &e_l3           &none                &none                  &none                         &none            &u_l3           &i_l3           &o_l3         &none             &none
+&trans            &a_l3 LCTRL 0   &trans            &trans          &trans               &trans                 &none                         &trans           &trans          &trans          &trans         &trans            &none
+&trans            &none           &none             &none           &none                &none                  &none                         &none            &none            &none           &none          &none             &trans
+&trans            &none           &none             &none           &trans               &trans                 &none                         &trans           &none            &trans          &none          &trans 
             >;
 
-            display-name = "LAYER4";
-            sensor-bindings = <&rsr_vol &rsr_trans>;
+            display-name = "I18n";
+        };
+
+
+        layer_5 {
+            bindings = <
+&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &tog 6          &rgbstatus_l0_toggle &none          &none              &none
+&sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none                                   &none                &none          &none          &none              &none
+&none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none                                   &none                &none          &none          &none              &none
+&none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx                             &none                &none          &none          &none              &none
+&none             &none           &none             &none           &none                &trans                 &none                          &none                                   &trans               &none          &none          &none
+            >;
+
+            display-name = "Config";
+        }; 
+
+        layer_6 {
+            bindings = <
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &trans          &trans         &trans            &trans
+&trans            &trans          &trans            &trans          &trans               &trans                 &trans                        &trans           &trans          &hld_m4 4 0    &trans         &trans
+            >;
+
+            display-name = "I18n Unicode";
         };
     };
 };

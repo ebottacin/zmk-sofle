@@ -1,0 +1,84 @@
+    scroll_encoder: scroll_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        tap-ms = <100>;
+    };
+
+    layer_listeners {
+        compatible = "zmk,layer-listeners";
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
+
+        on_layer0 {
+            layers = <0>;
+            bindings = <&rgbstatus_l0_handler>;
+        };
+
+        on_layer1 {
+            layers = <1>;
+            bindings = <&rgb_layer1>, <&rgbstatus_l0_handler>;
+        };
+
+        on_layer2 {
+            layers = <2>;
+            bindings = <&rgb_layer2>, <&rgbstatus_l0_handler>;
+        };
+
+        on_layer3 {
+            layers = <3>;
+            bindings = <&rgb_layer3>, <&rgbstatus_l0_handler>;
+        };
+
+        on_layer4 {
+            layers = <4>;
+            bindings = <&rgb_layer3>, <&rgbstatus_l0_handler>;
+        };
+
+        on_layer5 {
+            layers = <5>;
+            bindings = <&rgb_layer4>, <&rgbstatus_l0_handler>;
+        };
+    };
+
+    caps_lock_listener {
+        compatible = "zmk,caps-lock-listener";
+        tap-ms = <LISTENER_TAP_MS>;
+        wait-ms = <LISTENER_WAIT_MS>;
+        trigger-on-shift;
+
+        on_layer0 {
+            layers = <0>;
+            bindings = <&rgb_caps_white>, <&rgbstatus_l0_handler>;
+        };
+
+        on_layer1 {
+            layers = <1>;
+            bindings = <&rgb_caps_white>, <&rgb_layer1>;
+        };
+
+        on_layer2 {
+            layers = <2>;
+            bindings = <&rgb_caps_white>, <&rgb_layer2>;
+        };
+
+        on_layer3 {
+            layers = <3>;
+            bindings = <&rgb_caps_white>, <&rgb_layer3>;
+        };
+
+        on_layer4 {
+            layers = <4>;
+            bindings = <&rgb_caps_white>, <&rgb_layer3>;
+        };
+
+        on_layer5 {
+            layers = <5>;
+            bindings = <&rgb_caps_white>, <&rgb_layer4>;
+        };
+    };
+
+    dynamic_logging_listener {
+        compatible = "zmk,dynamic-logging-listener";
+        log-level = "DBG";
+    };

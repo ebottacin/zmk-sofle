@@ -4,3 +4,9 @@ modules/
 tools/
 .west/
 .omo
+
+zephyr/*
+!zephyr/**/module.yml
+
+zmk-auto-layer
+zmk-tri-state

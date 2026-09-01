@@ -1,31 +1,63 @@
-# Sofle
 
-- [中文](README.md)
-- [English](README_EN.md)
+# Eyelash Sofle
 
-## 更新列表
+## Changelog
 
-- 2024/12/21
-  1. 增加zmk-studio支持（只需要刷新左手即可使用）。
-- 2024/10/24
-  1. 修改供电模式，功耗降低。
-  2. 修正RGB供电自动关闭的功能。
-- 2025/3/30 增加睡眠进入时间1小时  增加防抖时间 优化睡眠后功耗 
-- 2025/8/22
-  1. 更新了soft off。当您同时按下 Q、S 和 Z 键并按住 2 秒钟时，键盘将进入深度睡眠状态，无法通过按键唤醒。携带外出时可以使用此功能。激活方式为按一次复位开关。
-  2. 这个月，我还更新了矮轴版本sofle和corne的外壳。框架和底板加厚了，复位开关的开口也进行了调整，可以轻松按下复位开关。目前，我们仍在构思如何设计带有倾斜支架的外壳。如果您仔细检查过 PCB，您会注意到有用于扩展 IO 的预留接口。不知道有没有人能够使用它们，我会尝试一下！
-  3. 右侧键盘屏幕上的GIF动画被移除，这将显著降低右侧键盘的功耗。
+### v1.6.0
 
--2026/6/22 键盘支持DYA STUDIO改键了中文用户联系店主索取中文版DYA STUDIO安装包。这个上位机软件改键比ZMK studio更好用。
 
-> 请更新最新的固件。
->
+- Added the L0 backlight toggle, implemented through the generic status selector module.
+- Updated keymap-drawer configuration and the rendered keymap layout.
 
-## 联系我
+### v1.5.2
 
-如需3D打印的模型文件或者键盘有任何异常和故障，请联系380465425@qq.com
+- Added Compose support to `zmk-info-widget`.
 
-## Sofle键位图
+### v1.5.1
 
-![Sofle键位图](keymap-drawer/eyelash_sofle.svg)
+- Improved extended-character handling with WinCompose macros.
+
+### v1.5.0
+
+- Added Docker build support, image-pull caching, and the related build-script workflow.
+- Added the `zmk-usb-logging` snippet and improved local build scripts.
+- Fixed Node 20 warnings in CI.
+- Refined keymap-drawer configuration, generated layout, and documentation.
+- Updated the custom character configuration to use vowel-only handling.
+
+### v1.4.1
+
+- Corrected keymap-drawer configuration.
+
+### v1.4.0
+
+- Added and integrated `zmk-dynamic-logging` runtime controls.
+
+### v 1.0
+
+- Continued board and keymap refinements.
+- Added/updated split and studio support.
+- Updated build matrix and core configuration files.
+
+## Keyboard Layout
+
+- SVG layout: [keymap-drawer/eyelash_sofle.svg](keymap-drawer/eyelash_sofle.svg)
+
+<img src="keymap-drawer/eyelash_sofle.svg" alt="Eyelash Sofle keymap" />
+
+## Features and Used Repositories
+
+- Tri-state behavior: [urob/zmk-tri-state](https://github.com/urob/zmk-tri-state)
+- Auto-layer and num-word: [urob/zmk-auto-layer](https://github.com/urob/zmk-auto-layer)
+- Listener framework: [ssbb/zmk-listeners](https://github.com/ssbb/zmk-listeners)
+- Caps lock/caps word events and split sync: [ebottacin/zmk-caps-lock-events](https://github.com/ebottacin/zmk-caps-lock-events)
+- Runtime logging controls: [ebottacin/zmk_dynamic-logging](https://github.com/ebottacin/zmk_dynamic-logging)
+- Display info widget: [ebottacin/zmk-info-widget](https://github.com/ebottacin/zmk-info-widget)
+- Generic status selector: [ebottacin/zmk-status-selector](https://github.com/ebottacin/zmk-status-selector)
+
+- Optional host-side utility: [ebottacin/zmk-host-gui](https://github.com/ebottacin/zmk-host-gui)
+
+## Build and Technical Documentation
+
+- See [BUILD.md](BUILD.md) for build scripts, CI matrix, keymap SVG generation, versioning, and USB logging
 

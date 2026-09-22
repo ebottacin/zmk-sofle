@@ -1,0 +1,6 @@
+        soft_off_combo {
+            timeout-ms    = <COMBO_TIMEOUT_BASE>;
+            key-positions = <40 44>;
+            layers        = <4>;
+            bindings      = <&soft_off>;
+        };

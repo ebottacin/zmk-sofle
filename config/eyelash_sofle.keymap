@@ -38,10 +38,7 @@
     trigger-period-ms = <16>;
 };
 
-/*
- * Disabled: the softoff combo was removed and this keyboard does not use soft_off.
- * &soft_off { hold-time-ms = <2000>; };
- */
+&soft_off { hold-time-ms = <0>; };
 
 / {
     macros {
@@ -55,9 +52,11 @@
 #include "features/compose/combos.dtsi"
 #include "features/layers/combos.dtsi"
 #include "features/shortcuts/combos.dtsi"
+#include "features/system/combos.dtsi"
     };
 
     behaviors {
+#include "features/info-widget/behaviors.dtsi"
 #include "features/system/behaviors.dtsi"
 #include "features/compose/behaviors.dtsi"
 #include "features/caps/behaviors.dtsi"

@@ -1,0 +1,4 @@
+        info_layer_sync: INFOSYNC {
+            compatible = "zmk,behavior-info-layer-sync";
+            #binding-cells = <2>;
+        };

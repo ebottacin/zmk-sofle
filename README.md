@@ -49,7 +49,7 @@
 
 - Tri-state behavior: [urob/zmk-tri-state](https://github.com/urob/zmk-tri-state)
 - Auto-layer and num-word: [urob/zmk-auto-layer](https://github.com/urob/zmk-auto-layer)
-- Listener framework: [ssbb/zmk-listeners](https://github.com/ssbb/zmk-listeners)
+- Listener framework: [ebottacin/zmk-listeners](https://github.com/ebottacin/zmk-listeners) (fork of [ssbb/zmk-listeners](https://github.com/ssbb/zmk-listeners))
 - Caps lock/caps word events and split sync: [ebottacin/zmk-caps-lock-events](https://github.com/ebottacin/zmk-caps-lock-events)
 - Runtime logging controls: [ebottacin/zmk_dynamic-logging](https://github.com/ebottacin/zmk_dynamic-logging)
 - Display info widget: [ebottacin/zmk-info-widget](https://github.com/ebottacin/zmk-info-widget)

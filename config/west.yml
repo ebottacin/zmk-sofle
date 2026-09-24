@@ -20,8 +20,8 @@ manifest:
     - name: zmk-auto-layer
       remote: urob
     - name: zmk-listeners
-      remote: ssbb
-      revision: v1
+      remote: ebottacin
+      revision: main
     - name: zmk-caps-lock-events
       remote: ebottacin
       revision: main

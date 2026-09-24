@@ -3,11 +3,14 @@
   "git.detectSubmodules": true,
   "git.repositoryScanMaxDepth": 1,
   "git.repositoryScanIgnoredFolders": [
-    "mario-peripheral-animation",
     "zmk",
     "zmk-auto-layer",
-    "zmk-listeners",
-    "zmk-tri-state"
+    "zmk-tri-state",
+    "zmk-behavior-runtime-sensor-rotate",
+    "zmk-module-ble-management",
+    "zmk-module-battery-history",
+    "zmk-module-settings-rpc",
+    "zmk-module-runtime-input-processor"
   ],
   "scm.repositories.sortOrder": "name",
   "scm.repositories.visible": 20,

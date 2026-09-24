@@ -282,9 +282,11 @@ reattach_custom_modules() {
   ensure_module_origin_remote "$PWD/zmk-caps-lock-events" "ebottacin"
   ensure_module_origin_remote "$PWD/zmk-info-widget" "ebottacin"
    ensure_module_origin_remote "$PWD/zmk-status-selector" "ebottacin"
+  ensure_module_origin_remote "$PWD/zmk-listeners" "ebottacin"
   reattach_module_branch_if_detached "$PWD/zmk-caps-lock-events" "ebottacin" "main"
   reattach_module_branch_if_detached "$PWD/zmk-info-widget" "ebottacin" "main"
   reattach_module_branch_if_detached "$PWD/zmk-status-selector" "ebottacin" "main"
+  reattach_module_branch_if_detached "$PWD/zmk-listeners" "ebottacin" "main"
 }
 
 is_keymap_svg_target_enabled() {

@@ -10,3 +10,8 @@ zephyr/*
 
 zmk-auto-layer
 zmk-tri-state
+zmk-behavior-runtime-sensor-rotate
+zmk-module-ble-management
+zmk-module-battery-history
+zmk-module-settings-rpc
+zmk-module-runtime-input-processor

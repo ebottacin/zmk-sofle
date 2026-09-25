@@ -60,7 +60,6 @@
 #include "features/system/behaviors.dtsi"
 #include "features/compose/behaviors.dtsi"
 #include "features/caps/behaviors.dtsi"
-#include "features/logging/behaviors.dtsi"
 #include "features/layers/behaviors.dtsi"
 #include "features/lighting/behaviors.dtsi"
 
@@ -84,7 +83,6 @@
 
 #include "features/caps/listeners.dtsi"
 #include "features/lighting/listeners.dtsi"
-#include "features/logging/listeners.dtsi"
 
 #include "features/compose/widget.dtsi"
 
@@ -164,7 +162,7 @@
 
         layer_5 {
             bindings = <
-&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &dynamic_logging_toggle &tog 6          &rgbstatus_l0_toggle &none          &none              &none
+&none             &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2    &bt BT_SEL 3         &bt BT_SEL 4           &none                          &none                  &tog 6          &rgbstatus_l0_toggle &none          &none              &none
 &sys_reset        &bt BT_CLR      &bt BT_CLR_ALL    &none           &none                &none                  &none                          &none                                   &none                &none          &none          &none              &none
 &none             &out OUT_USB    &out OUT_BLE      &none           &none                &none                  &none                          &none                                   &none                &none          &none          &none              &none
 &none             &none           &none             &none           &none                &td_boot_sx            &none                          &td_boot_dx                             &none                &none          &none          &none              &none

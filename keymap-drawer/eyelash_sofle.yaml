@@ -57,11 +57,11 @@ layers:
   - {t: '`', s: '~'}
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
-  - {t: '$$mdi:keyboard-space$$', tr: WAKE}
+  - $$mdi:keyboard-space$$
   - {t: '$$mdi:navigation-variant$$', h: Arrow}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:numeric$$', h: Keypad}
-  - {t: '$$mdi:keyboard-return$$', type: enter, tr: WAKE}
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:earth$$', h: I18n - WC}
   - {t: '=', s: +}
   - {t: \, s: '|'}

@@ -626,6 +626,8 @@ parse_config:
       hold: zoom
 
   zmk_combos:
+    soft_off_combo:
+      key: "Soft off"
     combo_to_2:
       align: top
     combo_to_3:

@@ -57,11 +57,11 @@ layers:
   - {t: '`', s: '~'}
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
-  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-space$$', tr: WAKE}
   - {t: '$$mdi:navigation-variant$$', h: Arrow}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:numeric$$', h: Keypad}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: '$$mdi:keyboard-return$$', type: enter, tr: WAKE}
   - {t: '$$mdi:earth$$', h: I18n - WC}
   - {t: '=', s: +}
   - {t: \, s: '|'}
@@ -471,5 +471,5 @@ combos:
   k: $$mdi:backspace-reverse-outline$$
   l: [Base, Arrow, Keypad, I18n - WC]
 - p: [40, 44]
-  k: '&soft_off'
-  l: [I18n]
+  k: Soft off
+  l: [I18n, Config, I18n Unicode]

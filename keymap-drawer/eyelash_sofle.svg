@@ -629,6 +629,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key"/>
 <use href="#mdi:keyboard-space" xlink:href="#mdi:keyboard-space" x="-9" y="-13" height="18" width="18.0" class="key tap glyph mdi:keyboard-space"/>
+<text x="24" y="-24" class="key tr">WAKE</text>
 </g>
 <g transform="translate(389, 294) rotate(30.0)" class="key keypos-57">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -653,6 +654,7 @@ rect.held, rect.combo.held {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key enter side"/>
 <rect rx="4" ry="4" x="-20" y="-24" width="40" height="40" class="key enter"/>
 <use href="#mdi:keyboard-return" xlink:href="#mdi:keyboard-return" x="-9" y="-13" height="18" width="18.0" class="key enter tap glyph mdi:keyboard-return"/>
+<text x="24" y="-24" class="key enter tr">WAKE</text>
 </g>
 <g transform="translate(672, 259)" class="key keypos-61">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key side"/>
@@ -2126,7 +2128,9 @@ rect.held, rect.combo.held {
 <path d="M196,213 l-93,9" class="combo"/>
 <path d="M196,213 l93,-9" class="combo"/>
 <rect rx="6" ry="6" x="182" y="200" width="28" height="26" class="combo"/>
-<text x="196" y="213" class="combo tap"><tspan style="font-size: 67%">&amp;soft_off</tspan></text>
+<text x="196" y="213" class="combo tap">
+<tspan x="196" dy="-0.6em">Soft</tspan><tspan x="196" dy="1.2em">off</tspan>
+</text>
 </g>
 </g>
 </g>
@@ -2477,6 +2481,14 @@ rect.held, rect.combo.held {
 <text x="462" y="294" class="combo tap layer-activator">Config</text>
 </a><text x="462" y="305" class="combo hold">toggle</text>
 </g>
+<g class="combo combopos-1">
+<path d="M196,213 l-93,9" class="combo"/>
+<path d="M196,213 l93,-9" class="combo"/>
+<rect rx="6" ry="6" x="182" y="200" width="28" height="26" class="combo"/>
+<text x="196" y="213" class="combo tap">
+<tspan x="196" dy="-0.6em">Soft</tspan><tspan x="196" dy="1.2em">off</tspan>
+</text>
+</g>
 </g>
 </g>
 <g transform="translate(40, 2328)" class="layer-I18n Unicode">
@@ -2811,6 +2823,14 @@ rect.held, rect.combo.held {
 <a href="#Config">
 <text x="462" y="294" class="combo tap layer-activator">Config</text>
 </a><text x="462" y="305" class="combo hold">toggle</text>
+</g>
+<g class="combo combopos-1">
+<path d="M196,213 l-93,9" class="combo"/>
+<path d="M196,213 l93,-9" class="combo"/>
+<rect rx="6" ry="6" x="182" y="200" width="28" height="26" class="combo"/>
+<text x="196" y="213" class="combo tap">
+<tspan x="196" dy="-0.6em">Soft</tspan><tspan x="196" dy="1.2em">off</tspan>
+</text>
 </g>
 </g>
 </g>
